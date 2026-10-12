@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<defs><radialGradient id="g" cx="38%" cy="30%"><stop offset="0" stop-color="#D4243C"/><stop offset="1" stop-color="#8E0F2A"/></radialGradient>
+<linearGradient id="au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset="1" stop-color="#D9A33A"/></linearGradient></defs>
+<g fill="url(#g)">
+<circle cx="158.00" cy="100.00" r="24"/>
+<circle cx="150.23" cy="129.00" r="24"/>
+<circle cx="129.00" cy="150.23" r="24"/>
+<circle cx="100.00" cy="158.00" r="24"/>
+<circle cx="71.00" cy="150.23" r="24"/>
+<circle cx="49.77" cy="129.00" r="24"/>
+<circle cx="42.00" cy="100.00" r="24"/>
+<circle cx="49.77" cy="71.00" r="24"/>
+<circle cx="71.00" cy="49.77" r="24"/>
+<circle cx="100.00" cy="42.00" r="24"/>
+<circle cx="129.00" cy="49.77" r="24"/>
+<circle cx="150.23" cy="71.00" r="24"/>
+<circle cx="100" cy="100" r="70"/>
+</g>
+<circle cx="100" cy="100" r="50" fill="#FFF7E6"/>
+<circle cx="100" cy="100" r="50" fill="none" stroke="#8E0F2A" stroke-width="2.5" opacity=".35"/>
+<text x="100" y="101" text-anchor="middle" dominant-baseline="central" font-family="Georgia,'Times New Roman',serif" font-size="66" font-style="italic" fill="url(#au)" stroke="#8E0F2A" stroke-width=".8">a</text>
+</svg>

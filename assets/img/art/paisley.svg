@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" color="#E4C068" fill="none" stroke="currentColor"
+     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- line-art buta (paisley): bottom tip, up the right, over the crown, down the left, tip curls inward -->
+    <path id="buta"
+          d="M80 158 C126 128 144 88 128 58 C112 30 72 26 56 48 C42 68 52 88 70 88
+             C80 88 86 81 84 73 C82 66 73 65 70 71"/>
+    <path id="butaIn"
+          d="M80 142 C114 118 128 88 116 64 C104 42 76 38 65 54 C56 68 63 80 74 79"/>
+
+    <!-- eight-petal lotus floret, petals radiating r4 -> r26 -->
+    <path id="pet" d="M0 -4 C-7 -12 -7 -22 0 -26 C7 -22 7 -12 0 -4Z"/>
+    <g id="floret">
+      <use href="#pet"/><use href="#pet" transform="rotate(45)"/>
+      <use href="#pet" transform="rotate(90)"/><use href="#pet" transform="rotate(135)"/>
+      <use href="#pet" transform="rotate(180)"/><use href="#pet" transform="rotate(225)"/>
+      <use href="#pet" transform="rotate(270)"/><use href="#pet" transform="rotate(315)"/>
+      <circle cx="0" cy="0" r="5"/>
+      <circle cx="0" cy="0" r="1.8" fill="currentColor" stroke="none"/>
+    </g>
+  </defs>
+
+  <!-- primary buta -->
+  <g opacity=".95" transform="translate(6 30)">
+    <use href="#buta"/>
+    <use href="#butaIn" opacity=".55"/>
+    <g fill="currentColor" stroke="none" opacity=".65">
+      <circle cx="96" cy="116" r="2.6"/><circle cx="106" cy="94" r="2.1"/><circle cx="88" cy="96" r="1.8"/>
+    </g>
+  </g>
+
+  <!-- counter-facing buta, smaller -->
+  <g opacity=".7" transform="translate(196 68) rotate(192) scale(.52) translate(-93 -92)">
+    <use href="#buta"/>
+    <use href="#butaIn" opacity=".55"/>
+  </g>
+
+  <use href="#floret" transform="translate(212 176) scale(1.25)" opacity=".85"/>
+  <use href="#floret" transform="translate(36 54)   scale(.8)"   opacity=".7"/>
+  <use href="#floret" transform="translate(126 228) scale(1)"    opacity=".8"/>
+
+  <g fill="currentColor" stroke="none" opacity=".5">
+    <circle cx="246" cy="112" r="2.4"/>
+    <circle cx="178" cy="124" r="2.2"/>
+    <circle cx="16"  cy="150" r="2.2"/>
+    <circle cx="60"  cy="232" r="1.9"/>
+    <circle cx="208" cy="246" r="1.9"/>
+    <circle cx="106" cy="18"  r="1.9"/>
+  </g>
+</svg>

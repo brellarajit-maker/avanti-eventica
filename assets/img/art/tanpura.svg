@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 720" color="#E4C068" fill="none" stroke="currentColor"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- tanpura / veena: resonating gourd, long neck, scrolled head, four strings -->
+
+  <!-- gourd -->
+  <ellipse cx="110" cy="582" rx="86" ry="104"/>
+  <ellipse cx="110" cy="582" rx="70" ry="88" opacity=".45"/>
+  <path d="M40 520 C70 496 150 496 180 520" opacity=".5"/>
+
+  <!-- table / soundboard rim + rose -->
+  <circle cx="110" cy="596" r="26" opacity=".6"/>
+  <circle cx="110" cy="596" r="14" opacity=".45"/>
+  <circle cx="110" cy="596" r="3.4" fill="currentColor" stroke="none" opacity=".7"/>
+
+  <!-- bridge (javari) -->
+  <path d="M74 500 h72 a6 6 0 0 1 6 6 v12 a6 6 0 0 1 -6 6 h-72 a6 6 0 0 1 -6 -6 v-12 a6 6 0 0 1 6 -6Z"/>
+
+  <!-- neck -->
+  <path d="M84 500 L84 150 Q84 128 96 118"/>
+  <path d="M136 500 L136 150 Q136 128 124 118"/>
+  <path d="M84 430 H136" opacity=".35"/>
+  <path d="M84 330 H136" opacity=".35"/>
+  <path d="M84 230 H136" opacity=".35"/>
+
+  <!-- scrolled head -->
+  <path d="M96 118 C72 104 66 72 86 56 C104 42 132 48 138 70 C143 88 130 102 116 98 C106 95 104 84 111 79"/>
+
+  <!-- tuning pegs -->
+  <g opacity=".9">
+    <path d="M84 196 h-34"/><circle cx="44" cy="196" r="7"/>
+    <path d="M84 238 h-34"/><circle cx="44" cy="238" r="7"/>
+    <path d="M136 196 h34"/><circle cx="176" cy="196" r="7"/>
+    <path d="M136 238 h34"/><circle cx="176" cy="238" r="7"/>
+  </g>
+
+  <!-- strings -->
+  <g stroke-width="1.1" opacity=".75">
+    <path d="M95 180 L95 506"/>
+    <path d="M103 180 L103 506"/>
+    <path d="M117 180 L117 506"/>
+    <path d="M125 180 L125 506"/>
+  </g>
+</svg>

@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" color="#E4C068" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+<defs>
+<path id="pA" d="M400 100.0 C383.0 85.2 383.0 32.8 400 18.0 C417.0 32.8 417.0 85.2 400 100.0 Z"/>
+<path id="pB" d="M400 172.0 C379.0 160.5 379.0 119.5 400 108.0 C421.0 119.5 421.0 160.5 400 172.0 Z"/>
+<path id="pC" d="M400 242.0 C381.0 230.5 381.0 189.5 400 178.0 C419.0 189.5 419.0 230.5 400 242.0 Z"/>
+<path id="pD" d="M400 308.0 C373.0 297.6 373.0 260.4 400 250.0 C427.0 260.4 427.0 297.6 400 308.0 Z"/>
+<path id="pE" d="M400 374.0 C378.0 363.6 378.0 326.4 400 316.0 C422.0 326.4 422.0 363.6 400 374.0 Z"/>
+<path id="ray" d="M400 296 V232"/>
+<path id="drop" d="M400 196 c-13 22 -13 34 0 34 c13 0 13 -12 0 -34Z"/>
+</defs>
+<circle cx="400" cy="400" r="388" opacity=".55"/>
+<circle cx="400" cy="400" r="374" opacity=".55"/>
+<circle cx="400" cy="400" r="296" opacity=".55"/>
+<circle cx="400" cy="400" r="288" opacity=".55"/>
+<circle cx="400" cy="400" r="226" opacity=".55"/>
+<circle cx="400" cy="400" r="218" opacity=".55"/>
+<circle cx="400" cy="400" r="154" opacity=".55"/>
+<circle cx="400" cy="400" r="146" opacity=".55"/>
+<circle cx="400" cy="400" r="88" opacity=".55"/>
+<circle cx="400" cy="400" r="80" opacity=".55"/>
+<circle cx="400" cy="400" r="30" opacity=".55"/>
+<circle cx="400" cy="400" r="22" opacity=".55"/>
+<g opacity=".95">
+<use href="#pA" transform="rotate(0.000 400 400)"/>
+<use href="#pA" transform="rotate(10.000 400 400)"/>
+<use href="#pA" transform="rotate(20.000 400 400)"/>
+<use href="#pA" transform="rotate(30.000 400 400)"/>
+<use href="#pA" transform="rotate(40.000 400 400)"/>
+<use href="#pA" transform="rotate(50.000 400 400)"/>
+<use href="#pA" transform="rotate(60.000 400 400)"/>
+<use href="#pA" transform="rotate(70.000 400 400)"/>
+<use href="#pA" transform="rotate(80.000 400 400)"/>
+<use href="#pA" transform="rotate(90.000 400 400)"/>
+<use href="#pA" transform="rotate(100.000 400 400)"/>
+<use href="#pA" transform="rotate(110.000 400 400)"/>
+<use href="#pA" transform="rotate(120.000 400 400)"/>
+<use href="#pA" transform="rotate(130.000 400 400)"/>
+<use href="#pA" transform="rotate(140.000 400 400)"/>
+<use href="#pA" transform="rotate(150.000 400 400)"/>
+<use href="#pA" transform="rotate(160.000 400 400)"/>
+<use href="#pA" transform="rotate(170.000 400 400)"/>
+<use href="#pA" transform="rotate(180.000 400 400)"/>
+<use href="#pA" transform="rotate(190.000 400 400)"/>
+<use href="#pA" transform="rotate(200.000 400 400)"/>
+<use href="#pA" transform="rotate(210.000 400 400)"/>
+<use href="#pA" transform="rotate(220.000 400 400)"/>
+<use href="#pA" transform="rotate(230.000 400 400)"/>
+<use href="#pA" transform="rotate(240.000 400 400)"/>
+<use href="#pA" transform="rotate(250.000 400 400)"/>
+<use href="#pA" transform="rotate(260.000 400 400)"/>
+<use href="#pA" transform="rotate(270.000 400 400)"/>
+<use href="#pA" transform="rotate(280.000 400 400)"/>
+<use href="#pA" transform="rotate(290.000 400 400)"/>
+<use href="#pA" transform="rotate(300.000 400 400)"/>
+<use href="#pA" transform="rotate(310.000 400 400)"/>
+<use href="#pA" transform="rotate(320.000 400 400)"/>
+<use href="#pA" transform="rotate(330.000 400 400)"/>
+<use href="#pA" transform="rotate(340.000 400 400)"/>
+<use href="#pA" transform="rotate(350.000 400 400)"/>
+</g>
+<g opacity=".9">
+<use href="#pB" transform="rotate(0.000 400 400)"/>
+<use href="#pB" transform="rotate(15.000 400 400)"/>
+<use href="#pB" transform="rotate(30.000 400 400)"/>
+<use href="#pB" transform="rotate(45.000 400 400)"/>
+<use href="#pB" transform="rotate(60.000 400 400)"/>
+<use href="#pB" transform="rotate(75.000 400 400)"/>
+<use href="#pB" transform="rotate(90.000 400 400)"/>
+<use href="#pB" transform="rotate(105.000 400 400)"/>
+<use href="#pB" transform="rotate(120.000 400 400)"/>
+<use href="#pB" transform="rotate(135.000 400 400)"/>
+<use href="#pB" transform="rotate(150.000 400 400)"/>
+<use href="#pB" transform="rotate(165.000 400 400)"/>
+<use href="#pB" transform="rotate(180.000 400 400)"/>
+<use href="#pB" transform="rotate(195.000 400 400)"/>
+<use href="#pB" transform="rotate(210.000 400 400)"/>
+<use href="#pB" transform="rotate(225.000 400 400)"/>
+<use href="#pB" transform="rotate(240.000 400 400)"/>
+<use href="#pB" transform="rotate(255.000 400 400)"/>
+<use href="#pB" transform="rotate(270.000 400 400)"/>
+<use href="#pB" transform="rotate(285.000 400 400)"/>
+<use href="#pB" transform="rotate(300.000 400 400)"/>
+<use href="#pB" transform="rotate(315.000 400 400)"/>
+<use href="#pB" transform="rotate(330.000 400 400)"/>
+<use href="#pB" transform="rotate(345.000 400 400)"/>
+</g>
+<g opacity=".9">
+<use href="#pC" transform="rotate(0.000 400 400)"/>
+<use href="#pC" transform="rotate(20.000 400 400)"/>
+<use href="#pC" transform="rotate(40.000 400 400)"/>
+<use href="#pC" transform="rotate(60.000 400 400)"/>
+<use href="#pC" transform="rotate(80.000 400 400)"/>
+<use href="#pC" transform="rotate(100.000 400 400)"/>
+<use href="#pC" transform="rotate(120.000 400 400)"/>
+<use href="#pC" transform="rotate(140.000 400 400)"/>
+<use href="#pC" transform="rotate(160.000 400 400)"/>
+<use href="#pC" transform="rotate(180.000 400 400)"/>
+<use href="#pC" transform="rotate(200.000 400 400)"/>
+<use href="#pC" transform="rotate(220.000 400 400)"/>
+<use href="#pC" transform="rotate(240.000 400 400)"/>
+<use href="#pC" transform="rotate(260.000 400 400)"/>
+<use href="#pC" transform="rotate(280.000 400 400)"/>
+<use href="#pC" transform="rotate(300.000 400 400)"/>
+<use href="#pC" transform="rotate(320.000 400 400)"/>
+<use href="#pC" transform="rotate(340.000 400 400)"/>
+</g>
+<g opacity=".95">
+<use href="#pD" transform="rotate(0.000 400 400)"/>
+<use href="#pD" transform="rotate(30.000 400 400)"/>
+<use href="#pD" transform="rotate(60.000 400 400)"/>
+<use href="#pD" transform="rotate(90.000 400 400)"/>
+<use href="#pD" transform="rotate(120.000 400 400)"/>
+<use href="#pD" transform="rotate(150.000 400 400)"/>
+<use href="#pD" transform="rotate(180.000 400 400)"/>
+<use href="#pD" transform="rotate(210.000 400 400)"/>
+<use href="#pD" transform="rotate(240.000 400 400)"/>
+<use href="#pD" transform="rotate(270.000 400 400)"/>
+<use href="#pD" transform="rotate(300.000 400 400)"/>
+<use href="#pD" transform="rotate(330.000 400 400)"/>
+</g>
+<g opacity="1">
+<use href="#pE" transform="rotate(0.000 400 400)"/>
+<use href="#pE" transform="rotate(45.000 400 400)"/>
+<use href="#pE" transform="rotate(90.000 400 400)"/>
+<use href="#pE" transform="rotate(135.000 400 400)"/>
+<use href="#pE" transform="rotate(180.000 400 400)"/>
+<use href="#pE" transform="rotate(225.000 400 400)"/>
+<use href="#pE" transform="rotate(270.000 400 400)"/>
+<use href="#pE" transform="rotate(315.000 400 400)"/>
+</g>
+<g opacity=".7">
+<use href="#ray" transform="rotate(0.000 400 400)"/>
+<use href="#ray" transform="rotate(7.500 400 400)"/>
+<use href="#ray" transform="rotate(15.000 400 400)"/>
+<use href="#ray" transform="rotate(22.500 400 400)"/>
+<use href="#ray" transform="rotate(30.000 400 400)"/>
+<use href="#ray" transform="rotate(37.500 400 400)"/>
+<use href="#ray" transform="rotate(45.000 400 400)"/>
+<use href="#ray" transform="rotate(52.500 400 400)"/>
+<use href="#ray" transform="rotate(60.000 400 400)"/>
+<use href="#ray" transform="rotate(67.500 400 400)"/>
+<use href="#ray" transform="rotate(75.000 400 400)"/>
+<use href="#ray" transform="rotate(82.500 400 400)"/>
+<use href="#ray" transform="rotate(90.000 400 400)"/>
+<use href="#ray" transform="rotate(97.500 400 400)"/>
+<use href="#ray" transform="rotate(105.000 400 400)"/>
+<use href="#ray" transform="rotate(112.500 400 400)"/>
+<use href="#ray" transform="rotate(120.000 400 400)"/>
+<use href="#ray" transform="rotate(127.500 400 400)"/>
+<use href="#ray" transform="rotate(135.000 400 400)"/>
+<use href="#ray" transform="rotate(142.500 400 400)"/>
+<use href="#ray" transform="rotate(150.000 400 400)"/>
+<use href="#ray" transform="rotate(157.500 400 400)"/>
+<use href="#ray" transform="rotate(165.000 400 400)"/>
+<use href="#ray" transform="rotate(172.500 400 400)"/>
+<use href="#ray" transform="rotate(180.000 400 400)"/>
+<use href="#ray" transform="rotate(187.500 400 400)"/>
+<use href="#ray" transform="rotate(195.000 400 400)"/>
+<use href="#ray" transform="rotate(202.500 400 400)"/>
+<use href="#ray" transform="rotate(210.000 400 400)"/>
+<use href="#ray" transform="rotate(217.500 400 400)"/>
+<use href="#ray" transform="rotate(225.000 400 400)"/>
+<use href="#ray" transform="rotate(232.500 400 400)"/>
+<use href="#ray" transform="rotate(240.000 400 400)"/>
+<use href="#ray" transform="rotate(247.500 400 400)"/>
+<use href="#ray" transform="rotate(255.000 400 400)"/>
+<use href="#ray" transform="rotate(262.500 400 400)"/>
+<use href="#ray" transform="rotate(270.000 400 400)"/>
+<use href="#ray" transform="rotate(277.500 400 400)"/>
+<use href="#ray" transform="rotate(285.000 400 400)"/>
+<use href="#ray" transform="rotate(292.500 400 400)"/>
+<use href="#ray" transform="rotate(300.000 400 400)"/>
+<use href="#ray" transform="rotate(307.500 400 400)"/>
+<use href="#ray" transform="rotate(315.000 400 400)"/>
+<use href="#ray" transform="rotate(322.500 400 400)"/>
+<use href="#ray" transform="rotate(330.000 400 400)"/>
+<use href="#ray" transform="rotate(337.500 400 400)"/>
+<use href="#ray" transform="rotate(345.000 400 400)"/>
+<use href="#ray" transform="rotate(352.500 400 400)"/>
+</g>
+<g opacity=".8">
+<use href="#drop" transform="rotate(0.000 400 400)"/>
+<use href="#drop" transform="rotate(20.000 400 400)"/>
+<use href="#drop" transform="rotate(40.000 400 400)"/>
+<use href="#drop" transform="rotate(60.000 400 400)"/>
+<use href="#drop" transform="rotate(80.000 400 400)"/>
+<use href="#drop" transform="rotate(100.000 400 400)"/>
+<use href="#drop" transform="rotate(120.000 400 400)"/>
+<use href="#drop" transform="rotate(140.000 400 400)"/>
+<use href="#drop" transform="rotate(160.000 400 400)"/>
+<use href="#drop" transform="rotate(180.000 400 400)"/>
+<use href="#drop" transform="rotate(200.000 400 400)"/>
+<use href="#drop" transform="rotate(220.000 400 400)"/>
+<use href="#drop" transform="rotate(240.000 400 400)"/>
+<use href="#drop" transform="rotate(260.000 400 400)"/>
+<use href="#drop" transform="rotate(280.000 400 400)"/>
+<use href="#drop" transform="rotate(300.000 400 400)"/>
+<use href="#drop" transform="rotate(320.000 400 400)"/>
+<use href="#drop" transform="rotate(340.000 400 400)"/>
+</g>
+<circle cx="400" cy="400" r="8" fill="currentColor" stroke="none"/>
+</svg>
