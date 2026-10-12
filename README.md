@@ -162,7 +162,7 @@ through winget for this job and live under
 **The Dastak section** is the fourth deep panel, below Jjhoom, in sapphire and
 brass — the fourth palette, so still no two band panels match. Copy left, film
 right, the same arrangement as Jjhoom at your request, stacking to copy-then-
-film on a phone. The heading is `Parag Jain ft. Dastak`, since that is how the
+film on a phone. The heading is `Dastak ft. Parag Jain`, since that is how the
 act is billed, and the line under it — "Where versatility meets unforgettable
 live music" — is their own closing sentence.
 
