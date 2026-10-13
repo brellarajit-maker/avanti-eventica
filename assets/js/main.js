@@ -583,7 +583,89 @@ function reels(){
   vids.forEach(v => io.observe(v));
 }
 /* ==================================================================
-   10 · CONTACT RAIL + BOOKING FORM
+   10 · CHOREOGRAPHY REEL
+
+   Muted autoplay is the only kind browsers allow unprompted, so the clip
+   starts silent and loops, and only while it is actually on screen — off
+   screen it pauses, which keeps it off the main thread and off the data
+   plan. The button is the one way sound gets turned on, and turning it on
+   counts as the interaction browsers want before they will allow it.
+
+   Under prefers-reduced-motion nothing autoplays: the poster stays, the
+   browser's own controls are shown, and the visitor presses play or not.
+================================================================== */
+function choreo(){
+  const v = $('#choreoVideo');
+  if (!v) return;
+  const btn = $('#choreoSound');
+
+  if (reduced){
+    v.controls = true;
+    if (btn) btn.hidden = true;
+    return;
+  }
+
+  let onScreen = false, primed = false;
+
+  // preload="none" keeps the reel out of the initial page load. load() resets
+  // the element, so play() is never called in the same tick — the canplay
+  // handler below is what actually starts it, and it retries on its own.
+  const prime = () => {
+    if (primed) return;
+    primed = true;
+    v.preload = 'auto';
+    v.load();
+  };
+  const tryPlay = () => {
+    if (!onScreen) return;
+    const p = v.play();
+    if (p) p.catch(() => {});       // autoplay refused, or aborted by load()
+  };
+
+  v.addEventListener('loadeddata', tryPlay);
+  v.addEventListener('canplay', tryPlay);
+
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        onScreen = e.isIntersecting;
+        if (onScreen){ prime(); tryPlay(); }
+        else if (!v.paused) v.pause();
+      });
+    }, { threshold: .35 }).observe(v);
+
+    // start fetching a little before it is wanted, so play is not watching a blank frame
+    new IntersectionObserver((entries, io) => {
+      if (entries[0].isIntersecting){ prime(); io.disconnect(); }
+    }, { rootMargin: '600px 0px' }).observe(v);
+  } else {
+    onScreen = true;
+    prime();
+  }
+
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    v.muted = !v.muted;
+    btn.setAttribute('aria-pressed', String(!v.muted));
+    btn.setAttribute('aria-label', v.muted ? 'Turn the sound on' : 'Turn the sound off');
+    // unmuting is the interaction the browser was waiting for
+    if (!v.muted){ onScreen = true; tryPlay(); }
+  });
+
+  // if anything else on the page starts making noise, this one steps back
+  $$('video').forEach(other => {
+    if (other === v) return;
+    other.addEventListener('play', () => {
+      if (!v.muted){
+        v.muted = true;
+        btn.setAttribute('aria-pressed', 'false');
+        btn.setAttribute('aria-label', 'Turn the sound on');
+      }
+    });
+  });
+}
+/* ==================================================================
+   11 · CONTACT RAIL + BOOKING FORM
 ================================================================== */
 function contact(){
   const rail = $('#contactRail');
@@ -659,7 +741,7 @@ function contact(){
 }
 
 /* ==================================================================
-   11 · MISC
+   12 · MISC
 ================================================================== */
 function misc(){
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
@@ -680,6 +762,7 @@ function boot(){
   timeline();
   magnetic();
   reels();
+  choreo();
   contact();
   misc();
   addEventListener('load', misc);

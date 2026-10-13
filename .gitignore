@@ -5,3 +5,9 @@ desktop.ini
 
 # local scratch
 *.log
+
+# Raw source footage dropped in the project root. The edited reels that the
+# site actually serves live in assets/video/ — these originals stay local so
+# the repo does not carry ~111 MB that nothing references.
+/WhatsApp Video *.mp4
+/WhatsApp Image *.jpeg

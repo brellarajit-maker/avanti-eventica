@@ -294,6 +294,16 @@ Its wording is yours, verbatim, with one deliberate omission: the
 your request, so the column now ends on the index and the booking button. The
 index picked up the spacing it used to carry.
 
+**Choreography is in both navs**, between Bands and Showcase, matching the
+section order. The header row still fits on one line at 1280px, and the mobile
+menu shows all seven items without scrolling. It needs no `data-also`: it is a
+single section, so `nav()` lights it up from its own `href`.
+
+**The brand line reads “Live Music & Events”**, changed from “Choreography &
+Live Music” at your request. It is `.brand__tag` in the header; the footer
+strapline ("Choreography · Celebration · Music · Experience") is a separate line
+and was left alone.
+
 **The nav calls it “Bands”**, not “Shakti-Naad”, since one label now stands for
 all five band sections — in the header and the footer. It still jumps to
 Shakti-Naad, and `data-also="#shradha-suman,#jjhoom,#dastak,#krishnaya"` on that
@@ -351,6 +361,76 @@ page — 47 distinct files in all. Each video is used once too: the Showreel is
 the long six-minute film with chapter markers, Shakti-Naad has two 15-second
 cuts of its own, and Shradha Suman has one. If you add media later, the
 quickest check is to search `index.html` for the filename and make sure it comes
+
+**The Choreography section** sits between the band run and the Showcase. It is
+light, on the page's own cream, rather than a sixth deep panel: after five
+jewel-toned slabs the lift back to light is what makes the run feel finished,
+and it hands off cleanly to the Showcase, which is light too. Copy left, square
+film right, with the copy taking the wider column.
+
+**Its film is a 40-second cut**, `choreography.mp4` (9.2 MB) with a VP9
+`choreography.webm` (7.2 MB) listed first for browsers that prefer it. Twelve
+clips of 3.7s joined on 0.4s cross-dissolves, one grade across the set
+(`eq` contrast 1.08 / saturation 1.18 plus a light `unsharp`), fading up and
+down at the ends. `scratchpad/reel40.sh` rebuilds it.
+
+| # | from | what it is |
+|---|---|---|
+| 1 | `11.35.57` 55s | red-and-gold group, arms up — the opening hook |
+| 2 | `11.32.42` 6s | sangeet couple on the draped stage |
+| 3 | `11.35.57` 409s | black-costume group, synchronised |
+| 4 | `11.32.35` 10.5s | couple close, groom in black tie |
+| 5 | `11.32.50` 24s | duo on the LED-circle stage |
+| 6 | `11.35.57` 132s | yellow-and-gold group formation |
+| 7 | `11.32.42` 17s | the sangeet couple again, later passage |
+| 8 | `11.35.57` 299s | solo against the fireworks graphic |
+| 9 | `11.32.50` 42s | duo on the blue LED stage |
+| 10 | `11.35.57` 159s | yellow-and-gold group on blue |
+| 11 | `11.35.57` 450s | black-costume group on the mandala backdrop |
+| 12 | `11.35.57` 379s | black-costume group — the finish |
+
+**Three of the seven files had no usable footage**, as follows. Nothing was
+invented to cover them:
+
+| file | why |
+|---|---|
+| `11.31.57` | the bride solo — footage sits tilted inside a polaroid frame over a textured backdrop, soft and poorly lit, dancers indistinct behind PA stacks |
+| `11.33.02` | a rotated collage: the clip is set at an angle inside overlapping decorative panels, so there is no rectangle to crop |
+| `11.33.19` | a promo slideshow of posters, not performance footage, and it carries a phone number on every frame |
+
+**Everything is square at 576×576 and nothing is upscaled.** All seven sources
+are 576px wide, so 1080p was never available — the brief's own rule was not to
+stretch low-resolution footage. Four of the usable clips are landscape once
+their captions and logo bars are cropped away; rather than stretch them, each is
+centred on a blurred, scaled copy of itself to fill the square. The portrait
+source crops to square at `y=300`, which tightens onto the dancers rather than
+the drape above and the flower barrier below.
+
+**Playback.** `preload="none"` means nothing is fetched on initial page load —
+verified: `readyState` is 0 at the top of the page. One observer starts fetching
+600px out, another plays and pauses it at 35% visibility, and `load()` is never
+called in the same tick as `play()` — that race is what makes a muted autoplay
+silently fail. A `canplay` handler retries, so playback is self-healing. The
+corner button toggles mute, keeps `aria-pressed` and its label in step, and any
+other video starting on the page mutes this one. Under
+`prefers-reduced-motion` nothing autoplays: the button is hidden and the
+browser's own controls appear.
+
+**The soundtrack is each clip's own audio, not one bed.** An earlier cut laid a
+single continuous track from `11.35.57` under everything, which meant the same
+background ran while twelve different performances played — wrong, and
+obviously so. Each clip now carries the sound from its own moment, loudness-
+matched to −16 LUFS so the cuts do not jump in level, and joined with 0.4s
+`acrossfade` on exactly the same joins as the picture, so sound and image stay
+the same length. Verified: clip 2's output audio matches its own source to
+within 0.015 dB and differs from the old bed.
+
+**It is still live event audio.** Each clip's sound is a recording of whatever
+track was playing in that room, so it is not licensed for commercial use. If you
+need that cleared, the options are to replace the audio with a licensed bed
+(`scratchpad/reel40.sh`, swap the `FA` chain for one music input) or to ship the
+reel silent and hide the sound button. I did not source a track because I have
+no licensed library and will not take one from elsewhere.
 
 **The Showcase is six fifteen-second films, one per source clip.** It used to be
 the six-minute `stage-lights.mp4` with chapter markers; that player and its
@@ -422,8 +502,8 @@ back: `stage-lights.mp4` (39 MB, the old Showcase film), `choreo-cultural.mp4`,
 `live-band` is the Shradha Suman footage besides. Deleting them would take about
 76 MB off the folder; nothing on the page references them.
 
-**Video weight.** `assets/video/stage-lights.mp4` is 39 MB and the other 15
-clips total 90 MB (130 MB in all). They stream fine locally but will be slow on
+**Video weight.** `assets/video/stage-lights.mp4` is 39 MB and the other 17
+files total 102 MB (141 MB in all). They stream fine locally but will be slow on
 mobile data. Before launch, compress them — roughly 10× smaller with no visible
 loss:
 

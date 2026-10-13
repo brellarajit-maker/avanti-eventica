@@ -63,7 +63,7 @@
       <img class="brand__mark" src="assets/img/art/logo.svg" alt="" width="40" height="40">
       <span class="brand__text">
         <span class="brand__name">Avanti<span class="brand__dash">-</span>Eventica</span>
-        <span class="brand__tag">Choreography &amp; Live Music</span>
+        <span class="brand__tag">Live Music &amp; Events</span>
       </span>
     </a>
 
@@ -71,6 +71,7 @@
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#shakti-naad" data-also="#shradha-suman,#jjhoom,#dastak,#krishnaya">Bands</a>
+      <a href="#choreography">Choreography</a>
       <a href="#showcase">Showcase</a>
       <a href="#contact">Contact</a>
       <a class="btn btn--gold nav__cta" href="#contact">Book Now</a>
@@ -674,8 +675,67 @@
 
   </div>
 </section>
+<!-- ══════════════ 9 · CHOREOGRAPHY ══════════════ -->
+<!-- Sits between the band run and the Showcase, on the page's own cream rather
+     than a sixth deep panel: after five jewel-toned slabs the lift back to
+     light is what makes the run feel finished, and it hands off cleanly to the
+     Showcase, which is light too. Copy left, film right.
 
-<!-- ══════════════ 9 · SHOWCASE ══════════════ -->
+     The film is a 40s cut assembled from four of the seven choreography posts
+     — see the README for which three had no usable footage and why. It
+     autoplays muted and loops only while it is on screen; the control at the
+     corner turns the sound on. Under prefers-reduced-motion it does not
+     autoplay at all and the browser's own controls appear instead. -->
+<section class="section choreo" id="choreography">
+  <div class="choreo__wash" aria-hidden="true"></div>
+
+  <div class="wrap choreo__grid">
+
+    <div class="choreo__copy">
+      <p class="eyebrow reveal"><span class="eyebrow__rule"></span> Marriage, Sangeet &amp; Reception</p>
+      <h2 class="h2 choreo__title reveal" data-delay="1">Choreography</h2>
+      <p class="choreo__sub reveal" data-delay="2"><em>Every beat. Every move. Every celebration.</em></p>
+
+      <p class="lead reveal" data-delay="2">
+        From beautifully coordinated performances to unforgettable celebration moments, we bring
+        creativity, energy and elegance to every stage. Our choreography turns special occasions
+        into extraordinary memories.
+      </p>
+
+      <ul class="choreo__marks reveal" data-delay="3">
+        <li>Sangeet &amp; Reception Sets</li>
+        <li>Couple &amp; Family Routines</li>
+        <li>Group Formations</li>
+        <li>Cultural &amp; Stage Productions</li>
+      </ul>
+
+      <a class="btn btn--gold magnetic reveal" data-delay="4" href="#contact">Plan Your Performance</a>
+    </div>
+
+    <figure class="choreo__film reveal" data-delay="2">
+      <div class="choreo__frame">
+        <video class="choreo__v" id="choreoVideo"
+               poster="assets/img/choreo/choreo-poster.jpg"
+               width="576" height="576"
+               muted loop playsinline preload="none"
+               aria-label="Forty seconds of Avanti choreography, from sangeet sets to stage productions">
+          <source src="assets/video/choreography.webm" type="video/webm">
+          <source src="assets/video/choreography.mp4" type="video/mp4">
+        </video>
+
+        <button class="choreo__sound" id="choreoSound" type="button"
+                aria-pressed="false" aria-label="Turn the sound on">
+          <span class="choreo__sound-ic" aria-hidden="true"></span>
+          <span class="choreo__sound-txt">Sound</span>
+        </button>
+      </div>
+    </figure>
+
+  </div>
+</section>
+
+
+<!-- ══════════════ 10 · SHOWCASE ══════════════ -->
 <!-- Six fifteen-second films. Each comes from a different source clip, and
      every one is footage that plays nowhere else on this page — the Dastak cut
      is 33–48s of the showreel, past the 0–30s the band panel uses, and the
@@ -741,7 +801,7 @@
   </div>
 </section>
 
-<!-- ══════════════ 10 · TIMELINE ══════════════ -->
+<!-- ══════════════ 11 · TIMELINE ══════════════ -->
 <section class="section flow">
   <div class="wrap">
     <header class="sec-head">
@@ -760,7 +820,7 @@
   </div>
 </section>
 
-<!-- ══════════════ 11 · CONTACT ══════════════ -->
+<!-- ══════════════ 12 · CONTACT ══════════════ -->
 <section class="section contact" id="contact">
   <div class="contact__glow" aria-hidden="true"></div>
   <div class="wrap contact__grid">
@@ -831,7 +891,8 @@
 
     <nav class="foot__nav" aria-label="Footer">
       <a href="#about">About</a><a href="#services">Services</a>
-      <a href="#shakti-naad">Bands</a><a href="#showcase">Showcase</a><a href="#contact">Contact</a>
+      <a href="#shakti-naad">Bands</a><a href="#choreography">Choreography</a>
+      <a href="#showcase">Showcase</a><a href="#contact">Contact</a>
     </nav>
 
     <div class="foot__social">
