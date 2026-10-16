@@ -458,6 +458,17 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .pillar h3{font-family:var(--font-d);font-weight:600;font-size:clamp(1.12rem,1.5vw,1.4rem);margin:0 0 .36em;color:var(--ink);line-height:1.2}
 .pillar p{font-size:.88rem;color:var(--ink-soft);margin:0;line-height:1.62}
+.pillar strong{color:var(--ink);font-weight:500}
+/* the card is a flex column so the link sits at the foot however long the
+   copy runs, keeping the three arrows on one line across the row */
+.pillar{display:flex;flex-direction:column}
+.pillar p{flex:1 1 auto}
+.pillar .link-arrow{margin-top:clamp(14px,1.6vw,20px);align-self:flex-start}
+/* the five bands, named and placed, inside the Live Music card */
+.pillar__bands{margin:.85em 0 0;display:grid;gap:.38em}
+.pillar__bands li{padding-left:.8em;position:relative;line-height:1.45;font-size:.8rem;color:var(--ink-faint)}
+.pillar__bands li::before{content:"";position:absolute;left:0;top:.5em;width:4px;height:4px;border-radius:50%;background:linear-gradient(140deg,var(--marigold),var(--rose))}
+.pillar__bands b{font-family:var(--font-d);font-weight:600;font-size:.92rem;color:var(--ink)}
 
 /* ---------- 11. SERVICES ----------
    Typographic cards. Without photography the colour has to come from the
@@ -1209,12 +1220,56 @@ strong{font-weight:500;color:var(--magenta)}
 /* 1:1, so the clip keeps its own shape and nothing is letterboxed */
 .choreo__v{width:100%;height:auto;display:block;background:var(--deep-2)}
 
-/* ---- the sound control ---- */
+
+/* ---- the control strip ---- */
+.choreo__bar{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  display:flex;align-items:center;gap:clamp(8px,1.2vw,14px);
+  padding:clamp(10px,1.3vw,15px) clamp(11px,1.4vw,16px);
+  background:linear-gradient(180deg, rgba(43,16,56,0) 0%, rgba(43,16,56,.52) 42%, rgba(43,16,56,.82) 100%);
+}
+
+/* the seek bar — a real range input, so drag, tap and arrow keys all work.
+   --p is the played fraction, written by the script on every timeupdate. */
+.choreo__seek{
+  --p:0%;
+  flex:1 1 auto;min-width:0;height:18px;
+  -webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;
+}
+.choreo__seek::-webkit-slider-runnable-track{
+  height:4px;border-radius:999px;
+  background:linear-gradient(90deg,var(--marigold) 0%,var(--rose) var(--p),rgba(255,255,255,.3) var(--p),rgba(255,255,255,.3) 100%);
+}
+.choreo__seek::-moz-range-track{
+  height:4px;border-radius:999px;
+  background:linear-gradient(90deg,var(--marigold) 0%,var(--rose) var(--p),rgba(255,255,255,.3) var(--p),rgba(255,255,255,.3) 100%);
+}
+.choreo__seek::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:12px;height:12px;border-radius:50%;margin-top:-4px;
+  background:#fff;border:0;
+  box-shadow:0 1px 5px rgba(0,0,0,.5);
+  transition:transform .25s var(--ease);
+}
+.choreo__seek::-moz-range-thumb{
+  width:12px;height:12px;border-radius:50%;
+  background:#fff;border:0;
+  box-shadow:0 1px 5px rgba(0,0,0,.5);
+}
+.choreo__seek:hover::-webkit-slider-thumb{transform:scale(1.25)}
+.choreo__seek:focus-visible{outline:2px solid var(--marigold);outline-offset:4px;border-radius:999px}
+
+.choreo__time{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:.3em;
+  font-size:.62rem;letter-spacing:.1em;font-weight:500;
+  color:rgba(255,255,255,.9);font-variant-numeric:tabular-nums;
+}
+.choreo__time i{font-style:normal;color:rgba(255,255,255,.45)}
+/* ---- the sound control, now sitting in the strip ---- */
 .choreo__sound{
-  position:absolute;right:12px;bottom:12px;z-index:2;
-  display:inline-flex;align-items:center;gap:8px;
-  padding:9px 15px 9px 12px;border-radius:999px;
-  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;
   color:#fff;background:rgba(43,16,56,.58);
   border:1px solid rgba(255,255,255,.34);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);

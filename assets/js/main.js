@@ -597,7 +597,53 @@ function reels(){
 function choreo(){
   const v = $('#choreoVideo');
   if (!v) return;
-  const btn = $('#choreoSound');
+  const btn  = $('#choreoSound');
+  const seek = $('#choreoSeek');
+  const now  = $('#choreoNow');
+  const dur  = $('#choreoDur');
+
+  const clock = s => {
+    if (!isFinite(s) || s < 0) s = 0;
+    const m = Math.floor(s / 60);
+    return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  };
+  // the filled part of the track is a CSS variable, so the paint stays in CSS
+  const paint = frac => { if (seek) seek.style.setProperty('--p', (frac * 100).toFixed(2) + '%'); };
+
+  let scrubbing = false;
+
+  v.addEventListener('loadedmetadata', () => { if (dur) dur.textContent = clock(v.duration); });
+  v.addEventListener('timeupdate', () => {
+    if (scrubbing || !isFinite(v.duration)) return;      // don't fight the finger
+    const f = v.currentTime / v.duration;
+    if (seek) seek.value = Math.round(f * 1000);
+    if (now)  now.textContent = clock(v.currentTime);
+    paint(f);
+  });
+
+  if (seek){
+    const scrub = () => {
+      if (!isFinite(v.duration)) return;
+      const f = seek.value / 1000;
+      if (now) now.textContent = clock(f * v.duration);
+      paint(f);
+    };
+    // pointerdown rather than mousedown, so a touch drag counts too
+    seek.addEventListener('pointerdown', () => { scrubbing = true; });
+    seek.addEventListener('input', scrub);
+    const commit = () => {
+      if (!scrubbing) return;
+      scrubbing = false;
+      if (isFinite(v.duration)) v.currentTime = (seek.value / 1000) * v.duration;
+    };
+    seek.addEventListener('pointerup', commit);
+    seek.addEventListener('pointercancel', commit);
+    // arrow keys fire change without a pointer ever going down
+    seek.addEventListener('change', () => {
+      if (isFinite(v.duration)) v.currentTime = (seek.value / 1000) * v.duration;
+      scrubbing = false;
+    });
+  }
 
   if (reduced){
     v.controls = true;
@@ -607,7 +653,7 @@ function choreo(){
 
   let onScreen = false, primed = false;
 
-  // preload="none" keeps the reel out of the initial page load. load() resets
+  // preload="none" keeps the film out of the initial page load. load() resets
   // the element, so play() is never called in the same tick — the canplay
   // handler below is what actually starts it, and it retries on its own.
   const prime = () => {
@@ -619,7 +665,7 @@ function choreo(){
   const tryPlay = () => {
     if (!onScreen) return;
     const p = v.play();
-    if (p) p.catch(() => {});       // autoplay refused, or aborted by load()
+    if (p) p.catch(() => {});      // autoplay refused, or aborted by load()
   };
 
   v.addEventListener('loadeddata', tryPlay);
@@ -634,7 +680,6 @@ function choreo(){
       });
     }, { threshold: .35 }).observe(v);
 
-    // start fetching a little before it is wanted, so play is not watching a blank frame
     new IntersectionObserver((entries, io) => {
       if (entries[0].isIntersecting){ prime(); io.disconnect(); }
     }, { rootMargin: '600px 0px' }).observe(v);
@@ -648,7 +693,6 @@ function choreo(){
     v.muted = !v.muted;
     btn.setAttribute('aria-pressed', String(!v.muted));
     btn.setAttribute('aria-label', v.muted ? 'Turn the sound on' : 'Turn the sound off');
-    // unmuting is the interaction the browser was waiting for
     if (!v.muted){ onScreen = true; tryPlay(); }
   });
 

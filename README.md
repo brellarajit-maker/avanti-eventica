@@ -368,29 +368,43 @@ jewel-toned slabs the lift back to light is what makes the run feel finished,
 and it hands off cleanly to the Showcase, which is light too. Copy left, square
 film right, with the copy taking the wider column.
 
-**Its film is a 40-second cut**, `choreography.mp4` (9.2 MB) with a VP9
-`choreography.webm` (7.2 MB) listed first for browsers that prefer it. Twelve
-clips of 3.7s joined on 0.4s cross-dissolves, one grade across the set
-(`eq` contrast 1.08 / saturation 1.18 plus a light `unsharp`), fading up and
-down at the ends. `scratchpad/reel40.sh` rebuilds it.
+**Its film is the full 5:34 reel you supplied** (`kartik/… 8.28.36 PM.mp4`),
+`choreography.mp4`, 33.6 MB. It is **stream-copied, not re-encoded** — the
+picture and sound are bit-for-bit the source, with no grade, no trim and no
+quality loss. The only change is a remux with `-movflags +faststart`: the
+source had its `moov` atom at the end, which would have forced a browser to
+download all 33 MB before showing a single frame. Moving it to the front lets
+playback begin immediately.
 
-| # | from | what it is |
-|---|---|---|
-| 1 | `11.35.57` 55s | red-and-gold group, arms up — the opening hook |
-| 2 | `11.32.42` 6s | sangeet couple on the draped stage |
-| 3 | `11.35.57` 409s | black-costume group, synchronised |
-| 4 | `11.32.35` 10.5s | couple close, groom in black tie |
-| 5 | `11.32.50` 24s | duo on the LED-circle stage |
-| 6 | `11.35.57` 132s | yellow-and-gold group formation |
-| 7 | `11.32.42` 17s | the sangeet couple again, later passage |
-| 8 | `11.35.57` 299s | solo against the fireworks graphic |
-| 9 | `11.32.50` 42s | duo on the blue LED stage |
-| 10 | `11.35.57` 159s | yellow-and-gold group on blue |
-| 11 | `11.35.57` 450s | black-costume group on the mandala backdrop |
-| 12 | `11.35.57` 379s | black-costume group — the finish |
+Earlier versions of this section were edited cuts — first a 30s assembly from
+the seven Instagram posts, then 40s with the corporate footage folded in. Both
+are gone. If you ever want a short cut again, `scratchpad/reelN.sh` still
+builds the twelve-clip version.
 
-**Three of the seven files had no usable footage**, as follows. Nothing was
-invented to cover them:
+**The full reel carries two things a trimmed cut did not.** They are in it
+deliberately, because you asked for the whole video, but worth knowing:
+
+- the first ~39 seconds are a tilted collage of outdoor group dance, softer and
+  lower-contrast than the stage footage that follows
+- from about 5:06 it closes on an **"Avanti's Event Choreographies · Connect
+  9818259666"** card, so your phone number now appears on the page
+
+Both are your own material, so neither is a rights problem — but if you would
+rather the section opened on the stage and ended without the card, trimming to
+0:39–4:57 is one command and I can do it in a moment.
+
+`choreo-poster.jpg` is the frame at 2:22 — the ornate LED wall mid-performance,
+chosen over anything in the opening collage so the still that greets visitors is
+the strongest part of the film.
+
+**A note on weight.** At 33.6 MB this is by far the heaviest asset on the site.
+`preload="none"` keeps it out of the initial page load entirely, and it is only
+fetched once the section comes near, but it is a large download on mobile data
+and it autoplays. Now that the frame has a scrub bar, click-to-play would be a
+defensible swap — say the word.
+
+**Three of the seven original Instagram posts had no usable footage.** They are
+no longer used at all, but for the record:
 
 | file | why |
 |---|---|
@@ -398,13 +412,10 @@ invented to cover them:
 | `11.33.02` | a rotated collage: the clip is set at an angle inside overlapping decorative panels, so there is no rectangle to crop |
 | `11.33.19` | a promo slideshow of posters, not performance footage, and it carries a phone number on every frame |
 
-**Everything is square at 576×576 and nothing is upscaled.** All seven sources
-are 576px wide, so 1080p was never available — the brief's own rule was not to
-stretch low-resolution footage. Four of the usable clips are landscape once
-their captions and logo bars are cropped away; rather than stretch them, each is
-centred on a blurred, scaled copy of itself to fill the square. The portrait
-source crops to square at `y=300`, which tightens onto the dancers rather than
-the drape above and the flower barrier below.
+**It is square at 576×576 and nothing is upscaled.** That is the source's own
+shape and resolution, kept untouched — 1080p was never available from any of
+the supplied footage, and the brief's own rule was not to stretch low-resolution
+material. The square sits naturally in the section's right-hand column.
 
 **Playback.** `preload="none"` means nothing is fetched on initial page load —
 verified: `readyState` is 0 at the top of the page. One observer starts fetching
@@ -416,21 +427,28 @@ other video starting on the page mutes this one. Under
 `prefers-reduced-motion` nothing autoplays: the button is hidden and the
 browser's own controls appear.
 
-**The soundtrack is each clip's own audio, not one bed.** An earlier cut laid a
-single continuous track from `11.35.57` under everything, which meant the same
-background ran while twelve different performances played — wrong, and
-obviously so. Each clip now carries the sound from its own moment, loudness-
-matched to −16 LUFS so the cuts do not jump in level, and joined with 0.4s
-`acrossfade` on exactly the same joins as the picture, so sound and image stay
-the same length. Verified: clip 2's output audio matches its own source to
-within 0.015 dB and differs from the old bed.
+**It has a scrub bar.** At 4:17 the film is far too long to sit under a bare
+autoplay loop, so the frame carries a control strip along its foot: a seek bar
+showing how much has played, a `played / total` readout, and the sound toggle.
+The seek control is a real `<input type="range">` rather than a styled `<div>`,
+which means dragging, tapping and the arrow keys all seek with no custom
+keyboard handling and screen readers announce it correctly. The played portion
+is drawn from a `--p` custom property the script writes on each `timeupdate`,
+so the painting stays in CSS. A `scrubbing` flag stops `timeupdate` fighting
+your finger mid-drag, and the seek is committed on `pointerup` or `change`.
 
-**It is still live event audio.** Each clip's sound is a recording of whatever
-track was playing in that room, so it is not licensed for commercial use. If you
-need that cleared, the options are to replace the audio with a licensed bed
-(`scratchpad/reel40.sh`, swap the `FA` chain for one music input) or to ship the
-reel silent and hide the sound button. I did not source a track because I have
-no licensed library and will not take one from elsewhere.
+**The soundtrack is the reel's own audio**, untouched. Earlier edited cuts had
+to loudness-match and cross-fade twelve separate clips so the sound would not
+jump between them; a single stream-copied file has none of those joins, so
+there is nothing to balance. It is unnormalised, so its level may sit a little
+below the band films elsewhere on the page — the sound is off by default and
+turned on from the strip, so that is a small thing.
+
+**It is still live event audio.** Whatever track was playing in that room is on
+the recording, so it is not licensed for commercial use. Clearing it means
+either replacing the audio with a licensed bed or shipping the film silent and
+hiding the sound button. I did not source a track because I have no licensed
+library and will not take one from elsewhere.
 
 **The Showcase is six fifteen-second films, one per source clip.** It used to be
 the six-minute `stage-lights.mp4` with chapter markers; that player and its
@@ -503,7 +521,7 @@ back: `stage-lights.mp4` (39 MB, the old Showcase film), `choreo-cultural.mp4`,
 76 MB off the folder; nothing on the page references them.
 
 **Video weight.** `assets/video/stage-lights.mp4` is 39 MB and the other 17
-files total 102 MB (141 MB in all). They stream fine locally but will be slow on
+files total 109 MB (148 MB in all). They stream fine locally but will be slow on
 mobile data. Before launch, compress them — roughly 10× smaller with no visible
 loss:
 
