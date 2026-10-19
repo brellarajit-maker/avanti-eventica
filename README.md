@@ -33,7 +33,7 @@ These are already filled in, at the top of `assets/js/main.js`:
 
 ```js
 const CONFIG = {
-  email:     'avantischoolofperformingarts@gmail.com',
+  email:     'avanti.eventica@gmail.com',
   phone:     '+91 98182 59666',
   whatsapp:  '919818259666',   // digits + country code, no +
   city:      'Delhi NCR, India',
@@ -58,8 +58,15 @@ through to the mail app, and the phone number stays on the page regardless.
 
 ### 2. The hero slider
 
+**`05-bhajan-mandali.jpg` was pulled at your request** — the three children seated
+with harmonium and tabla. It was the first slide, so it carried `is-active` and
+`fetchpriority="high"`; both moved to `06-bhajan-clubbing.jpg`, which also lost
+its `loading="lazy"` since it is now the image the page is judged on. The dots
+are built from `slides.length`, so nine of them appear with no further change.
+The file is still in `assets/img/hero/` if you want it back.
+
 **Every photograph in the hero is your own.** No stock, nothing licensed, nothing
-to credit or replace. Ten slides in four labelled blocks, each playing as an
+to credit or replace. Nine slides in four labelled blocks, each playing as an
 uninterrupted run:
 
 | Caption | Slides | Files |
@@ -78,7 +85,7 @@ Blocks that currently have no photo, so no caption appears for them: **Sufi
 Night**, **Keertan**, **Bollywood Night**. Send one photo for any of those and
 the block goes straight back in.
 
-`hero-photo-audit.jpg` in the project root is a contact sheet of all ten in
+`hero-photo-audit.jpg` in the project root is a contact sheet of the original ten in
 running order.
 
 ---
@@ -331,7 +338,7 @@ dots, arrow keys and touch-swipe all work. The timing is one line in
 `assets/js/main.js` — the `dur:5000` in the hero's `carousel()` call.
 
 The slides are grouped into commented blocks in `index.html` — Bhajan Sandhya,
-Shakti-Naad, Live Band, Choreography. (The hero still runs all ten photos; only
+Shakti-Naad, Live Band, Choreography. (The hero still runs all nine photos; only
 the page section was removed.) Keep a new photo inside its block so each
 genre still plays as an uninterrupted run.
 
@@ -436,6 +443,25 @@ keyboard handling and screen readers announce it correctly. The played portion
 is drawn from a `--p` custom property the script writes on each `timeupdate`,
 so the painting stays in CSS. A `scrubbing` flag stops `timeupdate` fighting
 your finger mid-drag, and the seek is committed on `pointerup` or `change`.
+
+**Three lists were rewritten at your request.** Krishnaya's ruled index now reads
+Bhajan Clubbing · Bollywood Music · Musical Pheras, replacing the four deity
+bhajans. Dastak's reads Hollywood (English pop and rock) · Bollywood ·
+Devotional & Sufi. Jjhoom's leads with Hollywood (English retro & contemporary)
+ahead of Bollywood, Sufi and Punjabi. In each case the two places in the About
+section that described the band by its old genres were changed to match, so the
+page does not contradict itself — and because both bands now cover much the
+same ground, Dastak's card line carries Parag Jain's name so the two are still
+telling apart at a glance. The counters renumber themselves. The
+Choreography list is Sangeet/Haldi/Mehndi & Reception Performances, Couple &
+Family Performances, Group Formations and Audio Visual Production.
+
+**That list is why `.choreo__marks` is `auto-fit` now.** The items got long
+enough that two columns wrapped half of them onto a second line — ragged
+against the two that still fit. The minimum column is set to 330px, above what
+the copy column can split, so each item takes one clean line here and the list
+would only go two-up if the container ever got wider. That is a rule about the
+content rather than a breakpoint guess, so it holds if the wording changes again.
 
 **The soundtrack is the reel's own audio**, untouched. Earlier edited cuts had
 to loudness-match and cross-fade twelve separate clips so the sound would not

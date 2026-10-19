@@ -9,7 +9,7 @@
    Leave a value as "" and that row simply doesn't render.
 ------------------------------------------------------------------ */
 const CONFIG = {
-  email:     'avantischoolofperformingarts@gmail.com',
+  email:     'avanti.eventica@gmail.com',
   phone:     '+91 98182 59666',
   whatsapp:  '919818259666',           // digits only, with country code
   city:      'Delhi NCR, India',
