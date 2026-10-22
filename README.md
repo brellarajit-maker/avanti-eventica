@@ -822,6 +822,41 @@ own background but below the copy, the same trick the SVG sculptures use, which
 works because `.section` sets `z-index:1`. The hero sets no z-index, so there
 the canvas goes to `z-index:1` and the copy is lifted to `2`.
 
+
+**Responsiveness** is handled by the breakpoints through section 23 and then
+corrected in section 28, `RESPONSIVE REFINEMENTS`, which sits last so it can
+fix the earlier ones without editing them. Everything in it came out of
+measuring the page at 320, 375, 768, 1024, 1440 and 1920.
+
+**The one systemic bug was `min-width:auto`.** A grid or flex item will not
+shrink below its content's min-content width, and `.btn` has
+`white-space:nowrap`. That was enough for one button to hold the hero's
+column at 345px inside a 284px grid at 320px, and the Shakti-Naad copy at
+414px inside a 375px viewport. Because `body` has `overflow-x:clip` the
+excess was being silently cut off rather than showing as a scrollbar — it
+looked fine and was losing content. Every track now carries `min-width:0`,
+and below 420px the button labels are allowed to wrap, which drops their
+min-content from 345px to about 150px.
+
+| | |
+|---|---|
+| ≤374px | tighter gutter (14px), smaller display type, 8px card margins |
+| ≤420px | button labels wrap, tracking tightens |
+| ≤1023px | the hero stacks — it used to hold two columns until 760px, so 761–1023 ran 303px + 345px inside a 583px wrap |
+| ≥1600px | `--wrap` lifts to 1460px |
+| ≥1920px | `--wrap` 1560px, deeper section padding — the 1320px cap left ~600px of dead margin and the page looked marooned rather than spacious |
+| `pointer:coarse` | every hit area to 44px |
+| landscape, ≤520px tall | section padding drops so a phone on its side is not all whitespace |
+
+**The carousel dots needed care.** They are 22×3px with `overflow:hidden`, so
+growing the hit area with a pseudo-element does not work — it gets clipped.
+The box grows to 44px on transparent padding instead, with the painted bar
+held to the content box, which keeps every per-section dot colour working.
+
+Verified at all six sizes: no horizontal scroll, no clipped text, no element
+leaking past the viewport except the decorative watermarks and the carousel
+slides, which are clipped by their own frames.
+
 The ornaments in `assets/img/art/` are drawn as SVG paths, so they stay sharp at
 any size and are tinted from CSS rather than baked in.
 
