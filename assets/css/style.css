@@ -581,7 +581,6 @@ strong{font-weight:500;color:var(--magenta)}
 .svc:hover{transform:translateY(-10px);box-shadow:0 50px 90px -40px rgba(224,137,184,.55)}
 .svc:hover .svc__num{-webkit-text-stroke-color:var(--tint);transform:translateY(-4px)}
 
-
 /* ---------- 12. SHAKTI-NAAD (deep stage section) ----------
    Two columns: the words on the left, every photograph and clip running as one
    slider on the right. The slider sticks while the copy scrolls past it, so a
@@ -1079,7 +1078,6 @@ strong{font-weight:500;color:var(--magenta)}
   line-height:1.5;color:var(--on-deep);
 }
 
-
 /* ---------- 16. KRISHNAYA (fifth stage panel) ----------
    Shakti-Naad's palette, reused on purpose: the band run closes on the colour
    it opened with, which reads more smoothly than a fifth hue. Copy left and
@@ -1273,7 +1271,6 @@ strong{font-weight:500;color:var(--magenta)}
 }
 /* 1:1, so the clip keeps its own shape and nothing is letterboxed */
 .choreo__v{width:100%;height:auto;display:block;background:var(--deep-2)}
-
 
 /* ---- the control strip ---- */
 .choreo__bar{
@@ -1867,10 +1864,6 @@ body{
 .foot__social a:hover{color:var(--magenta-lt);border-color:var(--magenta)}
 .foot__base{border-top:1px solid rgba(119,80,140,.4);color:rgba(233,217,239,.66)}
 
-/* -- 6. the glossy sculptures. They sit on the stage and in the gutters
-      between cards, where there is nothing to obstruct. -- */
-.sculpt{opacity:var(--sc-o,.3)}
-
 /* -- 7. the timeline carries no card. It sits open on the stage, which gives
       the run of cards somewhere to breathe and echoes the full-bleed dark
       stretches in the reference. Its ink therefore has to be light. -- */
@@ -1885,13 +1878,6 @@ body{
 .step__n{box-shadow:0 0 0 8px rgba(33,27,63,.92), 0 16px 32px -16px rgba(226,45,203,.6)}
 .flow__rule{background:rgba(233,217,239,.16)}
 
-/* the two sculptures that sit on the open stage can be bolder, because there
-   is no card under them and nothing to wash out; the ones inside light cards
-   stay faint so they never fight the copy they sit behind */
-.sculpt--hero{--sc-o:.34;--sc-b:22px}
-.sculpt--flow{--sc-o:.30;--sc-b:20px}
-
-
 /* The scroll hint collides with the hero buttons two different ways, so it is
    guarded on both axes. Below ~1100px wide the two buttons wrap onto a second
    row and walk into it (49x55px at 1024px). Below ~880px tall they do not
@@ -1905,108 +1891,6 @@ body{
 
 @media (max-width:1100px), (max-height:880px){
   .scroller{display:none}
-}
-
-
-/* ---------- 27. HOLOGRAPHIC RIBBON ----------
-   The WebGL ribbon in assets/js/ribbon.js draws into these canvases. They are
-   decoration only: never in the flow, never clickable, and always under the
-   copy.
-
-   Stacking: inside a .section, z-index:-1 puts the canvas above the card's own
-   background but below the content, which is the same trick the SVG sculptures
-   use and works because .section sets z-index:1 and so makes a stacking
-   context. The hero does not set z-index, so there the canvas goes to z-index:1
-   (above the hero's gradient) and the copy is lifted to 2.
-
-   Opacity follows the brief: lower where the ribbon sits behind words, higher
-   where it is filling empty space. The per-instance alpha lives in data-alpha
-   so the shader and the CSS do not fight each other.                       */
-.ribbon{
-  position:absolute;
-  pointer-events:none;
-  display:block;
-  width:var(--rb-w,520px);
-  height:var(--rb-h,420px);
-  z-index:-1;
-  /* a soft mask so the ribbon dissolves into the card rather than ending on a
-     hard canvas edge */
-  -webkit-mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
-  mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
-  filter:blur(var(--rb-blur,.4px));
-  will-change:transform;
-}
-
-/* hero - large, to the right of the copy, in the open space beside the slider */
-.hero .ribbon{z-index:1}
-.hero > .wrap{position:relative;z-index:2}
-.ribbon--hero{
-  top:4%; right:-10%;
-  --rb-w:min(66vw,860px); --rb-h:min(62vh,680px);
-}
-
-/* services - in the open margin beside the three cards */
-.ribbon--services{
-  bottom:-6%; left:-12%;
-  --rb-w:min(46vw,560px); --rb-h:min(40vh,460px);
-}
-
-/* Dastak - behind the empty background beside the film */
-.ribbon--dastak{
-  top:-8%; right:-14%;
-  --rb-w:min(50vw,620px); --rb-h:min(46vh,520px);
-}
-
-/* choreography - a decorative sweep under the whole section */
-.ribbon--choreo{
-  bottom:-16%; left:-10%;
-  --rb-w:min(58vw,720px); --rb-h:min(50vh,560px);
-}
-
-/* the three glass-mode ribbons, on the rose-gold cards. They sit lower in
-   opacity than the glow ones (the brief's 8-18% behind text) and are placed
-   clear of the copy columns. */
-.ribbon--about{
-  bottom:-10%; left:-13%;
-  --rb-w:min(44vw,540px); --rb-h:min(38vh,430px);
-}
-.ribbon--shakti{
-  top:-10%; right:-13%;
-  --rb-w:min(42vw,520px); --rb-h:min(38vh,420px);
-}
-.ribbon--krishnaya{
-  bottom:-12%; right:-12%;
-  --rb-w:min(46vw,560px); --rb-h:min(40vh,450px);
-}
-
-/* the three tubes. They sit flatter and more symmetric than the ribbons — the
-   reference is a head-on infinity — so they are given wider, shorter boxes. */
-.ribbon--suman{
-  top:-12%; left:-10%;
-  --rb-w:min(50vw,600px); --rb-h:min(30vh,330px);
-}
-.ribbon--jjhoom{
-  bottom:-14%; right:-11%;
-  --rb-w:min(48vw,580px); --rb-h:min(28vh,310px);
-}
-.ribbon--reels{
-  top:-10%; right:-9%;
-  --rb-w:min(52vw,640px); --rb-h:min(30vh,340px);
-}
-
-@media (max-width:900px){
-  /* on a phone only the hero keeps one, and it is smaller and fainter - the
-     other three are pure decoration and not worth the battery */
-  .ribbon--services,.ribbon--dastak,.ribbon--choreo,
-  .ribbon--about,.ribbon--shakti,.ribbon--krishnaya,
-  .ribbon--suman,.ribbon--jjhoom,.ribbon--reels{display:none}
-  .ribbon--hero{--rb-w:120vw; --rb-h:46vh; right:-30%; top:2%}
-}
-
-@media (prefers-reduced-motion: reduce){
-  /* ribbon.js already renders a single still frame; this just softens it
-     further so a frozen ribbon does not read as a mistake */
-  .ribbon{opacity:.7}
 }
 
 /* ---------- 23. RESPONSIVE ---------- */
@@ -2121,64 +2005,6 @@ body{
   .hero__actions .btn{flex:1 1 100%}
 }
 
-
-/* ---------- 24. LIQUID SCULPTURES ----------
-   Glass ribbons drifting in the open margins of the light sections. They are
-   decoration only: z-index -1 puts them behind every heading, image and
-   control without touching a single content wrapper, because .section already
-   makes its own stacking context and none of these sections paints a
-   background of its own. pointer-events are off, so nothing can be blocked.
-
-   Only transform animates, so the blurred layer rasterises once and is then
-   composited — the cost is a texture upload, not a repaint per frame.
-
-   The deep band panels are deliberately left alone: they carry their own
-   auras and glows already, and five jewel-toned slabs do not need more.   */
-.sculpt-sprite{position:absolute;width:0;height:0;overflow:hidden}
-
-/* A sculpture sits deliberately past its section edge, so the section has to
-   clip it or the page gains sideways scroll. hero, choreo and contact already
-   clipped; these four did not. clip rather than hidden, because hidden would
-   make a scroll container and break the sticky film in any section that has
-   one. */
-.about,.services,.reels,.flow{overflow:clip}
-
-.sculpt{
-  position:absolute;z-index:-1;pointer-events:none;
-  width:var(--sc-w,520px);
-  opacity:var(--sc-o,.14);
-  filter:blur(var(--sc-b,26px)) saturate(1.12) hue-rotate(var(--sc-h,0deg));
-  will-change:transform;
-  animation:scDrift var(--sc-t,18s) var(--ease) var(--sc-d,0s) infinite alternate;
-}
-.sculpt svg{width:100%;height:auto;display:block}
-
-@keyframes scDrift{
-  from{transform:translate3d(0,0,0) rotate(var(--sc-r0,0deg)) scale(1)}
-  to  {transform:translate3d(var(--sc-x,20px),var(--sc-y,-26px),0)
-                 rotate(var(--sc-r1,7deg)) scale(var(--sc-s,1.06))}
-}
-
-/* ---- the placements ----
-   Each is a different shape, hue, size and cycle length, so no two sections
-   carry the same object. Hue and blur are variables rather than a whole
-   filter, so one mobile rule can soften every instance at once. Percentages
-   rather than pixels, so they stay in their margin as the section reflows. */
-.sculpt--hero    {top:-6%;   right:-10%; --sc-w:min(54vw,680px); --sc-o:.16; --sc-t:19s; --sc-b:26px; --sc-h:0deg;   --sc-r0:-6deg;  --sc-r1:4deg;  --sc-x:-22px; --sc-y:24px}
-.sculpt--about   {bottom:-8%;left:-9%;   --sc-w:min(46vw,540px); --sc-o:.13; --sc-t:16s; --sc-b:28px; --sc-h:-14deg; --sc-r0:8deg;   --sc-r1:-5deg; --sc-x:26px;  --sc-y:-18px}
-.sculpt--services{top:-10%;  right:-8%;  --sc-w:min(40vw,470px); --sc-o:.11; --sc-t:20s; --sc-b:24px; --sc-h:18deg;  --sc-r0:12deg;  --sc-r1:-3deg; --sc-x:-18px; --sc-y:20px}
-.sculpt--choreo  {bottom:-14%;left:-8%;  --sc-w:min(48vw,600px); --sc-o:.15; --sc-t:17s; --sc-b:30px; --sc-h:-8deg;  --sc-r0:-10deg; --sc-r1:6deg;  --sc-x:24px;  --sc-y:-20px}
-.sculpt--reels   {top:-8%;   left:-11%;  --sc-w:min(44vw,520px); --sc-o:.12; --sc-t:18s; --sc-b:26px; --sc-h:10deg;  --sc-r0:5deg;   --sc-r1:-7deg; --sc-x:20px;  --sc-y:22px}
-.sculpt--flow    {top:4%;    right:-12%; --sc-w:min(38vw,440px); --sc-o:.10; --sc-t:15s; --sc-b:22px; --sc-h:-20deg; --sc-r0:-4deg;  --sc-r1:9deg;  --sc-x:-16px; --sc-y:-24px}
-.sculpt--contact {top:-12%;  left:-7%;   --sc-w:min(50vw,620px); --sc-o:.14; --sc-t:20s; --sc-b:28px; --sc-h:6deg;   --sc-r0:9deg;   --sc-r1:-4deg; --sc-x:18px;  --sc-y:26px}
-
-/* A blurred layer this size is the most expensive thing on a phone, so the
-   count drops to four, the blur softens and every instance dims. These come
-   after the placements on purpose — otherwise each one's own --sc-o wins. */
-@media (max-width:760px){
-  .sculpt--services,.sculpt--reels,.sculpt--flow{display:none}
-  .sculpt{--sc-b:16px;--sc-o:.09}
-}
 /* ---------- 25. MOTION PREFERENCES ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -2188,7 +2014,7 @@ body{
   }
   .reveal{opacity:1;transform:none}
   /* decorative only, so it simply stops — the shapes stay as quiet artwork */
-  .sculpt{animation:none}
+
   /* the film never pushes itself on someone who asked for less motion */
   .choreo__frame:hover{transform:none}
   .hero__title .ch{opacity:1;transform:none}
@@ -2285,7 +2111,13 @@ body{
      to 44px on transparent padding instead, with the painted bar held to the
      content box so every per-section dot colour keeps working. */
   .dots{gap:12px}
-  .dot{height:44px;padding-block:20.5px;background-clip:content-box}
+  /* background-clip carries !important because the per-section dot colours
+     are written with the `background` SHORTHAND - `.hero .dot{background:...}`
+     and friends - and a shorthand resets background-clip to border-box. At
+     (0,2,0) those outrank a plain .dot rule whatever the source order, so
+     without this the dot paints its whole 44px box and shows up as a fat
+     vertical bar instead of a thin marker. */
+  .dot{height:44px;padding-block:20.5px;background-clip:content-box !important}
   .dot i{top:20.5px;bottom:20.5px;height:3px}
   /* buttons and the wordmark measured 34px tall */
   :is(.btn,.brand){min-height:44px}
@@ -2316,6 +2148,156 @@ body{
 
 /* -- 8. the decorative layers are the one thing allowed to overflow, because
       they are clipped by their section and carry no content. Below 900px the
-      ribbons are already down to the hero alone; this just makes sure the SVG
-      sculptures never widen a track. -- */
-:is(.sculpt,.ribbon,.wm){max-width:none;flex:0 0 auto}
+      The mandala watermarks sit past their section edge on purpose and are
+      clipped by it; this keeps them from widening a grid track. -- */
+.wm{max-width:none;flex:0 0 auto}
+
+/* ---------- 30. WORDMARK WATERMARKS ----------
+   The thing that carries the reference is not a shape, it is the huge
+   faint wordmark sitting under the heading. The site already had drifting
+   shapes; it had no typographic layer at all.
+
+   One word per section, set in the display serif at display scale, sitting
+   behind the copy in the free space above it. It is decoration only:
+   aria-hidden, unselectable, and inert to the pointer, so nothing about the
+   reading order or the tab order changes.
+
+   Opacity is kept to 4-6%. That matters: the copy's contrast is measured
+   against the card colour, and a watermark any stronger would start shifting
+   the effective background under the text and eating into the ratios the
+   palette was built to hold.                                              */
+.wordmark{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:-1;
+  pointer-events:none;
+  -webkit-user-select:none;user-select:none;
+  font-family:var(--font-d);
+  font-weight:600;
+  font-size:clamp(4.5rem,20vw,16rem);
+  line-height:.78;
+  letter-spacing:-.025em;
+  white-space:nowrap;
+  text-transform:lowercase;
+}
+
+/* on the rose-gold cards the watermark is plum; on the dark ones it is
+   ivory. Both land at the same perceived weight. */
+:is(.about,.reels,.contact) .wordmark{color:rgba(36,21,54,.055)}
+:is(.services,.suman,.dastak,.choreo) .wordmark{color:rgba(255,248,240,.05)}
+
+.wordmark--about   {top:clamp(26px,5vw,70px)}
+.wordmark--services{top:clamp(22px,4.4vw,60px)}
+.wordmark--contact {top:clamp(26px,5vw,74px)}
+
+@media (max-width:760px){
+  /* a word this size would run past a phone on its own, so it drops a step
+     and loses the tracking that was pulling it wider */
+  .wordmark{font-size:clamp(3.4rem,26vw,7rem);letter-spacing:-.015em}
+}
+@media (prefers-reduced-motion:reduce){
+  .wordmark{opacity:1}
+}
+.wordmark--choreo  {top:clamp(22px,4.4vw,62px)}
+.wordmark--reels   {top:clamp(22px,4.4vw,62px)}
+/* ---------- 27. HOLOGRAPHIC RIBBON ----------
+   The WebGL ribbon in assets/js/ribbon.js draws into these canvases. They are
+   decoration only: never in the flow, never clickable, and always under the
+   copy.
+
+   Stacking: inside a .section, z-index:-1 puts the canvas above the card's own
+   background but below the content, which is the same trick the SVG sculptures
+   use and works because .section sets z-index:1 and so makes a stacking
+   context. The hero does not set z-index, so there the canvas goes to z-index:1
+   (above the hero's gradient) and the copy is lifted to 2.
+
+   Opacity follows the brief: lower where the ribbon sits behind words, higher
+   where it is filling empty space. The per-instance alpha lives in data-alpha
+   so the shader and the CSS do not fight each other.                       */
+.ribbon{
+  position:absolute;
+  pointer-events:none;
+  display:block;
+  width:var(--rb-w,520px);
+  height:var(--rb-h,420px);
+  z-index:-1;
+  /* a soft mask so the ribbon dissolves into the card rather than ending on a
+     hard canvas edge */
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
+  mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
+  filter:blur(var(--rb-blur,.4px));
+  will-change:transform;
+}
+
+/* hero - large, to the right of the copy, in the open space beside the slider */
+.hero .ribbon{z-index:1}
+.hero > .wrap{position:relative;z-index:2}
+.ribbon--hero{
+  top:4%; right:-10%;
+  --rb-w:min(66vw,860px); --rb-h:min(62vh,680px);
+}
+
+/* services - in the open margin beside the three cards */
+.ribbon--services{
+  bottom:-6%; left:-12%;
+  --rb-w:min(46vw,560px); --rb-h:min(40vh,460px);
+}
+
+/* Dastak - behind the empty background beside the film */
+.ribbon--dastak{
+  top:-8%; right:-14%;
+  --rb-w:min(50vw,620px); --rb-h:min(46vh,520px);
+}
+
+/* choreography - a decorative sweep under the whole section */
+.ribbon--choreo{
+  bottom:-16%; left:-10%;
+  --rb-w:min(58vw,720px); --rb-h:min(50vh,560px);
+}
+
+/* the three glass-mode ribbons, on the rose-gold cards. They sit lower in
+   opacity than the glow ones (the brief's 8-18% behind text) and are placed
+   clear of the copy columns. */
+.ribbon--about{
+  bottom:-10%; left:-13%;
+  --rb-w:min(44vw,540px); --rb-h:min(38vh,430px);
+}
+.ribbon--shakti{
+  top:-10%; right:-13%;
+  --rb-w:min(42vw,520px); --rb-h:min(38vh,420px);
+}
+.ribbon--krishnaya{
+  bottom:-12%; right:-12%;
+  --rb-w:min(46vw,560px); --rb-h:min(40vh,450px);
+}
+
+/* the three tubes. They sit flatter and more symmetric than the ribbons — the
+   reference is a head-on infinity — so they are given wider, shorter boxes. */
+.ribbon--suman{
+  top:-12%; left:-10%;
+  --rb-w:min(50vw,600px); --rb-h:min(30vh,330px);
+}
+.ribbon--jjhoom{
+  bottom:-14%; right:-11%;
+  --rb-w:min(48vw,580px); --rb-h:min(28vh,310px);
+}
+.ribbon--reels{
+  top:-10%; right:-9%;
+  --rb-w:min(52vw,640px); --rb-h:min(30vh,340px);
+}
+
+@media (max-width:900px){
+  /* on a phone only the hero keeps one, and it is smaller and fainter - the
+     other three are pure decoration and not worth the battery */
+  .ribbon--services,.ribbon--dastak,.ribbon--choreo,
+  .ribbon--about,.ribbon--shakti,.ribbon--krishnaya,
+  .ribbon--suman,.ribbon--jjhoom,.ribbon--reels{display:none}
+  .ribbon--hero{--rb-w:120vw; --rb-h:46vh; right:-30%; top:2%}
+}
+
+@media (prefers-reduced-motion: reduce){
+  /* ribbon.js renders one still frame under reduced motion; this softens it
+     so a frozen sculpture does not read as a mistake */
+  .ribbon{opacity:.7}
+}

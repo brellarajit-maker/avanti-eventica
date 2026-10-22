@@ -323,7 +323,10 @@
   Ribbon.prototype.draw = function (ms) {
     if (!this.ready) return;
     var gl = this.gl;
-    /* ~22s for a full cycle of the slow axes, inside the brief's 18-25s */
+    /* Slowed to roughly half the previous rate. A full turn on the Y axis now
+       takes about 95 seconds and the two rocking axes are slower still, so
+       at any moment the movement is barely perceptible - it reads as drift
+       rather than rotation, which is what "slow motion" wants. */
     var t = (ms / 1000) * this.speed;
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -334,11 +337,14 @@
     gl.uniform1f(this.u.alpha, this.alpha * this.fade);
     gl.uniform1f(this.u.glow,  this.glow ? 1.0 : 0.0);
     gl.uniform3f(this.u.rot,
-      Math.sin(t * 0.0714) * 0.45 + this.py + this.scroll * 0.18,
-      t * 0.0952 + this.px,
-      Math.sin(t * 0.0531) * 0.22);
+      Math.sin(t * 0.0412) * 0.42 + this.py + this.scroll * 0.42,
+      t * 0.0662 + this.px + this.scroll * 0.30,
+      Math.sin(t * 0.0307) * 0.20 + this.scroll * 0.12);
     /* drifts vertically against the page as the section passes */
-    gl.uniform2f(this.u.shift, 0, this.scroll * -0.18);
+    /* and it flows with the page: the scroll position feeds all three axes
+       above and lifts the whole form, so scrolling turns it rather than just
+       sliding it past */
+    gl.uniform2f(this.u.shift, this.scroll * 0.05, this.scroll * -0.26);
     if (this.tube) gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_SHORT, 0);
     else           gl.drawArrays(gl.TRIANGLE_STRIP, 0, this.count);
   };

@@ -56,54 +56,6 @@
 </div>
 <div class="weave" aria-hidden="true"></div>
 
-<!-- ══════════════ LIQUID SCULPTURES (sprite) ══════════════ -->
-<!-- Three ribbon forms, defined once and instanced with <use> in the open
-     corners of the light sections. Drawn as thick stroked paths rather than
-     modelled geometry: at 8–18% opacity behind a blur the eye reads them as
-     glass ribbons, and it costs three paths instead of a WebGL runtime.
-     Each instance varies by shape, hue-rotate, size, drift and timing. -->
-<svg class="sculpt-sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs>
-    <linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0"    stop-color="#8B23D5"/>
-      <stop offset=".34"  stop-color="#C32CE0"/>
-      <stop offset=".62"  stop-color="#E22DCB"/>
-      <stop offset=".86"  stop-color="#7B4FE8"/>
-      <stop offset="1"    stop-color="#3FD8E8"/>
-    </linearGradient>
-    <linearGradient id="scSheen" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0"   stop-color="#FFF8F0" stop-opacity="0"/>
-      <stop offset=".42" stop-color="#FFF8F0" stop-opacity=".75"/>
-      <stop offset=".66" stop-color="#3FD8E8" stop-opacity=".5"/>
-      <stop offset="1"   stop-color="#FFF8F0" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- figure-of-eight, the form in the reference -->
-    <symbol id="sc-loop" viewBox="0 0 500 320">
-      <path d="M62 160C62 58 212 58 250 160c38 102 188 102 188 0S288 58 250 160C212 262 62 262 62 160Z"
-            fill="none" stroke="url(#scGrad)" stroke-width="58" stroke-linecap="round"/>
-      <path d="M62 160C62 58 212 58 250 160c38 102 188 102 188 0"
-            fill="none" stroke="url(#scSheen)" stroke-width="13" stroke-linecap="round"/>
-    </symbol>
-
-    <!-- a slow S, for long horizontal margins -->
-    <symbol id="sc-wave" viewBox="0 0 500 300">
-      <path d="M34 214C140 36 246 290 352 128c44-67 84-74 114-38"
-            fill="none" stroke="url(#scGrad)" stroke-width="50" stroke-linecap="round"/>
-      <path d="M34 214C140 36 246 290 352 128"
-            fill="none" stroke="url(#scSheen)" stroke-width="11" stroke-linecap="round"/>
-    </symbol>
-
-    <!-- an open coil, for corners -->
-    <symbol id="sc-arc" viewBox="0 0 400 400">
-      <path d="M84 302C40 162 172 48 282 112c102 60 72 212-48 224-72 7-112-30-92-82"
-            fill="none" stroke="url(#scGrad)" stroke-width="54" stroke-linecap="round"/>
-      <path d="M84 302C40 162 172 48 282 112"
-            fill="none" stroke="url(#scSheen)" stroke-width="12" stroke-linecap="round"/>
-    </symbol>
-  </defs>
-</svg>
-
 <!-- ══════════════ NAV ══════════════ -->
 <header class="nav" id="nav">
   <div class="nav__inner wrap">
@@ -139,8 +91,7 @@
      10 slides, 5s each, sliding in from the left, looping. Every photo is
      contained rather than cropped, over a blurred copy of itself. -->
 <section class="hero" id="home">
-  <canvas class="ribbon ribbon--hero" aria-hidden="true" data-alpha="0.38" data-twist="1.0" data-scale="1.0" data-speed="1.0" data-mode="glow"></canvas>
-<div class="sculpt sculpt--hero" aria-hidden="true"><svg viewBox="0 0 500 320"><use href="#sc-loop"/></svg></div>
+  <canvas class="ribbon ribbon--hero" aria-hidden="true" data-form="ribbon" data-mode="glow" data-alpha="0.38" data-twist="1.0" data-scale="1.0" data-speed="0.85"></canvas>
   <div class="wrap hero__grid">
 
   <div class="hero__copy">
@@ -258,8 +209,8 @@
 <!-- No photography here by choice — the copy carries the section and the four
      pillars below it do the work the collage used to. -->
 <section class="section about" id="about">
-  <canvas class="ribbon ribbon--about" aria-hidden="true" data-alpha="0.30" data-twist="1.5" data-scale="0.9" data-speed="0.82" data-mode="glass"></canvas>
-  <div class="sculpt sculpt--about" aria-hidden="true"><svg viewBox="0 0 500 300"><use href="#sc-wave"/></svg></div>
+  <canvas class="ribbon ribbon--about" aria-hidden="true" data-form="ribbon" data-mode="glass" data-alpha="0.26" data-twist="1.0" data-scale="1.0" data-speed="0.85"></canvas>
+  <span class="wordmark wordmark--about" aria-hidden="true">Avanti</span>
   <div class="wrap">
 
     <header class="sec-head about__head">
@@ -327,8 +278,7 @@
 <!-- Typographic cards rather than photographic ones: the number, the title and
      the list of what each covers, on the page's own glass. -->
 <section class="section services" id="services">
-  <canvas class="ribbon ribbon--services" aria-hidden="true" data-alpha="0.30" data-twist="1.4" data-scale="0.9" data-speed="0.85" data-mode="glow"></canvas>
-  <div class="sculpt sculpt--services" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#sc-arc"/></svg></div>
+  <span class="wordmark wordmark--services" aria-hidden="true">Stage</span>
   <div class="wrap">
     <header class="sec-head">
       <p class="eyebrow reveal"><span class="eyebrow__rule"></span> What We Stage <span class="eyebrow__rule"></span></p>
@@ -386,7 +336,6 @@
      stills in assets/img/shakti/, the two 15s cuts in
      assets/video/shakti-naad-*.mp4. Search a filename before reusing it. -->
 <section class="section band" id="shakti-naad">
-  <canvas class="ribbon ribbon--shakti" aria-hidden="true" data-alpha="0.32" data-twist="0.9" data-scale="0.95" data-speed="0.88" data-mode="glass"></canvas>
   <canvas class="wave" id="wave" aria-hidden="true"></canvas>
   <div class="band__glow" aria-hidden="true"></div>
 
@@ -511,7 +460,6 @@
      two. Film left, copy right on desktop; copy then film on a phone. The clip
      is a 20s edit of the band's own footage and appears here and nowhere else. -->
 <section class="section suman" id="shradha-suman">
-  <canvas class="ribbon ribbon--suman" aria-hidden="true" data-form="tube" data-mode="glow" data-alpha="0.34" data-twist="0.0" data-scale="0.95" data-speed="0.72"></canvas>
   <div class="suman__aura" aria-hidden="true"></div>
 
   <div class="wrap suman__grid">
@@ -558,7 +506,6 @@
      above; copy then film on a phone. The film is a click-to-play facade —
      nothing is requested from YouTube until the visitor asks for it. -->
 <section class="section jjhoom" id="jjhoom">
-  <canvas class="ribbon ribbon--jjhoom" aria-hidden="true" data-form="tube" data-mode="glass" data-alpha="0.30" data-twist="0.0" data-scale="0.95" data-speed="0.72"></canvas>
   <div class="jjhoom__aura" aria-hidden="true"></div>
 
   <div class="wrap jjhoom__grid">
@@ -621,7 +568,6 @@
      band's own showreel, served from our own assets, so the panel costs the
      visitor nothing until they press play. -->
 <section class="section dastak" id="dastak">
-  <canvas class="ribbon ribbon--dastak" aria-hidden="true" data-alpha="0.34" data-twist="1.2" data-scale="0.98" data-speed="0.9" data-mode="glow"></canvas>
   <div class="dastak__aura" aria-hidden="true"></div>
 
   <div class="wrap dastak__grid">
@@ -698,7 +644,6 @@
      columns are weighted the other way: the copy takes the wider one and the
      film the narrower, the way Shradha Suman's does. -->
 <section class="section krishnaya" id="krishnaya">
-  <canvas class="ribbon ribbon--krishnaya" aria-hidden="true" data-alpha="0.32" data-twist="1.1" data-scale="1.0" data-speed="0.8" data-mode="glass"></canvas>
   <div class="krishnaya__aura" aria-hidden="true"></div>
 
   <div class="wrap krishnaya__grid">
@@ -763,8 +708,8 @@
      corner turns the sound on. Under prefers-reduced-motion it does not
      autoplay at all and the browser's own controls appear instead. -->
 <section class="section choreo" id="choreography">
-  <canvas class="ribbon ribbon--choreo" aria-hidden="true" data-alpha="0.30" data-twist="0.8" data-scale="1.05" data-speed="0.78" data-mode="glow"></canvas>
-  <div class="sculpt sculpt--choreo" aria-hidden="true"><svg viewBox="0 0 500 320"><use href="#sc-loop"/></svg></div>
+  <canvas class="ribbon ribbon--choreo" aria-hidden="true" data-form="ribbon" data-mode="glow" data-alpha="0.30" data-twist="1.0" data-scale="1.0" data-speed="0.85"></canvas>
+  <span class="wordmark wordmark--choreo" aria-hidden="true">Move</span>
   <div class="choreo__wash" aria-hidden="true"></div>
 
   <div class="wrap choreo__grid">
@@ -831,8 +776,7 @@
      captions — the films carry themselves. Upright clips share rows of three
      and two; the widescreen one gets a row of its own, so nothing is cropped. -->
 <section class="section reels" id="showcase">
-  <canvas class="ribbon ribbon--reels" aria-hidden="true" data-form="tube" data-mode="glass" data-alpha="0.30" data-twist="0.0" data-scale="0.95" data-speed="0.72"></canvas>
-  <div class="sculpt sculpt--reels" aria-hidden="true"><svg viewBox="0 0 500 300"><use href="#sc-wave"/></svg></div>
+  <span class="wordmark wordmark--reels" aria-hidden="true">Reel</span>
   <div class="wrap">
     <header class="sec-head">
       <p class="eyebrow reveal"><span class="eyebrow__rule"></span> Watch the Experience <span class="eyebrow__rule"></span></p>
@@ -892,7 +836,6 @@
 
 <!-- ══════════════ 11 · TIMELINE ══════════════ -->
 <section class="section flow">
-  <div class="sculpt sculpt--flow" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#sc-arc"/></svg></div>
   <div class="wrap">
     <header class="sec-head">
       <p class="eyebrow reveal"><span class="eyebrow__rule"></span> How It Comes Together <span class="eyebrow__rule"></span></p>
@@ -912,7 +855,8 @@
 
 <!-- ══════════════ 12 · CONTACT ══════════════ -->
 <section class="section contact" id="contact">
-  <div class="sculpt sculpt--contact" aria-hidden="true"><svg viewBox="0 0 500 320"><use href="#sc-loop"/></svg></div>
+  <canvas class="ribbon ribbon--contact" aria-hidden="true" data-form="ribbon" data-mode="glass" data-alpha="0.26" data-twist="1.0" data-scale="1.0" data-speed="0.85"></canvas>
+  <span class="wordmark wordmark--contact" aria-hidden="true">Eventica</span>
   <div class="contact__glow" aria-hidden="true"></div>
   <div class="wrap contact__grid">
 

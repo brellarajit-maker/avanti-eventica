@@ -537,7 +537,6 @@ page as a result — `classical-ensemble-03`, `dancer-face`, `vocalist-live-01`,
 `stage-chakra`, `decor-roses` and `classical-ensemble-02` — and are still in
 `assets/img/` if you ever want them back.
 
-
 **Four clips are on disk but no longer on the page**, kept in case you want them
 back: `stage-lights.mp4` (39 MB, the old Showcase film), `choreo-cultural.mp4`,
 `choreo-memories.mp4` and `live-band.mp4`. All four are Instagram cuts, and
@@ -617,56 +616,47 @@ Instagram now lives only in the Contact section, where it is a ghost button
 beside WhatsApp and a row in the contact rail, both driven by `CONFIG.instagram`
 and `CONFIG.igHandle` in `main.js`.
 
+**The decorative layer is two things: a wordmark and a sculpture.** It has been
+through several passes — SVG sculptures, then a WebGL ribbon, then both at
+once — and is now cut back to the pair that earn their place.
 
-**Liquid sculptures.** Seven glass ribbons drift in the open margins of the
-light sections — hero, about, services, choreography, showcase, timeline and
-contact. They are three SVG symbols (`#sc-loop`, `#sc-wave`, `#sc-arc`) defined
-once in a sprite below the watermark layer and instanced with `<use>`, so the
-whole effect costs three paths rather than a WebGL runtime. Each placement sets
-its own shape, hue, size, drift and cycle, so no two sections carry the same
-object.
+**The wordmark watermark** is the part that carries the reference: one word per
+section, set in the display serif at display scale, sitting in the free space
+behind the heading. `Avanti` in About, `Stage` in Services, `Move` in
+Choreography, `Reel` in Showcase, `Eventica` in Contact. Each is `aria-hidden`,
+unselectable and inert to the pointer, so nothing about the reading order or
+the tab order changes.
 
-| placement | shape | opacity | cycle |
-|---|---|---|---|
-| hero | loop | .16 | 19s |
-| about | wave | .13 | 16s |
-| services | arc | .11 | 20s |
-| choreography | loop | .15 | 17s |
-| showcase | wave | .12 | 18s |
-| timeline | arc | .10 | 15s |
-| contact | loop | .14 | 20s |
+Opacity is held to 4–6%, and that number matters. The copy's contrast is
+measured against the card colour, so a watermark any stronger starts shifting
+the effective background under the text. At 5.5% the About heading goes from
+13.3:1 to 12.0:1 and the eyebrow from 5.5:1 to 4.9:1 — both still clear AA,
+which was checked rather than assumed, and the royal-purple body highlights
+(4.5:1 under a watermark) were confirmed not to overlap one.
 
-**They cannot cover or block anything.** `z-index:-1` puts them behind every
-heading, image, video and control without touching a single content wrapper —
-`.section` already makes its own stacking context, and none of these sections
-paints a background of its own, so there was nothing to hide them behind.
-`pointer-events:none` means they never take a click. Verified by sampling
-`elementFromPoint` over every heading, button, image and video on screen:
-nothing hit a sculpture.
+**The sculpture** is `assets/js/ribbon.js`: a twisted infinity ribbon drawn in
+hand-written WebGL. Not Three.js — this site has no build step and no
+dependencies, and Three.js is ~600KB for one decorative mesh. Geometry is
+procedural in the vertex shader, so the CPU uploads one buffer and never
+touches it again.
 
-**Only `transform` animates**, so the blurred layer rasterises once and is then
-composited rather than repainted each frame. Hue and blur are custom properties
-instead of a whole `filter`, which lets one mobile rule soften every instance.
+Four instances: hero and choreography in `glow` mode (additive, emissive, on
+the dark cards) and about and contact in `glass` (alpha-blended and saturated,
+on the rose-gold ones). An additive glow is invisible on a light ground and
+alpha blending looks flat on a dark one, which is why there are two modes
+rather than one.
 
-**Two things this needed that are worth knowing.** The sculptures sit
-deliberately past their section edges, which gave the page 175px of sideways
-scroll until `.about,.services,.reels,.flow` were told to `overflow:clip`
-(hero, choreography and contact already did). `clip` rather than `hidden`,
-because `hidden` makes a scroll container and would break the sticky film in
-Dastak. And the mobile overrides sit *after* the placements, not up in the
-responsive section — each placement sets its own `--sc-o`, so an earlier rule
-would have lost on source order.
+**It turns slowly enough to read as drift.** A full revolution on the Y axis
+takes about 112 seconds and the two rocking axes are slower still. The scroll
+position feeds all three axes as well as a vertical lift, so scrolling turns
+the form rather than just sliding it past. An earlier setting put a revolution
+at 173 seconds, which stopped reading as motion at all.
 
-On a phone the count drops to four, blur softens to 16px and every instance
-dims to .09. Under `prefers-reduced-motion` the drift stops and the shapes
-stay as still artwork.
-
-**The sculptures read above the card surfaces.** `.section` sets `z-index:1`,
-which makes it a stacking context, so a child at `z-index:-1` paints above the
-section's own background but below the copy — which is what a watermark wants.
-The two that sit on the open stage, in the hero and the timeline, run bolder
-(`--sc-o:.34` and `.30`) because there is no card under them to wash out; the
-ones inside light cards stay faint so they never fight the copy.
+Each instance starts paused, builds its GL context only within 240px of the
+viewport, stops its rAF the moment it scrolls out, and renders one still frame
+under `prefers-reduced-motion`. Below 900px only the hero keeps one. If WebGL
+is missing it never draws, and because the canvas is absolutely positioned and
+`pointer-events:none` the layout is identical either way.
 
 **Colour** follows the Canva reference, and it lives in two places: the
 `:root` block at the top of `style.css` holds the values, and section 26,
@@ -783,79 +773,6 @@ decoration either way, so it now goes first:
 into `#E22DCB`, falling to a violet `#7B4FE8` and a cyan `#3FD8E8` at the far
 edge, with a cyan flare in the sheen gradient. They are defined once as an SVG
 sprite in `index.html` and referenced by `<use>`.
-
-
-**The holographic ribbon** in `assets/js/ribbon.js` is a twisted infinity ribbon
-drawn in WebGL, used as a slow glowing watermark. It is hand-written rather
-than Three.js: this site has no build step and no dependencies, and Three.js is
-~600KB for one decorative mesh. The whole thing is one ~300-line file.
-
-The geometry is procedural in the vertex shader. The CPU uploads a strip of
-`(t, side)` pairs once and never touches it again; the curve, the twist, the
-travelling wave and the surface normal are all evaluated per-vertex on the GPU,
-so a frame costs a handful of uniforms. The curve is a lemniscate — a true
-figure-eight — lifted into Z, so the two lobes cross over and under each other.
-
-It is **emissive and additively blended**, which is what makes it read as neon
-rather than as a translucent decal: it adds light to the dark card underneath.
-That is also why all four instances sit on website-colour sections — hero,
-services, Dastak and choreography. On the rose-gold cards an additive glow
-washes out and looks like a smudge, so there are none there.
-
-| | |
-|---|---|
-| palette | `#2B3DFF` → `#5B3BFF` → `#8B2BE8` → `#E02BC8` → `#FF3D7F` → `#FF5A4D` |
-| loop | ~22s on the slow axes |
-| opacity | `.30`–`.38`, set per instance in `data-alpha` |
-
-Each instance starts paused, builds its GL context only once it is within
-240px of the viewport, stops its rAF the moment it scrolls out, fades with its
-own section, drifts and rotates against the scroll, and leans slightly toward
-the pointer on desktop. Under `prefers-reduced-motion` it renders one still
-frame and never loops. Below 900px only the hero keeps one. If WebGL is
-missing it simply never draws — the canvas is empty and the layout is
-unchanged, because it is `position:absolute` and `pointer-events:none`
-throughout.
-
-Stacking: inside a `.section`, `z-index:-1` puts the canvas above the card's
-own background but below the copy, the same trick the SVG sculptures use, which
-works because `.section` sets `z-index:1`. The hero sets no z-index, so there
-the canvas goes to `z-index:1` and the copy is lifted to `2`.
-
-
-**Responsiveness** is handled by the breakpoints through section 23 and then
-corrected in section 28, `RESPONSIVE REFINEMENTS`, which sits last so it can
-fix the earlier ones without editing them. Everything in it came out of
-measuring the page at 320, 375, 768, 1024, 1440 and 1920.
-
-**The one systemic bug was `min-width:auto`.** A grid or flex item will not
-shrink below its content's min-content width, and `.btn` has
-`white-space:nowrap`. That was enough for one button to hold the hero's
-column at 345px inside a 284px grid at 320px, and the Shakti-Naad copy at
-414px inside a 375px viewport. Because `body` has `overflow-x:clip` the
-excess was being silently cut off rather than showing as a scrollbar — it
-looked fine and was losing content. Every track now carries `min-width:0`,
-and below 420px the button labels are allowed to wrap, which drops their
-min-content from 345px to about 150px.
-
-| | |
-|---|---|
-| ≤374px | tighter gutter (14px), smaller display type, 8px card margins |
-| ≤420px | button labels wrap, tracking tightens |
-| ≤1023px | the hero stacks — it used to hold two columns until 760px, so 761–1023 ran 303px + 345px inside a 583px wrap |
-| ≥1600px | `--wrap` lifts to 1460px |
-| ≥1920px | `--wrap` 1560px, deeper section padding — the 1320px cap left ~600px of dead margin and the page looked marooned rather than spacious |
-| `pointer:coarse` | every hit area to 44px |
-| landscape, ≤520px tall | section padding drops so a phone on its side is not all whitespace |
-
-**The carousel dots needed care.** They are 22×3px with `overflow:hidden`, so
-growing the hit area with a pseudo-element does not work — it gets clipped.
-The box grows to 44px on transparent padding instead, with the painted bar
-held to the content box, which keeps every per-section dot colour working.
-
-Verified at all six sizes: no horizontal scroll, no clipped text, no element
-leaking past the viewport except the decorative watermarks and the carousel
-slides, which are clipped by their own frames.
 
 The ornaments in `assets/img/art/` are drawn as SVG paths, so they stay sharp at
 any size and are tinted from CSS rather than baked in.
