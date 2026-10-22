@@ -1,6 +1,6 @@
 # Avanti-Eventica
 
-*Where Every Celebration Becomes a Performance*
+*Where Every Performance Becomes a Celebration*
 
 A single-page site for Avanti-Eventica — event choreography, themed performances,
 cultural celebrations, and live music through the band **Shakti-Naad**.
@@ -133,8 +133,9 @@ recordings, not their openings — the baithak clip starts at 34s of the satsang
 footage, the stage clip at 248s of the evening performance. Audio is 128 kb/s
 stereo. Together they are 3.8 MB.
 
-**The Jjhoom Band section** is the third deep panel, below Shradha Suman, in
-wine and amber so no two band panels share a palette. Copy left, film right
+**The Jjhoom Band section** is the third band card, below Shradha Suman, and
+falls on a website-colour card in the alternation, so it carries cream and
+lilac type. Copy left, film right
 (the reverse of Shradha Suman), stacking to copy-then-film on a phone. Its
 heading line — “The only genuine multi genre band” — is the band's own
 sentence, lifted from the copy they sent.
@@ -166,8 +167,7 @@ YouTube only exposes 360p) and a full `ffmpeg`. All three were installed
 through winget for this job and live under
 `%LOCALAPPDATA%\Microsoft\WinGet\Packages\`.
 
-**The Dastak section** is the fourth deep panel, below Jjhoom, in sapphire and
-brass — the fourth palette, so still no two band panels match. Copy left, film
+**The Dastak section** is the fourth band card, below Jjhoom. Copy left, film
 right, the same arrangement as Jjhoom at your request, stacking to copy-then-
 film on a phone. The heading is `Dastak ft. Parag Jain`, since that is how the
 act is billed, and the line under it — "Where versatility meets unforgettable
@@ -219,14 +219,12 @@ social-event (2.5 GB, 4K, 5:28) files are both longer and heavier; the general
 reel is the act's calling card and carries the title card. Say the word and I'll
 cut from either instead.
 
-**The Krishnaya section** is the fifth deep panel, below Dastak. It was built in
-forest green and gold as a fifth palette, but at your request it now reuses
-Shakti-Naad's exact background — saffron and magenta over violet — because the
-run of five panels reads more smoothly closing on the colour it opened with.
-Its accents followed the background into the gold and marigold family, so the
-panel holds together; it is the one place where two band panels share a palette,
-and the three in between keep them from touching. Copy left, film right, the
-same arrangement as Jjhoom and Dastak. The heading line — "Feel the
+**The Krishnaya section** is the fifth band card, below Dastak. It went through
+two earlier palettes — forest green and gold, then Shakti-Naad's saffron and
+magenta — before the Canva redesign. It now falls on a website-colour card in
+the alternation, sharing that surface with Shakti-Naad and Jjhoom while
+Shradha Suman and Dastak take the rose gold between them. Copy left, film
+right, the same arrangement as Jjhoom and Dastak. The heading line — "Feel the
 music. Experience the devotion. Live the vibe." — is their own sentence.
 
 **Its film is portrait, so the columns are weighted the other way.** Every other
@@ -285,10 +283,11 @@ rather than as one download, or just put the file in `assets/video/` yourself.
 twice. The original is untouched in your source folder.
 
 **The Shradha Suman Band section** sits directly below Shakti-Naad as the page's
-second deep panel — its sibling, not its copy. Shakti-Naad is saffron and
-magenta over violet; this one is teal and indigo over deep plum, and a cream
-gap of ~38px between the two rounded panels stops them fusing into one slab.
-The film sits on the left with a teal glow behind it, the copy on the right.
+second devotional card — its sibling, not its copy. It takes the rose gold in
+the alternation while Shakti-Naad above it takes the website colour, so the
+two never fuse into one slab. The film sits on the left, the copy on the
+right — the mirror of Shakti-Naad, which is the other thing keeping them from
+reading as the same section twice.
 On a phone the copy leads and the film follows, which is the one thing the
 desktop `order:-1` on `.suman__film` has to give back.
 
@@ -369,11 +368,10 @@ the long six-minute film with chapter markers, Shakti-Naad has two 15-second
 cuts of its own, and Shradha Suman has one. If you add media later, the
 quickest check is to search `index.html` for the filename and make sure it comes
 
-**The Choreography section** sits between the band run and the Showcase. It is
-light, on the page's own cream, rather than a sixth deep panel: after five
-jewel-toned slabs the lift back to light is what makes the run feel finished,
-and it hands off cleanly to the Showcase, which is light too. Copy left, square
-film right, with the copy taking the wider column.
+**The Choreography section** sits between the band run and the Showcase, on
+the lightest rose gold on the site — the brightest surface here, and the
+only one that takes magenta for its details. Copy left, square film right,
+with the copy taking the wider column.
 
 **Its film is the full 5:34 reel you supplied** (`kartik/… 8.28.36 PM.mp4`),
 `choreography.mp4`, 33.6 MB. It is **stream-copied, not re-encoded** — the
@@ -619,9 +617,210 @@ Instagram now lives only in the Contact section, where it is a ghost button
 beside WhatsApp and a row in the contact rail, both driven by `CONFIG.instagram`
 and `CONFIG.igHandle` in `main.js`.
 
-**Colour and type** live in one place — the `:root` block at the top of
-`style.css`. Changing `--saffron`, `--rose` or `--violet` there re-tints the
-whole site.
+
+**Liquid sculptures.** Seven glass ribbons drift in the open margins of the
+light sections — hero, about, services, choreography, showcase, timeline and
+contact. They are three SVG symbols (`#sc-loop`, `#sc-wave`, `#sc-arc`) defined
+once in a sprite below the watermark layer and instanced with `<use>`, so the
+whole effect costs three paths rather than a WebGL runtime. Each placement sets
+its own shape, hue, size, drift and cycle, so no two sections carry the same
+object.
+
+| placement | shape | opacity | cycle |
+|---|---|---|---|
+| hero | loop | .16 | 19s |
+| about | wave | .13 | 16s |
+| services | arc | .11 | 20s |
+| choreography | loop | .15 | 17s |
+| showcase | wave | .12 | 18s |
+| timeline | arc | .10 | 15s |
+| contact | loop | .14 | 20s |
+
+**They cannot cover or block anything.** `z-index:-1` puts them behind every
+heading, image, video and control without touching a single content wrapper —
+`.section` already makes its own stacking context, and none of these sections
+paints a background of its own, so there was nothing to hide them behind.
+`pointer-events:none` means they never take a click. Verified by sampling
+`elementFromPoint` over every heading, button, image and video on screen:
+nothing hit a sculpture.
+
+**Only `transform` animates**, so the blurred layer rasterises once and is then
+composited rather than repainted each frame. Hue and blur are custom properties
+instead of a whole `filter`, which lets one mobile rule soften every instance.
+
+**Two things this needed that are worth knowing.** The sculptures sit
+deliberately past their section edges, which gave the page 175px of sideways
+scroll until `.about,.services,.reels,.flow` were told to `overflow:clip`
+(hero, choreography and contact already did). `clip` rather than `hidden`,
+because `hidden` makes a scroll container and would break the sticky film in
+Dastak. And the mobile overrides sit *after* the placements, not up in the
+responsive section — each placement sets its own `--sc-o`, so an earlier rule
+would have lost on source order.
+
+On a phone the count drops to four, blur softens to 16px and every instance
+dims to .09. Under `prefers-reduced-motion` the drift stops and the shapes
+stay as still artwork.
+
+**The sculptures read above the card surfaces.** `.section` sets `z-index:1`,
+which makes it a stacking context, so a child at `z-index:-1` paints above the
+section's own background but below the copy — which is what a watermark wants.
+The two that sit on the open stage, in the hero and the timeline, run bolder
+(`--sc-o:.34` and `.30`) because there is no card under them to wash out; the
+ones inside light cards stay faint so they never fight the copy.
+
+**Colour** follows the Canva reference, and it lives in two places: the
+`:root` block at the top of `style.css` holds the values, and section 26,
+`SECTION ATMOSPHERE`, at the bottom applies them. Section 26 is deliberately
+last so it wins on source order — the earlier blocks paint structure, and
+nothing has to chase specificity back through twenty of them to change a
+colour. The older token names are repointed at the new palette in `:root`, so
+the twenty sections of CSS written before the redesign inherit it untouched.
+
+**The stage** has dark plum flowing in from the left edge and midnight navy
+from the right, the two meeting and blending down the centre of the page:
+`linear-gradient(90deg, #401B51, #30224E, #202E55)`, fixed. The linear
+gradient does the joining; two edge-anchored radials make each colour feel
+like it is arriving from its own side rather than simply being a gradient
+stop, and a violet bloom sits on the seam where they connect.
+
+**Every section is a card, and they alternate the whole way down** — one in
+the website's own colour, the next in rose gold. The hero carries no card and
+is the website colour itself, so About Us — the first card on the page — is
+the first pink one:
+
+| # | section | card | ink |
+|---|---|---|---|
+| 1 | about | rose gold `#FBDEDF` | deep plum |
+| 2 | services | website | cream and lilac |
+| 3 | Shakti-Naad | rose gold | deep plum |
+| 4 | Shradha Suman | website | cream and lilac |
+| 5 | Jjhoom | rose gold | deep plum |
+| 6 | Dastak | website | cream and lilac |
+| 7 | Krishnaya | rose gold | deep plum |
+| 8 | choreography | website | cream and lilac |
+| 9 | showcase | rose gold | deep plum |
+| 10 | contact | rose gold | deep plum |
+
+Contact is pink by request, which puts two pink cards in a row — but the
+timeline sits between it and Showcase with no card of its own, so they never
+actually touch. Everything else strictly alternates.
+
+The rest of the page follows from About Us being pink.
+
+**A website-colour card carries the same 90deg plum-to-navy gradient as the
+page behind it**, so it reads as the site's own colour — its border and shadow
+are what make it a card rather than a hole. The timeline between showcase and
+contact keeps no card at all: it is a process strip, not a content panel.
+
+The light cards were warm ivory `#FFF8F0` in the first pass of this design and
+went lavender, then rose gold; against a stage this dark the ivory read too
+close to white.
+**Nested cards follow their host.** `.pillar` and `.booking` sit in rose-gold
+sections — About and Contact — so they take the light glass, a shade lighter
+than the card around them. `.svc` sits in Services, a website-colour card, so
+it takes the dark glass and light ink instead. `.step` is in neither: the
+timeline has no card, and when `.step` was briefly grouped with the others it
+produced light text on a light card.
+
+The hero, the timeline and the footer carry no card and sit straight on the
+stage, which gives the run of cards somewhere to breathe.
+
+| ink | token | value | |
+|---|---|---|---|
+| heading on light | `--plum-h` | `#382047` | 9.7–10.4:1 on rose gold |
+| body on light | `--plum-m` | `#69556D` | 4.9–5.4:1 on rose gold |
+| text on dark | `--light` | `#FFF8F0` | 13–15:1 |
+| secondary on dark | `--light-2` | `#E9D9EF` | 9.9–11.7:1 |
+| buttons | `--royal` | `#8B23D5` | `--light` on it, 6.0:1 |
+| borders | `--border` | `#77508C` | every card edge |
+
+**Magenta is an accent, not a text colour.** `#E22DCB` measures 3.5–4.2:1
+against every surface here, which clears AA for large type (the 3:1 threshold)
+but not for small copy. So it carries rules, dots, hovers, the hero wordmark at
+34.8px, and nothing small. Where small text wants to be magenta it uses
+`--magenta-lt` `#F285E0` on dark (6.9:1) or `--magenta-dk` `#A31889` on the
+light cards (5.5:1 on rose gold). `#B81C9E` was the first choice and only
+reached 4.4:1 on the pinkest card then in use, so it was deepened.
+
+**The rose gold was lightened once**, from `#F9D2D4` to `#FBDEDF`. Three
+candidates were measured; this one keeps the card clearly pink while lifting
+every ink on it — heading 10.4→11.3:1, body 4.9→5.3:1, royal purple
+4.6→5.0:1, magenta 5.0→5.5:1. The nested glass went up with it so `.pillar`
+and `.booking` still read lighter than the card they sit on.
+
+**Button gradients stop at `#B425AE`, not full magenta.** The labels are 12px,
+and cream on `#E22DCB` is 3.6:1. Ending the sweep there holds them at 5.2:1.
+Full magenta still arrives on hover, where it lights the shadow rather than the
+text.
+
+**Every text element was measured against its own resolved background**, by
+walking up the DOM compositing each background-colour rather than assuming one
+colour per section — which is how the timeline bug below was caught. Zero
+elements on a solid background fall below their threshold. Four sit on gradient
+backgrounds, which that method cannot resolve; those were checked against the
+gradient stops by hand and clear 5.2:1 or better.
+
+**The timeline steps had no card and must not get one.** `.step` was briefly
+grouped with `.pillar` and `.svc` for the cream-card treatment, which gave the
+steps a light background while the timeline's own rules set light ink — light
+text on a light card. The timeline sits on the open stage, so its steps stay
+transparent and its ink stays light.
+
+**The hero's glass panels are backed with plum, not light.** The offer card,
+the ghost button and the slider arrows sit on the dark stage. Filling them the
+usual way — a translucent *white* — lifts the ground under the text; backing
+them with `rgba(45,26,66,…)` keeps the copy at 5:1 or better.
+
+**The scroll hint is guarded on both axes, not just width.** It collides with
+the hero buttons two different ways. Below ~1100px wide the two buttons wrap
+onto a second row and walk into it — 49×55px at 1024px. Below ~880px tall they
+do not wrap at all, but the short viewport brings the whole hero down onto it —
+49×22px at 1280×760. It only stepped aside at 760px before. The hint is
+decoration either way, so it now goes first:
+`@media (max-width:1100px), (max-height:880px)`.
+
+**The liquid sculptures are tinted to the reference**: `#8B23D5` into `#C32CE0`
+into `#E22DCB`, falling to a violet `#7B4FE8` and a cyan `#3FD8E8` at the far
+edge, with a cyan flare in the sheen gradient. They are defined once as an SVG
+sprite in `index.html` and referenced by `<use>`.
+
+
+**The holographic ribbon** in `assets/js/ribbon.js` is a twisted infinity ribbon
+drawn in WebGL, used as a slow glowing watermark. It is hand-written rather
+than Three.js: this site has no build step and no dependencies, and Three.js is
+~600KB for one decorative mesh. The whole thing is one ~300-line file.
+
+The geometry is procedural in the vertex shader. The CPU uploads a strip of
+`(t, side)` pairs once and never touches it again; the curve, the twist, the
+travelling wave and the surface normal are all evaluated per-vertex on the GPU,
+so a frame costs a handful of uniforms. The curve is a lemniscate — a true
+figure-eight — lifted into Z, so the two lobes cross over and under each other.
+
+It is **emissive and additively blended**, which is what makes it read as neon
+rather than as a translucent decal: it adds light to the dark card underneath.
+That is also why all four instances sit on website-colour sections — hero,
+services, Dastak and choreography. On the rose-gold cards an additive glow
+washes out and looks like a smudge, so there are none there.
+
+| | |
+|---|---|
+| palette | `#2B3DFF` → `#5B3BFF` → `#8B2BE8` → `#E02BC8` → `#FF3D7F` → `#FF5A4D` |
+| loop | ~22s on the slow axes |
+| opacity | `.30`–`.38`, set per instance in `data-alpha` |
+
+Each instance starts paused, builds its GL context only once it is within
+240px of the viewport, stops its rAF the moment it scrolls out, fades with its
+own section, drifts and rotates against the scroll, and leans slightly toward
+the pointer on desktop. Under `prefers-reduced-motion` it renders one still
+frame and never loops. Below 900px only the hero keeps one. If WebGL is
+missing it simply never draws — the canvas is empty and the layout is
+unchanged, because it is `position:absolute` and `pointer-events:none`
+throughout.
+
+Stacking: inside a `.section`, `z-index:-1` puts the canvas above the card's
+own background but below the copy, the same trick the SVG sculptures use, which
+works because `.section` sets `z-index:1`. The hero sets no z-index, so there
+the canvas goes to `z-index:1` and the copy is lifted to `2`.
 
 The ornaments in `assets/img/art/` are drawn as SVG paths, so they stay sharp at
 any size and are tinted from CSS rather than baked in.

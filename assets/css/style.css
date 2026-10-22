@@ -9,41 +9,83 @@
 
 /* ---------- 1. TOKENS ---------- */
 :root{
-  /* brights */
-  --saffron:#FF8A1E;
-  --marigold:#FFB82E;
-  --rose:#F0186E;
-  --magenta:#C81D8C;
-  --violet:#7A2BC9;
-  --indigo:#4B1E96;
-  --peacock:#00A6A0;
-  --gold:#C9922E;
-  --gold-lt:#E8B84B;
-  --gold-pale:#F6DFA8;
+  /* ---- the Canva palette ------------------------------------------------
+     A plum-to-midnight-navy stage, warm cream cards, and magenta and violet
+     as the two accents. Every value below is either from your spec or
+     derived from it for a contrast reason that is noted inline.        */
 
-  /* surfaces */
-  --cream:#FFF8EE;
-  --cream-2:#FFF0DC;
-  --blush:#FFECF2;
-  --lilac:#F4EDFF;
-  --paper:#FFFFFF;
+  /* page */
+  --bg-plum:#401B51;
+  --bg-mid:#30224E;
+  --bg-navy:#202E55;
 
-  /* deep stage surfaces (used by Shakti-Naad + hero scrim) */
-  --deep:#2E0B52;
-  --deep-2:#1B0535;
+  /* card surfaces, one per kind of section */
+  /* one lavender for every light card - the warm ivory it replaced read too
+     close to white against the plum-and-navy stage */
+  --card-rose:#FBDEDF;    /* rose gold - the light card in the alternating
+                             series. Every ink clears AA on it: heading 11.3:1,
+                             body 5.3:1, royal 5.0:1, magenta-dk 5.5:1.      */
+  --card-plum:#2D1A42;    /* live bands: Jjhoom, Dastak, Krishnaya          */
+  --border:#77508C;       /* every card edge                                */
+  --foot:#211B3F;
 
-  /* ink */
-  --ink:#2B1038;
-  --ink-soft:rgba(43,16,56,.8);
-  --ink-faint:rgba(43,16,56,.52);
-  --on-deep:#FFF4E4;
-  --on-deep-soft:rgba(255,244,228,.76);
+  /* accents */
+  --magenta:#E22DCB;      /* 3.5-4.2:1 everywhere - accents and large type
+                             only, never small copy                         */
+  --magenta-lt:#F285E0;   /* its small-text twin on dark,  6.9:1            */
+  --magenta-dk:#A31889;   /* its small-text twin on the light cards: 6.5:1 on
+                             cream, 5.5:1 on lavender, 5.4:1 on lavender-pink.
+                             #B81C9E only made 4.4:1 on the pink one.      */
+  --royal:#8B23D5;        /* buttons; cream on it is 6.0:1                  */
+  --violet-lt:#B98CE8;    /* violet that still reads on a plum card, 6.0:1  */
 
-  --line:rgba(201,146,46,.34);
-  --line-soft:rgba(201,146,46,.18);
+  /* ink on light cards */
+  --plum-h:#382047;       /* headings,   13.6:1 on cream                    */
+  --plum-m:#69556D;       /* paragraphs,  6.4:1 on cream                    */
 
-  --glass:linear-gradient(145deg, rgba(255,255,255,.82), rgba(255,255,255,.48));
-  --glass-deep:linear-gradient(145deg, rgba(255,244,228,.12), rgba(255,244,228,.04));
+  /* ink on dark cards and the page */
+  --light:#FFF8F0;        /* 13-15:1 on every dark surface here             */
+  --light-2:#E9D9EF;      /* secondary, 9.9-11.7:1                          */
+
+  /* ---- the older names, repointed at the palette above, so the twenty
+     sections of CSS that came before this all inherit the redesign ---- */
+  --ivory:#FFF8F0;        /* kept as the warm-ivory value, not the card */
+  --plum:#401B51;
+  --violet:#8B23D5;
+  --amethyst:#7B2FC9;
+  --orchid:#B98CE8;
+  --rose:#F285E0;
+  --rose-deep:#B81C9E;
+  --indigo:#3B1A6B;
+  --iris:#8B5BD0;
+  --wisteria:#9A6FD4;
+  --wisteria-lt:#C9B3EE;
+  --wisteria-pale:#E9D9EF;
+  --lavender:#B99BE9;
+  --blush-pink:#F285E0;
+  --pink-vivid:#F285E0;
+  --light-pink:#FFF8F0;
+  --rose-gold:#77508C;
+  --pearl:#FFF8F0;
+  --pearl-2:#F3ECF8;
+  --blush:#F6DCEE;
+  --lilac:#ECE3F6;
+  --paper:#FFF8F0;
+
+  --deep:#2D1A42;
+  --deep-2:#211B3F;
+
+  --ink:#382047;
+  --ink-soft:#69556D;
+  --ink-faint:rgba(105,85,109,.72);
+  --on-deep:#FFF8F0;
+  --on-deep-soft:rgba(233,217,239,.84);
+
+  --line:rgba(119,80,140,.52);
+  --line-soft:rgba(119,80,140,.28);
+
+  --glass:linear-gradient(145deg, rgba(255,251,251,.97), rgba(253,232,233,.8));
+  --glass-deep:linear-gradient(145deg, rgba(255,248,240,.11), rgba(255,248,240,.04));
   --blur:blur(18px) saturate(1.6);
 
   --font-d:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -73,12 +115,12 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   background:
-    radial-gradient(58% 32% at 6% 4%,   rgba(255,184,46,.26),  transparent 62%),
-    radial-gradient(48% 30% at 96% 14%, rgba(240,24,110,.14),  transparent 64%),
-    radial-gradient(52% 28% at 2% 52%,  rgba(0,166,160,.10),   transparent 66%),
-    radial-gradient(60% 34% at 98% 72%, rgba(122,43,201,.13),  transparent 66%),
-    radial-gradient(70% 40% at 50% 100%,rgba(255,138,30,.16),  transparent 68%),
-    var(--cream);
+    radial-gradient(58% 32% at 6% 4%,   rgba(185,155,233,.26),  transparent 62%),
+    radial-gradient(48% 30% at 96% 14%, rgba(224,137,184,.14),  transparent 64%),
+    radial-gradient(52% 28% at 2% 52%,  rgba(142,111,208,.10),   transparent 66%),
+    radial-gradient(60% 34% at 98% 72%, rgba(112,66,165,.13),  transparent 66%),
+    radial-gradient(70% 40% at 50% 100%,rgba(139,91,194,.16),  transparent 68%),
+    var(--pearl);
   background-attachment:fixed;
 }
 img,video,canvas,svg{max-width:100%;display:block}
@@ -88,11 +130,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{background:none;border:0;cursor:pointer}
 ul,ol{margin:0;padding:0;list-style:none}
 :focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
-::selection{background:rgba(240,24,110,.2);color:var(--ink)}
+::selection{background:rgba(224,137,184,.2);color:var(--ink)}
 
 .skip{
   position:fixed;top:-120px;left:16px;z-index:999;padding:12px 20px;
-  background:var(--rose);color:#fff;border-radius:0 0 12px 12px;font-weight:500;
+  background:var(--rose-deep);color:#fff;border-radius:0 0 12px 12px;font-weight:500;
   transition:top .25s var(--ease);
 }
 .skip:focus{top:0}
@@ -109,7 +151,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .h2 em{
   font-style:italic;font-weight:400;
-  background:linear-gradient(104deg,var(--saffron) 2%,var(--rose) 44%,var(--violet) 92%);
+  background:linear-gradient(104deg,var(--amethyst) 2%,var(--rose) 44%,var(--violet) 92%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .lead{font-size:clamp(1.02rem,1.25vw,1.2rem);color:var(--ink-soft);font-weight:300}
@@ -124,9 +166,9 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .eyebrow__rule{
   height:1px;flex:0 0 clamp(26px,5vw,62px);
-  background:linear-gradient(90deg,transparent,var(--saffron));
+  background:linear-gradient(90deg,transparent,var(--amethyst));
 }
-.eyebrow__rule:last-child{background:linear-gradient(90deg,var(--saffron),transparent)}
+.eyebrow__rule:last-child{background:linear-gradient(90deg,var(--amethyst),transparent)}
 .center .eyebrow,.sec-head .eyebrow{justify-content:center}
 
 /* ---------- 4. LAYOUT ---------- */
@@ -145,38 +187,38 @@ strong{font-weight:500;color:var(--magenta)}
   white-space:nowrap;overflow:hidden;isolation:isolate;
   transition:transform .4s var(--ease), box-shadow .4s var(--ease), color .35s var(--ease);
 }
-.btn--gold{
+.btn--wisteria{
   color:#fff;
-  background:linear-gradient(104deg,var(--marigold),var(--saffron) 46%,var(--rose));
-  box-shadow:0 12px 32px -10px rgba(240,24,110,.5), inset 0 1px 0 rgba(255,255,255,.45);
+  background:linear-gradient(104deg,var(--orchid),var(--amethyst) 46%,var(--rose));
+  box-shadow:0 12px 32px -10px rgba(224,137,184,.5), inset 0 1px 0 rgba(255,255,255,.45);
 }
-.btn--gold::before{
+.btn--wisteria::before{
   content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(104deg,var(--rose),var(--magenta) 54%,var(--violet));
   opacity:0;transition:opacity .45s var(--ease);
 }
-.btn--gold:hover{transform:translateY(-3px);box-shadow:0 20px 44px -12px rgba(122,43,201,.55), inset 0 1px 0 rgba(255,255,255,.5)}
-.btn--gold:hover::before{opacity:1}
+.btn--wisteria:hover{transform:translateY(-3px);box-shadow:0 20px 44px -12px rgba(112,66,165,.55), inset 0 1px 0 rgba(255,255,255,.5)}
+.btn--wisteria:hover::before{opacity:1}
 
 .btn--ghost{
   color:var(--violet);
-  border:1px solid rgba(122,43,201,.3);
+  border:1px solid rgba(112,66,165,.3);
   background:rgba(255,255,255,.62);
   -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
 }
 .btn--ghost::before{
   content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(104deg,rgba(255,184,46,.26),rgba(240,24,110,.2));
+  background:linear-gradient(104deg,rgba(185,155,233,.26),rgba(224,137,184,.2));
   opacity:0;transition:opacity .45s var(--ease);
 }
-.btn--ghost:hover{transform:translateY(-3px);border-color:var(--rose);color:var(--magenta);box-shadow:0 16px 38px -18px rgba(240,24,110,.55)}
+.btn--ghost:hover{transform:translateY(-3px);border-color:var(--rose);color:var(--magenta);box-shadow:0 16px 38px -18px rgba(224,137,184,.55)}
 .btn--ghost:hover::before{opacity:1}
 
 /* ghost button on the deep Shakti-Naad stage */
 .band .btn--ghost{
-  color:var(--on-deep);border-color:rgba(255,244,228,.42);background:rgba(43,16,56,.26);
+  color:var(--on-deep);border-color:rgba(255,246,251,.42);background:rgba(36,21,54,.26);
 }
-.band .btn--ghost:hover{color:#fff;border-color:var(--marigold)}
+.band .btn--ghost:hover{color:#fff;border-color:var(--orchid)}
 
 .link-arrow{
   display:inline-flex;align-items:center;gap:.6em;
@@ -196,13 +238,13 @@ strong{font-weight:500;color:var(--magenta)}
   -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
   border-radius:var(--r);
   box-shadow:
-    0 28px 60px -30px rgba(122,43,201,.5),
-    0 6px 18px -8px rgba(43,16,56,.18),
+    0 28px 60px -30px rgba(112,66,165,.5),
+    0 6px 18px -8px rgba(36,21,54,.18),
     inset 0 1px 0 rgba(255,255,255,1);
 }
 .glass::after{
   content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(140deg,var(--saffron),transparent 36%,transparent 64%,var(--violet));
+  background:linear-gradient(140deg,var(--amethyst),transparent 36%,transparent 64%,var(--violet));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
   padding:1px;opacity:.38;transition:opacity .5s var(--ease);
@@ -212,12 +254,12 @@ strong{font-weight:500;color:var(--magenta)}
 /* glass on a deep stage surface */
 .glass--deep{
   background:var(--glass-deep);
-  border-color:rgba(255,244,228,.16);
-  box-shadow:0 26px 60px -34px #000, inset 0 1px 0 rgba(255,244,228,.14);
+  border-color:rgba(255,246,251,.16);
+  box-shadow:0 26px 60px -34px #000, inset 0 1px 0 rgba(255,246,251,.14);
   color:var(--on-deep);
 }
 .glass--deep::after{
-  background:linear-gradient(140deg,var(--marigold),transparent 36%,transparent 64%,var(--rose));
+  background:linear-gradient(140deg,var(--orchid),transparent 36%,transparent 64%,var(--rose));
   opacity:.45;
 }
 
@@ -234,18 +276,18 @@ strong{font-weight:500;color:var(--magenta)}
   aspect-ratio:1;
   -webkit-mask-image:url('../img/art/mandala.svg');mask-image:url('../img/art/mandala.svg');
 }
-.wm--mandala-a{top:-6vh;right:-16vw;width:min(78vw,900px);color:var(--saffron);opacity:.10}
+.wm--mandala-a{top:-6vh;right:-16vw;width:min(78vw,900px);color:var(--amethyst);opacity:.10}
 .wm--mandala-b{top:120vh;left:-24vw;width:min(92vw,1020px);color:var(--rose);opacity:.075}
 .wm--tanpura{
   top:252vh;right:4vw;width:min(34vw,330px);aspect-ratio:220/720;
-  color:var(--marigold);opacity:.17;
+  color:var(--orchid);opacity:.17;
   -webkit-mask-image:url('../img/art/tanpura.svg');mask-image:url('../img/art/tanpura.svg');
 }
 .wm--mandala-c{top:398vh;left:-14vw;width:min(70vw,820px);color:var(--violet);opacity:.08}
 
 .weave{
   position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-color:var(--saffron);opacity:.05;
+  background-color:var(--amethyst);opacity:.05;
   -webkit-mask-image:url('../img/art/paisley.svg');mask-image:url('../img/art/paisley.svg');
   -webkit-mask-size:clamp(170px,19vw,260px);mask-size:clamp(170px,19vw,260px);
   -webkit-mask-repeat:repeat;mask-repeat:repeat;
@@ -258,10 +300,10 @@ strong{font-weight:500;color:var(--magenta)}
   border-bottom:1px solid transparent;
 }
 .nav.is-stuck{
-  background:rgba(255,248,238,.76);
+  background:rgba(255,246,251,.76);
   -webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
   border-bottom-color:var(--line-soft);
-  box-shadow:0 18px 44px -34px rgba(43,16,56,.6);
+  box-shadow:0 18px 44px -34px rgba(36,21,54,.6);
 }
 .nav__inner{
   display:flex;align-items:center;justify-content:space-between;gap:20px;
@@ -270,7 +312,7 @@ strong{font-weight:500;color:var(--magenta)}
 .nav.is-stuck .nav__inner{padding-block:11px}
 
 .brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
-.brand__mark{width:clamp(34px,3.3vw,42px);height:auto;filter:drop-shadow(0 4px 12px rgba(212,36,60,.4))}
+.brand__mark{width:clamp(34px,3.3vw,42px);height:auto;filter:drop-shadow(0 4px 12px rgba(112,66,165,.4))}
 .brand__text{display:flex;flex-direction:column;line-height:1}
 /* The hero is light, so the bar reads dark from the top — .is-stuck only adds
    the frosted plate behind it. */
@@ -292,7 +334,7 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .nav__links > a:not(.btn)::after{
   content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,var(--saffron),var(--rose));
+  background:linear-gradient(90deg,var(--amethyst),var(--rose));
   transition:right .45s var(--ease);
 }
 .nav__links > a:not(.btn):hover,
@@ -339,7 +381,7 @@ strong{font-weight:500;color:var(--magenta)}
   width:100%;aspect-ratio:3/2;      /* only until the first measure */
   margin-inline:auto;
   border-radius:var(--r-lg);border:4px solid #fff;
-  box-shadow:0 56px 104px -46px rgba(43,16,56,.62), 0 10px 28px -18px rgba(43,16,56,.3);
+  box-shadow:0 56px 104px -46px rgba(36,21,54,.62), 0 10px 28px -18px rgba(36,21,54,.3);
   transition:width .45s var(--ease), height .45s var(--ease);
 }
 .hero__frame.is-sized{aspect-ratio:auto}
@@ -367,7 +409,7 @@ strong{font-weight:500;color:var(--magenta)}
   line-height:1.12;letter-spacing:-.008em;margin:.12em 0 .44em;color:var(--ink);
 }
 .hero__brand{
-  background:linear-gradient(98deg,var(--saffron) 0%,var(--rose) 52%,var(--violet) 100%);
+  background:linear-gradient(98deg,var(--amethyst) 0%,var(--rose) 52%,var(--violet) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .hero__lede{
@@ -376,11 +418,11 @@ strong{font-weight:500;color:var(--magenta)}
   color:var(--ink-soft);letter-spacing:.012em;margin-bottom:1em;max-width:36ch;
 }
 .hero__offer{
-  border-left:3px solid var(--marigold);
+  border-left:3px solid var(--orchid);
   padding:clamp(13px,1.4vw,18px) clamp(15px,1.7vw,22px);
   background:linear-gradient(100deg, rgba(255,255,255,.82), rgba(255,255,255,.42));
   border-radius:0 14px 14px 0;
-  box-shadow:0 20px 44px -30px rgba(43,16,56,.45);
+  box-shadow:0 20px 44px -30px rgba(36,21,54,.45);
 }
 .hero__offer p{margin:0 0 .6em;font-size:clamp(.87rem,.98vw,.97rem);line-height:1.62;color:var(--ink-soft)}
 .hero__offer p:last-child{margin-bottom:0}
@@ -410,25 +452,25 @@ strong{font-weight:500;color:var(--magenta)}
 .hero__caption.is-swapping{opacity:0}
 .dots{flex:1 1 100%;display:flex;gap:8px;flex-wrap:wrap}
 .dot{
-  width:22px;height:3px;border-radius:3px;background:rgba(43,16,56,.2);
+  width:22px;height:3px;border-radius:3px;background:rgba(36,21,54,.2);
   position:relative;overflow:hidden;cursor:pointer;
   transition:background .4s var(--ease), width .4s var(--ease);
 }
-.dot:hover{background:rgba(43,16,56,.42)}
+.dot:hover{background:rgba(36,21,54,.42)}
 .dot.is-active{width:36px}
-.dot i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--marigold),var(--rose))}
+.dot i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--orchid),var(--rose))}
 .dot.is-active i{animation:dotFill var(--dur,5s) linear forwards}
 @keyframes dotFill{to{width:100%}}
 
 .hero__nav{display:flex;gap:9px;flex:0 0 auto}
 .hero__arrow{
   width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
-  border:1px solid rgba(122,43,201,.26);background:#fff;
-  box-shadow:0 6px 18px -12px rgba(43,16,56,.5);
+  border:1px solid rgba(112,66,165,.26);background:#fff;
+  box-shadow:0 6px 18px -12px rgba(36,21,54,.5);
   transition:all .4s var(--ease);
 }
 .hero__arrow svg{width:18px;height:18px;fill:none;stroke:var(--violet);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.hero__arrow:hover{background:linear-gradient(104deg,var(--saffron),var(--rose));border-color:transparent;transform:translateY(-2px);box-shadow:0 12px 26px -14px rgba(240,24,110,.7)}
+.hero__arrow:hover{background:linear-gradient(104deg,var(--amethyst),var(--rose));border-color:transparent;transform:translateY(-2px);box-shadow:0 12px 26px -14px rgba(224,137,184,.7)}
 .hero__arrow:hover svg{stroke:#fff}
 
 .scroller{
@@ -438,7 +480,7 @@ strong{font-weight:500;color:var(--magenta)}
   transition:color .35s var(--ease);
 }
 .scroller:hover{color:var(--rose)}
-.scroller__line{position:relative;width:2px;border-radius:2px;height:46px;background:rgba(43,16,56,.16);overflow:hidden}
+.scroller__line{position:relative;width:2px;border-radius:2px;height:46px;background:rgba(36,21,54,.16);overflow:hidden}
 .scroller__line i{
   position:absolute;top:-60%;left:0;width:100%;height:60%;
   background:linear-gradient(180deg,transparent,var(--rose));
@@ -455,11 +497,11 @@ strong{font-weight:500;color:var(--magenta)}
 
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,18px);margin-top:clamp(26px,3.4vw,40px)}
 .pillar{padding:clamp(18px,2vw,26px);transition:transform .5s var(--ease), box-shadow .5s var(--ease)}
-.pillar:hover{transform:translateY(-6px);box-shadow:0 34px 70px -34px rgba(122,43,201,.5)}
+.pillar:hover{transform:translateY(-6px);box-shadow:0 34px 70px -34px rgba(112,66,165,.5)}
 .pillar__num{
   font-family:var(--font-d);font-weight:600;font-size:.9rem;letter-spacing:.2em;
   display:block;margin-bottom:.5em;
-  background:linear-gradient(100deg,var(--saffron),var(--rose));
+  background:linear-gradient(100deg,var(--amethyst),var(--rose));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .pillar h3{font-family:var(--font-d);font-weight:600;font-size:clamp(1.12rem,1.5vw,1.4rem);margin:0 0 .36em;color:var(--ink);line-height:1.2}
@@ -476,7 +518,7 @@ strong{font-weight:500;color:var(--magenta)}
 /* the five bands, named and placed, inside the Live Music card */
 .pillar__bands{margin:.85em 0 0;display:grid;gap:.38em}
 .pillar__bands li{padding-left:.8em;position:relative;line-height:1.45;font-size:.8rem;color:var(--ink-faint)}
-.pillar__bands li::before{content:"";position:absolute;left:0;top:.5em;width:4px;height:4px;border-radius:50%;background:linear-gradient(140deg,var(--marigold),var(--rose))}
+.pillar__bands li::before{content:"";position:absolute;left:0;top:.5em;width:4px;height:4px;border-radius:50%;background:linear-gradient(140deg,var(--orchid),var(--rose))}
 .pillar__bands b{font-family:var(--font-d);font-weight:600;font-size:.92rem;color:var(--ink)}
 
 /* ---------- 11. SERVICES ----------
@@ -491,8 +533,8 @@ strong{font-weight:500;color:var(--magenta)}
   border:1px solid rgba(255,255,255,.9);
   -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
   box-shadow:
-    0 28px 60px -30px rgba(122,43,201,.5),
-    0 6px 18px -8px rgba(43,16,56,.18),
+    0 28px 60px -30px rgba(112,66,165,.5),
+    0 6px 18px -8px rgba(36,21,54,.18),
     inset 0 1px 0 rgba(255,255,255,1);
   transition:transform .6s var(--ease), box-shadow .6s var(--ease);
 }
@@ -502,7 +544,7 @@ strong{font-weight:500;color:var(--magenta)}
   background:linear-gradient(90deg,var(--tint,var(--violet)),transparent 92%);
 }
 .svc:nth-child(1){--tint:var(--violet)}
-.svc:nth-child(2){--tint:var(--saffron)}
+.svc:nth-child(2){--tint:var(--amethyst)}
 .svc:nth-child(3){--tint:var(--rose)}
 
 .svc__body{
@@ -512,7 +554,7 @@ strong{font-weight:500;color:var(--magenta)}
 .svc__num{
   position:absolute;top:clamp(16px,2vw,26px);right:clamp(20px,2.4vw,32px);
   font-family:var(--font-d);font-weight:600;font-size:clamp(2.6rem,4.4vw,4.2rem);line-height:1;
-  color:transparent;-webkit-text-stroke:1.5px rgba(43,16,56,.22);
+  color:transparent;-webkit-text-stroke:1.5px rgba(36,21,54,.22);
   transition:-webkit-text-stroke-color .6s var(--ease), transform .6s var(--ease);
 }
 .svc__title{
@@ -536,7 +578,7 @@ strong{font-weight:500;color:var(--magenta)}
 .svc:hover .svc__list li{border-color:var(--tint);color:var(--ink)}
 /* pinned to the foot of the card, so the three links line up across the row */
 .svc .link-arrow{margin-top:auto;align-self:flex-start;color:var(--magenta)}
-.svc:hover{transform:translateY(-10px);box-shadow:0 50px 90px -40px rgba(240,24,110,.55)}
+.svc:hover{transform:translateY(-10px);box-shadow:0 50px 90px -40px rgba(224,137,184,.55)}
 .svc:hover .svc__num{-webkit-text-stroke-color:var(--tint);transform:translateY(-4px)}
 
 
@@ -550,29 +592,29 @@ strong{font-weight:500;color:var(--magenta)}
   border-radius:clamp(28px,4vw,56px);
   margin-inline:clamp(0px,2vw,28px);
   background:
-    radial-gradient(90% 60% at 50% 0%, rgba(255,138,30,.3) 0%, transparent 62%),
-    radial-gradient(70% 55% at 86% 90%, rgba(200,29,140,.34) 0%, transparent 64%),
-    linear-gradient(170deg, var(--deep) 0%, var(--deep-2) 52%, #230742 100%);
-  box-shadow:0 50px 110px -60px rgba(43,16,56,.9);
+    radial-gradient(90% 60% at 50% 0%, rgba(139,91,194,.3) 0%, transparent 62%),
+    radial-gradient(70% 55% at 86% 90%, rgba(155,82,190,.34) 0%, transparent 64%),
+    linear-gradient(170deg, var(--deep) 0%, var(--deep-2) 52%, #3E2363 100%);
+  box-shadow:0 50px 110px -60px rgba(36,21,54,.9);
 }
 .band .h2,.band h3,.band h4{color:var(--on-deep)}
 .band .lead,.band p{color:var(--on-deep-soft)}
-.band strong{color:var(--gold-pale);font-weight:500}
-.band .eyebrow{color:var(--marigold)}
-.band .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--marigold))}
+.band strong{color:var(--wisteria-pale);font-weight:500}
+.band .eyebrow{color:var(--orchid)}
+.band .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--orchid))}
 .band__glow{
   position:absolute;left:50%;top:14%;width:min(120vw,1200px);aspect-ratio:1.9;
   transform:translateX(-50%);pointer-events:none;
-  background:radial-gradient(ellipse at center, rgba(255,184,46,.22) 0%, transparent 64%);
+  background:radial-gradient(ellipse at center, rgba(185,155,233,.22) 0%, transparent 64%);
 }
 .wave{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);width:100%;height:340px;opacity:.5;pointer-events:none}
 .band__title{
   font-size:clamp(2.6rem,7.6vw,5.2rem);letter-spacing:.012em;margin-bottom:.1em;
-  background:linear-gradient(100deg,#FFF 0%,var(--gold-pale) 24%,var(--marigold) 52%,var(--saffron) 78%,#FFF 100%);
+  background:linear-gradient(100deg,#FFF 0%,var(--wisteria-pale) 24%,var(--orchid) 52%,var(--amethyst) 78%,#FFF 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 10px 36px rgba(255,138,30,.4));
+  filter:drop-shadow(0 10px 36px rgba(139,91,194,.4));
 }
-.band__sub{font-family:var(--font-d);font-size:clamp(1.05rem,1.9vw,1.55rem);color:var(--gold-pale);margin-bottom:1em}
+.band__sub{font-family:var(--font-d);font-size:clamp(1.05rem,1.9vw,1.55rem);color:var(--wisteria-pale);margin-bottom:1em}
 
 /* ── the two columns ── */
 .sn-grid{
@@ -588,7 +630,7 @@ strong{font-weight:500;color:var(--magenta)}
   font-family:var(--font-d);font-weight:600;
   font-size:clamp(1.3rem,2.3vw,1.8rem);line-height:1.2;
   margin:clamp(22px,3vw,38px) 0 clamp(14px,1.8vw,20px);
-  color:var(--gold-pale) !important;
+  color:var(--wisteria-pale) !important;
 }
 .sn-pills{display:flex;flex-wrap:wrap;gap:clamp(8px,1vw,12px);margin:0}
 .sn-pill{
@@ -596,15 +638,15 @@ strong{font-weight:500;color:var(--magenta)}
   font-size:clamp(.76rem,.88vw,.88rem);font-weight:400;letter-spacing:.04em;
   color:var(--on-deep);
   background:var(--glass-deep);
-  border:1px solid rgba(201,146,46,.44);
+  border:1px solid rgba(167,127,212,.44);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   box-shadow:0 14px 30px -20px #000;
   transition:transform .45s var(--ease), border-color .45s var(--ease), background .45s var(--ease), color .45s var(--ease);
 }
 .sn-pill:hover{
   transform:translateY(-4px);
-  border-color:var(--marigold);
-  background:linear-gradient(140deg,rgba(255,184,46,.26),rgba(240,24,110,.14));
+  border-color:var(--orchid);
+  background:linear-gradient(140deg,rgba(185,155,233,.26),rgba(224,137,184,.14));
   color:#fff;
 }
 
@@ -612,14 +654,14 @@ strong{font-weight:500;color:var(--magenta)}
 .sn-founder{
   margin:clamp(26px,3.6vw,44px) 0 clamp(18px,2.4vw,30px);
   padding-left:clamp(16px,1.8vw,24px);
-  border-left:2px solid rgba(201,146,46,.42);
+  border-left:2px solid rgba(167,127,212,.42);
 }
 .sn-founder p:last-child{margin-bottom:0}
 /* the record, pulled up out of the sentence without leaving it */
 .sn-rec{
   font-family:var(--font-d);font-weight:600;font-style:italic;
   font-size:1.26em;line-height:1;letter-spacing:.005em;
-  background:linear-gradient(100deg,var(--marigold),var(--gold-pale) 60%,var(--saffron));
+  background:linear-gradient(100deg,var(--orchid),var(--wisteria-pale) 60%,var(--amethyst));
   -webkit-background-clip:text;background-clip:text;color:transparent;
   white-space:nowrap;
 }
@@ -630,7 +672,7 @@ strong{font-weight:500;color:var(--magenta)}
 .sn-slider{position:sticky;top:clamp(88px,11vh,116px)}
 .sn-slider__frame{
   border-width:3px;
-  box-shadow:0 46px 96px -48px #000, 0 0 0 1px rgba(201,146,46,.3);
+  box-shadow:0 46px 96px -48px #000, 0 0 0 1px rgba(167,127,212,.3);
 }
 /* a clip fills its frame exactly as a photograph does */
 .slide__v{width:100%;height:100%;object-fit:cover;display:block}
@@ -646,17 +688,17 @@ strong{font-weight:500;color:var(--magenta)}
    turn that off must never be hidden behind a hover */
 .slide.is-active .slide__sound{opacity:1;transform:none}
 .slide.is-active .slide__sound:hover{transform:scale(1.08)}
-.slide__sound.is-on{background:var(--rose);color:#fff}
+.slide__sound.is-on{background:var(--rose-deep);color:#fff}
 
-.sn-slider .hero__caption{color:var(--marigold)}
-.sn-slider .dot{background:rgba(255,244,228,.24)}
-.sn-slider .dot:hover{background:rgba(255,244,228,.46)}
+.sn-slider .hero__caption{color:var(--orchid)}
+.sn-slider .dot{background:rgba(255,246,251,.24)}
+.sn-slider .dot:hover{background:rgba(255,246,251,.46)}
 .sn-slider .hero__arrow{
-  background:var(--glass-deep);border-color:rgba(201,146,46,.5);
+  background:var(--glass-deep);border-color:rgba(167,127,212,.5);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
 }
-.sn-slider .hero__arrow svg{stroke:var(--gold-pale)}
-.sn-slider .hero__arrow:hover{background:linear-gradient(104deg,var(--marigold),var(--rose));border-color:transparent}
+.sn-slider .hero__arrow svg{stroke:var(--wisteria-pale)}
+.sn-slider .hero__arrow:hover{background:linear-gradient(104deg,var(--orchid),var(--rose));border-color:transparent}
 .sn-slider .hero__arrow:hover svg{stroke:#fff}
 
 /* ---------- 13. SHRADHA SUMAN BAND (second stage panel) ----------
@@ -671,22 +713,22 @@ strong{font-weight:500;color:var(--magenta)}
   margin-inline:clamp(0px,2vw,28px);
   margin-block-start:clamp(18px,3vw,44px);
   background:
-    radial-gradient(82% 56% at 16% 0%,  rgba(0,166,160,.30) 0%, transparent 60%),
-    radial-gradient(70% 58% at 94% 96%, rgba(122,43,201,.36) 0%, transparent 62%),
-    linear-gradient(168deg, #10253F 0%, #15123B 52%, #1C0B36 100%);
-  box-shadow:0 50px 110px -60px rgba(16,37,63,.95);
+    radial-gradient(82% 56% at 16% 0%,  rgba(142,111,208,.30) 0%, transparent 60%),
+    radial-gradient(70% 58% at 94% 96%, rgba(112,66,165,.36) 0%, transparent 62%),
+    linear-gradient(168deg, #3A2159 0%, #2E1A4A 52%, #241536 100%);
+  box-shadow:0 50px 110px -60px rgba(58,33,89,.95);
 }
 .suman .h2,.suman h3{color:var(--on-deep)}
 .suman .lead,.suman p{color:var(--on-deep-soft)}
-.suman strong{color:var(--gold-pale);font-weight:500}
-.suman .eyebrow{color:#6FD8D3}
-.suman .eyebrow__rule{background:linear-gradient(90deg,transparent,#6FD8D3)}
+.suman strong{color:var(--wisteria-pale);font-weight:500}
+.suman .eyebrow{color:#B99BE9}
+.suman .eyebrow__rule{background:linear-gradient(90deg,transparent,#B99BE9)}
 
 /* the glow sits behind the film, so the panel has a light source */
 .suman__aura{
   position:absolute;left:24%;top:46%;transform:translate(-50%,-50%);
   width:min(86vw,760px);aspect-ratio:1;pointer-events:none;
-  background:radial-gradient(circle at center, rgba(0,166,160,.22) 0%, transparent 62%);
+  background:radial-gradient(circle at center, rgba(142,111,208,.22) 0%, transparent 62%);
 }
 
 .suman__grid{
@@ -702,34 +744,34 @@ strong{font-weight:500;color:var(--magenta)}
   position:relative;margin:0;justify-self:center;
   width:100%;max-width:368px;
   border-radius:var(--r-lg);overflow:hidden;
-  border:3px solid rgba(255,244,228,.92);
-  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(0,166,160,.35);
+  border:3px solid rgba(255,246,251,.92);
+  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(142,111,208,.35);
 }
-.suman__v{width:100%;height:auto;display:block;background:#0C1A2B}
+.suman__v{width:100%;height:auto;display:block;background:#2A1842}
 .suman__film figcaption{
   display:flex;align-items:center;gap:9px;
   padding:13px 18px;
   font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--gold-pale);
-  background:linear-gradient(100deg, rgba(12,26,43,.92), rgba(28,11,54,.86));
+  color:var(--wisteria-pale);
+  background:linear-gradient(100deg, rgba(42,24,66,.92), rgba(36,21,54,.86));
 }
 .suman__cap-dot{
   width:7px;height:7px;border-radius:50%;flex:0 0 auto;
-  background:#6FD8D3;box-shadow:0 0 0 0 rgba(111,216,211,.6);
+  background:#B99BE9;box-shadow:0 0 0 0 rgba(185,155,233,.6);
   animation:sumanPulse 2.6s var(--ease) infinite;
 }
 @keyframes sumanPulse{
-  70%{box-shadow:0 0 0 9px rgba(111,216,211,0)}
-  100%{box-shadow:0 0 0 0 rgba(111,216,211,0)}
+  70%{box-shadow:0 0 0 9px rgba(185,155,233,0)}
+  100%{box-shadow:0 0 0 0 rgba(185,155,233,0)}
 }
 
 /* ---- the copy, on the right ---- */
 .suman__copy{max-width:640px}
 .suman__title{
   font-size:clamp(2.3rem,5.4vw,4.1rem);letter-spacing:.008em;margin-bottom:.3em;
-  background:linear-gradient(100deg,#FFF 0%,var(--gold-pale) 26%,var(--marigold) 54%,#6FD8D3 94%);
+  background:linear-gradient(100deg,#FFF 0%,var(--wisteria-pale) 26%,var(--orchid) 54%,#B99BE9 94%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 10px 36px rgba(0,166,160,.34));
+  filter:drop-shadow(0 10px 36px rgba(142,111,208,.34));
 }
 .suman__copy .lead{margin-bottom:1.4em}
 
@@ -742,17 +784,17 @@ strong{font-weight:500;color:var(--magenta)}
   counter-increment:ofr;
   display:flex;align-items:baseline;gap:clamp(13px,1.6vw,22px);
   padding:clamp(13px,1.6vw,19px) 0;
-  border-top:1px solid rgba(255,244,228,.15);
+  border-top:1px solid rgba(255,246,251,.15);
   transition:padding-left .45s var(--ease), border-color .45s var(--ease);
 }
-.suman__offer li:last-child{border-bottom:1px solid rgba(255,244,228,.15)}
+.suman__offer li:last-child{border-bottom:1px solid rgba(255,246,251,.15)}
 .suman__offer li::before{
   content:counter(ofr,decimal-leading-zero);
   flex:0 0 auto;min-width:2.1em;
   font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;
-  color:#6FD8D3;
+  color:#B99BE9;
 }
-.suman__offer li:hover{padding-left:10px;border-color:rgba(111,216,211,.5)}
+.suman__offer li:hover{padding-left:10px;border-color:rgba(185,155,233,.5)}
 .suman__offer-name{
   font-family:var(--font-d);font-weight:600;
   font-size:clamp(1.08rem,1.5vw,1.38rem);line-height:1.2;color:var(--on-deep);
@@ -771,21 +813,21 @@ strong{font-weight:500;color:var(--magenta)}
   margin-inline:clamp(0px,2vw,28px);
   margin-block-start:clamp(18px,3vw,44px);
   background:
-    radial-gradient(84% 56% at 18% 0%,  rgba(255,138,30,.26) 0%, transparent 60%),
-    radial-gradient(72% 58% at 92% 96%, rgba(240,24,110,.34) 0%, transparent 62%),
-    linear-gradient(168deg, #3A0E22 0%, #2A0B2E 52%, #1B0836 100%);
-  box-shadow:0 50px 110px -60px rgba(58,14,34,.95);
+    radial-gradient(84% 56% at 18% 0%,  rgba(139,91,194,.26) 0%, transparent 60%),
+    radial-gradient(72% 58% at 92% 96%, rgba(224,137,184,.34) 0%, transparent 62%),
+    linear-gradient(168deg, #3E2060 0%, #2E1A4A 52%, #241536 100%);
+  box-shadow:0 50px 110px -60px rgba(62,32,96,.95);
 }
 .jjhoom .h2,.jjhoom h3{color:var(--on-deep)}
 .jjhoom .lead,.jjhoom p{color:var(--on-deep-soft)}
-.jjhoom strong{color:#FFD08A;font-weight:500}
-.jjhoom .eyebrow{color:#FFD08A}
-.jjhoom .eyebrow__rule{background:linear-gradient(90deg,transparent,#FFD08A)}
+.jjhoom strong{color:#F1B4D4;font-weight:500}
+.jjhoom .eyebrow{color:#F1B4D4}
+.jjhoom .eyebrow__rule{background:linear-gradient(90deg,transparent,#F1B4D4)}
 
 .jjhoom__aura{
   position:absolute;left:72%;top:44%;transform:translate(-50%,-50%);
   width:min(86vw,780px);aspect-ratio:1;pointer-events:none;
-  background:radial-gradient(circle at center, rgba(255,184,46,.18) 0%, transparent 62%);
+  background:radial-gradient(circle at center, rgba(185,155,233,.18) 0%, transparent 62%);
 }
 
 /* the film is 16:9 here, so it takes the wider column */
@@ -798,42 +840,42 @@ strong{font-weight:500;color:var(--magenta)}
 .jjhoom__film{
   position:relative;margin:0;justify-self:center;width:100%;
   border-radius:var(--r-lg);overflow:hidden;
-  border:3px solid rgba(255,244,228,.92);
-  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(255,184,46,.3);
+  border:3px solid rgba(255,246,251,.92);
+  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(185,155,233,.3);
 }
 /* 16:9, so the <video> keeps its own shape and nothing is letterboxed */
-.jjhoom__v{width:100%;height:auto;display:block;background:#160726}
+.jjhoom__v{width:100%;height:auto;display:block;background:#241536}
 
 .jjhoom__film figcaption{
   display:flex;align-items:center;gap:9px;
   padding:13px 18px;
   font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
-  color:#FFD08A;
-  background:linear-gradient(100deg, rgba(42,11,46,.92), rgba(27,8,54,.86));
+  color:#F1B4D4;
+  background:linear-gradient(100deg, rgba(46,26,74,.92), rgba(36,21,54,.86));
 }
 .jjhoom__cap-dot{
   width:7px;height:7px;border-radius:50%;flex:0 0 auto;
-  background:var(--marigold);box-shadow:0 0 0 0 rgba(255,184,46,.6);
+  background:var(--orchid);box-shadow:0 0 0 0 rgba(185,155,233,.6);
   animation:jjhoomPulse 2.6s var(--ease) infinite;
 }
 @keyframes jjhoomPulse{
-  70%{box-shadow:0 0 0 9px rgba(255,184,46,0)}
-  100%{box-shadow:0 0 0 0 rgba(255,184,46,0)}
+  70%{box-shadow:0 0 0 9px rgba(185,155,233,0)}
+  100%{box-shadow:0 0 0 0 rgba(185,155,233,0)}
 }
 
 /* ---- the copy, on the left ---- */
 .jjhoom__copy{max-width:640px}
 .jjhoom__title{
   font-size:clamp(2.3rem,5.2vw,3.9rem);letter-spacing:.008em;margin-bottom:.14em;
-  background:linear-gradient(100deg,#FFF 0%,#FFE6B8 24%,var(--marigold) 52%,var(--rose) 96%);
+  background:linear-gradient(100deg,#FFF 0%,#FBE4F1 24%,var(--orchid) 52%,var(--rose) 96%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 10px 36px rgba(255,138,30,.34));
+  filter:drop-shadow(0 10px 36px rgba(139,91,194,.34));
 }
 /* their own line, set as the band's claim */
 .jjhoom__usp{
   font-family:var(--font-d);font-style:italic;
   font-size:clamp(1.02rem,1.7vw,1.4rem);
-  color:#FFD08A !important;margin:0 0 1em;
+  color:#F1B4D4 !important;margin:0 0 1em;
 }
 .jjhoom__copy .lead{margin-bottom:1.3em}
 
@@ -843,18 +885,18 @@ strong{font-weight:500;color:var(--magenta)}
   gap:clamp(18px,2.6vw,38px);
   margin:0 0 clamp(24px,3.2vw,34px);
   padding-bottom:clamp(20px,2.6vw,28px);
-  border-bottom:1px solid rgba(255,244,228,.15);
+  border-bottom:1px solid rgba(255,246,251,.15);
 }
 .jjhoom__stats b{
   display:block;font-family:var(--font-d);font-weight:600;line-height:1;
   font-size:clamp(1.6rem,2.8vw,2.3rem);
-  background:linear-gradient(100deg,var(--marigold),#FFE6B8 60%,var(--rose));
+  background:linear-gradient(100deg,var(--orchid),#FBE4F1 60%,var(--rose));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .jjhoom__stats span{
   display:block;margin-top:.5em;
   font-size:.68rem;letter-spacing:.1em;line-height:1.5;
-  color:rgba(255,244,228,.6);
+  color:rgba(255,246,251,.6);
 }
 
 /* the genres, as a ruled index — the same device Shradha Suman uses */
@@ -863,16 +905,16 @@ strong{font-weight:500;color:var(--magenta)}
   counter-increment:gnr;
   display:flex;align-items:baseline;gap:clamp(13px,1.6vw,22px);
   padding:clamp(10px,1.3vw,15px) 0;
-  border-top:1px solid rgba(255,244,228,.15);
+  border-top:1px solid rgba(255,246,251,.15);
   transition:padding-left .45s var(--ease), border-color .45s var(--ease);
 }
-.jjhoom__genres li:last-child{border-bottom:1px solid rgba(255,244,228,.15)}
+.jjhoom__genres li:last-child{border-bottom:1px solid rgba(255,246,251,.15)}
 .jjhoom__genres li::before{
   content:counter(gnr,decimal-leading-zero);
   flex:0 0 auto;min-width:2.1em;
-  font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;color:#FFD08A;
+  font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;color:#F1B4D4;
 }
-.jjhoom__genres li:hover{padding-left:10px;border-color:rgba(255,208,138,.5)}
+.jjhoom__genres li:hover{padding-left:10px;border-color:rgba(241,180,212,.5)}
 .jjhoom__genre-name{
   font-family:var(--font-d);font-weight:600;
   font-size:clamp(1.04rem,1.4vw,1.3rem);line-height:1.2;color:var(--on-deep);
@@ -886,15 +928,15 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .jjhoom__album-label{
   font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
-  font-weight:500;color:rgba(255,244,228,.5);
+  font-weight:500;color:rgba(255,246,251,.5);
 }
 .jjhoom__album-name{
   font-family:var(--font-d);font-weight:600;font-style:italic;
   font-size:clamp(1.08rem,1.6vw,1.38rem);
-  background:linear-gradient(100deg,var(--marigold),#FFE6B8 60%,var(--rose));
+  background:linear-gradient(100deg,var(--orchid),#FBE4F1 60%,var(--rose));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.jjhoom__album-note{font-size:.76rem;color:rgba(255,244,228,.56)}
+.jjhoom__album-note{font-size:.76rem;color:rgba(255,246,251,.56)}
 
 /* ---------- 15. DASTAK (fourth stage panel) ----------
    The same build as Jjhoom above — copy left, 16:9 film right — in sapphire
@@ -908,21 +950,21 @@ strong{font-weight:500;color:var(--magenta)}
   margin-inline:clamp(0px,2vw,28px);
   margin-block-start:clamp(18px,3vw,44px);
   background:
-    radial-gradient(84% 56% at 16% 0%,  rgba(0,122,214,.26) 0%, transparent 60%),
-    radial-gradient(74% 58% at 94% 96%, rgba(255,138,30,.22) 0%, transparent 62%),
-    linear-gradient(168deg, #07203F 0%, #0A1733 54%, #140B30 100%);
-  box-shadow:0 50px 110px -60px rgba(7,32,63,.95);
+    radial-gradient(84% 56% at 16% 0%,  rgba(112,66,165,.26) 0%, transparent 60%),
+    radial-gradient(74% 58% at 94% 96%, rgba(139,91,194,.22) 0%, transparent 62%),
+    linear-gradient(168deg, #3A2159 0%, #2A1842 54%, #241536 100%);
+  box-shadow:0 50px 110px -60px rgba(58,33,89,.95);
 }
 .dastak .h2,.dastak h3{color:var(--on-deep)}
 .dastak .lead,.dastak p{color:var(--on-deep-soft)}
-.dastak strong{color:#AFD8FF;font-weight:500}
-.dastak .eyebrow{color:#AFD8FF}
-.dastak .eyebrow__rule{background:linear-gradient(90deg,transparent,#AFD8FF)}
+.dastak strong{color:#CFA8F2;font-weight:500}
+.dastak .eyebrow{color:#CFA8F2}
+.dastak .eyebrow__rule{background:linear-gradient(90deg,transparent,#CFA8F2)}
 
 .dastak__aura{
   position:absolute;left:74%;top:42%;transform:translate(-50%,-50%);
   width:min(86vw,780px);aspect-ratio:1;pointer-events:none;
-  background:radial-gradient(circle at center, rgba(120,190,255,.17) 0%, transparent 62%);
+  background:radial-gradient(circle at center, rgba(167,127,212,.17) 0%, transparent 62%);
 }
 
 /* the film is 16:9 here too, so it takes the wider column */
@@ -942,42 +984,42 @@ strong{font-weight:500;color:var(--magenta)}
 .dastak__film{
   position:relative;margin:0;width:100%;
   border-radius:var(--r-lg);overflow:hidden;
-  border:3px solid rgba(255,244,228,.92);
-  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(175,216,255,.3);
+  border:3px solid rgba(255,246,251,.92);
+  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(207,168,242,.3);
 }
 /* 16:9, so the <video> keeps its own shape and nothing is letterboxed */
-.dastak__v{width:100%;height:auto;display:block;background:#07162C}
+.dastak__v{width:100%;height:auto;display:block;background:#241536}
 
 .dastak__film figcaption{
   display:flex;align-items:center;gap:9px;
   padding:13px 18px;
   font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
-  color:#AFD8FF;
-  background:linear-gradient(100deg, rgba(10,23,51,.92), rgba(20,11,48,.86));
+  color:#CFA8F2;
+  background:linear-gradient(100deg, rgba(42,24,66,.92), rgba(36,21,54,.86));
 }
 .dastak__cap-dot{
   width:7px;height:7px;border-radius:50%;flex:0 0 auto;
-  background:#7FC2FF;box-shadow:0 0 0 0 rgba(127,194,255,.6);
+  background:#A77FD4;box-shadow:0 0 0 0 rgba(167,127,212,.6);
   animation:dastakPulse 2.6s var(--ease) infinite;
 }
 @keyframes dastakPulse{
-  70%{box-shadow:0 0 0 9px rgba(127,194,255,0)}
-  100%{box-shadow:0 0 0 0 rgba(127,194,255,0)}
+  70%{box-shadow:0 0 0 9px rgba(167,127,212,0)}
+  100%{box-shadow:0 0 0 0 rgba(167,127,212,0)}
 }
 
 /* ---- the copy, on the left ---- */
 .dastak__copy{max-width:640px}
 .dastak__title{
   font-size:clamp(2.1rem,4.6vw,3.5rem);letter-spacing:.008em;margin-bottom:.14em;
-  background:linear-gradient(100deg,#FFF 0%,#CFE6FF 22%,#7FC2FF 52%,var(--marigold) 98%);
+  background:linear-gradient(100deg,#FFF 0%,#E8DCF7 22%,#A77FD4 52%,var(--orchid) 98%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 10px 36px rgba(0,122,214,.38));
+  filter:drop-shadow(0 10px 36px rgba(112,66,165,.38));
 }
 /* their own line, set as the act's claim */
 .dastak__usp{
   font-family:var(--font-d);font-style:italic;
   font-size:clamp(1.02rem,1.7vw,1.4rem);
-  color:#AFD8FF !important;margin:0 0 1em;
+  color:#CFA8F2 !important;margin:0 0 1em;
 }
 .dastak__copy .lead{margin-bottom:1em}
 .dastak__copy .lead + p{margin-bottom:1.3em}
@@ -992,13 +1034,13 @@ strong{font-weight:500;color:var(--magenta)}
 .dastak__creds b{
   display:block;font-family:var(--font-d);font-weight:600;line-height:1;
   font-size:clamp(1.4rem,2.3vw,1.95rem);
-  background:linear-gradient(100deg,#7FC2FF,#DCEBFF 58%,var(--marigold));
+  background:linear-gradient(100deg,#A77FD4,#F0E4FA 58%,var(--orchid));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .dastak__creds span{
   display:block;margin-top:.5em;
   font-size:.68rem;letter-spacing:.1em;line-height:1.5;
-  color:rgba(255,244,228,.6);
+  color:rgba(255,246,251,.6);
 }
 
 /* what he sings, as a ruled index — the device Suman and Jjhoom both use */
@@ -1007,16 +1049,16 @@ strong{font-weight:500;color:var(--magenta)}
   counter-increment:dgn;
   display:flex;align-items:baseline;gap:clamp(13px,1.6vw,22px);
   padding:clamp(10px,1.3vw,15px) 0;
-  border-top:1px solid rgba(255,244,228,.15);
+  border-top:1px solid rgba(255,246,251,.15);
   transition:padding-left .45s var(--ease), border-color .45s var(--ease);
 }
-.dastak__genres li:last-child{border-bottom:1px solid rgba(255,244,228,.15)}
+.dastak__genres li:last-child{border-bottom:1px solid rgba(255,246,251,.15)}
 .dastak__genres li::before{
   content:counter(dgn,decimal-leading-zero);
   flex:0 0 auto;min-width:2.1em;
-  font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;color:#AFD8FF;
+  font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;color:#CFA8F2;
 }
-.dastak__genres li:hover{padding-left:10px;border-color:rgba(175,216,255,.5)}
+.dastak__genres li:hover{padding-left:10px;border-color:rgba(207,168,242,.5)}
 .dastak__genre-name{
   font-family:var(--font-d);font-weight:600;
   font-size:clamp(1.04rem,1.4vw,1.3rem);line-height:1.2;color:var(--on-deep);
@@ -1030,7 +1072,7 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .dastak__for-label{
   font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
-  font-weight:500;color:rgba(255,244,228,.5);
+  font-weight:500;color:rgba(255,246,251,.5);
 }
 .dastak__for-text{
   font-family:var(--font-d);font-size:clamp(1rem,1.4vw,1.2rem);
@@ -1054,21 +1096,21 @@ strong{font-weight:500;color:var(--magenta)}
   /* Shakti-Naad's own saffron-and-magenta over violet, so the page closes on
      the palette it opened the band run with */
   background:
-    radial-gradient(90% 60% at 50% 0%,  rgba(255,138,30,.3)  0%, transparent 62%),
-    radial-gradient(70% 55% at 86% 90%, rgba(200,29,140,.34) 0%, transparent 64%),
-    linear-gradient(170deg, var(--deep) 0%, var(--deep-2) 52%, #230742 100%);
-  box-shadow:0 50px 110px -60px rgba(43,16,56,.9);
+    radial-gradient(90% 60% at 50% 0%,  rgba(139,91,194,.3)  0%, transparent 62%),
+    radial-gradient(70% 55% at 86% 90%, rgba(155,82,190,.34) 0%, transparent 64%),
+    linear-gradient(170deg, var(--deep) 0%, var(--deep-2) 52%, #3E2363 100%);
+  box-shadow:0 50px 110px -60px rgba(36,21,54,.9);
 }
 .krishnaya .h2,.krishnaya h3{color:var(--on-deep)}
 .krishnaya .lead,.krishnaya p{color:var(--on-deep-soft)}
-.krishnaya strong{color:var(--gold-pale);font-weight:500}
-.krishnaya .eyebrow{color:var(--marigold)}
-.krishnaya .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--marigold))}
+.krishnaya strong{color:var(--wisteria-pale);font-weight:500}
+.krishnaya .eyebrow{color:var(--orchid)}
+.krishnaya .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--orchid))}
 
 .krishnaya__aura{
   position:absolute;left:76%;top:46%;transform:translate(-50%,-50%);
   width:min(84vw,720px);aspect-ratio:1;pointer-events:none;
-  background:radial-gradient(circle at center, rgba(255,184,46,.2) 0%, transparent 62%);
+  background:radial-gradient(circle at center, rgba(185,155,233,.2) 0%, transparent 62%);
 }
 
 /* portrait film, so the copy takes the wider column — the reverse of Dastak */
@@ -1081,15 +1123,15 @@ strong{font-weight:500;color:var(--magenta)}
 .krishnaya__copy{max-width:640px}
 .krishnaya__title{
   font-size:clamp(2.2rem,5vw,3.7rem);letter-spacing:.008em;margin-bottom:.14em;
-  background:linear-gradient(100deg,#FFF 0%,var(--gold-pale) 24%,var(--marigold) 52%,var(--saffron) 78%,#FFF 100%);
+  background:linear-gradient(100deg,#FFF 0%,var(--wisteria-pale) 24%,var(--orchid) 52%,var(--amethyst) 78%,#FFF 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 10px 36px rgba(255,138,30,.4));
+  filter:drop-shadow(0 10px 36px rgba(139,91,194,.4));
 }
 /* their own line, set as the act's claim */
 .krishnaya__usp{
   font-family:var(--font-d);font-style:italic;
   font-size:clamp(1.02rem,1.7vw,1.4rem);
-  color:var(--marigold) !important;margin:0 0 1em;
+  color:var(--orchid) !important;margin:0 0 1em;
 }
 .krishnaya__copy .lead{margin-bottom:1em}
 .krishnaya__copy .lead + p{margin-bottom:1.3em}
@@ -1100,16 +1142,16 @@ strong{font-weight:500;color:var(--magenta)}
   counter-increment:krp;
   display:flex;align-items:baseline;gap:clamp(13px,1.6vw,22px);
   padding:clamp(10px,1.3vw,15px) 0;
-  border-top:1px solid rgba(255,244,228,.15);
+  border-top:1px solid rgba(255,246,251,.15);
   transition:padding-left .45s var(--ease), border-color .45s var(--ease);
 }
-.krishnaya__repertoire li:last-child{border-bottom:1px solid rgba(255,244,228,.15)}
+.krishnaya__repertoire li:last-child{border-bottom:1px solid rgba(255,246,251,.15)}
 .krishnaya__repertoire li::before{
   content:counter(krp,decimal-leading-zero);
   flex:0 0 auto;min-width:2.1em;
-  font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;color:var(--marigold);
+  font-family:var(--font-d);font-size:.8rem;letter-spacing:.14em;color:var(--orchid);
 }
-.krishnaya__repertoire li:hover{padding-left:10px;border-color:rgba(255,184,46,.5)}
+.krishnaya__repertoire li:hover{padding-left:10px;border-color:rgba(185,155,233,.5)}
 .krishnaya__rep-name{
   font-family:var(--font-d);font-weight:600;
   font-size:clamp(1.04rem,1.4vw,1.3rem);line-height:1.2;color:var(--on-deep);
@@ -1123,7 +1165,7 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .krishnaya__for-label{
   font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
-  font-weight:500;color:rgba(255,244,228,.5);
+  font-weight:500;color:rgba(255,246,251,.5);
 }
 .krishnaya__for-text{
   font-family:var(--font-d);font-size:clamp(1rem,1.4vw,1.2rem);
@@ -1135,8 +1177,8 @@ strong{font-weight:500;color:var(--magenta)}
   position:relative;margin:0;justify-self:center;
   width:100%;max-width:372px;
   border-radius:var(--r-lg);overflow:hidden;
-  border:3px solid rgba(255,244,228,.92);
-  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(201,146,46,.34);
+  border:3px solid rgba(255,246,251,.92);
+  box-shadow:0 56px 104px -46px #000, 0 0 0 1px rgba(167,127,212,.34);
 }
 /* 9:16, so the <video> keeps its own shape and nothing is letterboxed */
 .krishnaya__v{width:100%;height:auto;display:block;background:var(--deep-2)}
@@ -1145,17 +1187,17 @@ strong{font-weight:500;color:var(--magenta)}
   display:flex;align-items:center;gap:9px;
   padding:13px 18px;
   font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--marigold);
-  background:linear-gradient(100deg, rgba(46,11,82,.92), rgba(27,5,53,.86));
+  color:var(--orchid);
+  background:linear-gradient(100deg, rgba(58,33,89,.92), rgba(36,21,54,.86));
 }
 .krishnaya__cap-dot{
   width:7px;height:7px;border-radius:50%;flex:0 0 auto;
-  background:var(--marigold);box-shadow:0 0 0 0 rgba(255,184,46,.6);
+  background:var(--orchid);box-shadow:0 0 0 0 rgba(185,155,233,.6);
   animation:krishnayaPulse 2.6s var(--ease) infinite;
 }
 @keyframes krishnayaPulse{
-  70%{box-shadow:0 0 0 9px rgba(255,184,46,0)}
-  100%{box-shadow:0 0 0 0 rgba(255,184,46,0)}
+  70%{box-shadow:0 0 0 9px rgba(185,155,233,0)}
+  100%{box-shadow:0 0 0 0 rgba(185,155,233,0)}
 }
 
 /* ---------- 17. CHOREOGRAPHY ----------
@@ -1168,8 +1210,8 @@ strong{font-weight:500;color:var(--magenta)}
 .choreo__wash{
   position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
-    radial-gradient(58% 48% at 82% 22%, rgba(255,184,46,.20) 0%, transparent 66%),
-    radial-gradient(52% 44% at 10% 78%, rgba(240,24,110,.10) 0%, transparent 68%);
+    radial-gradient(58% 48% at 82% 22%, rgba(185,155,233,.20) 0%, transparent 66%),
+    radial-gradient(52% 44% at 10% 78%, rgba(224,137,184,.10) 0%, transparent 68%);
 }
 .choreo__grid{
   position:relative;z-index:1;
@@ -1181,7 +1223,7 @@ strong{font-weight:500;color:var(--magenta)}
 .choreo__copy{max-width:620px}
 .choreo__title{
   font-size:clamp(2.4rem,5.6vw,4.2rem);letter-spacing:.012em;margin-bottom:.12em;
-  background:linear-gradient(100deg,var(--ink) 0%,var(--magenta) 34%,var(--rose) 62%,var(--saffron) 100%);
+  background:linear-gradient(100deg,var(--ink) 0%,var(--magenta) 34%,var(--rose) 62%,var(--amethyst) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .choreo__sub{
@@ -1208,26 +1250,26 @@ strong{font-weight:500;color:var(--magenta)}
 .choreo__marks li::before{
   content:"";position:absolute;left:0;top:.52em;
   width:7px;height:7px;border-radius:50%;
-  background:linear-gradient(140deg,var(--marigold),var(--rose));
+  background:linear-gradient(140deg,var(--orchid),var(--rose));
 }
 
 /* ---- the film, on the right ---- */
 .choreo__film{margin:0;justify-self:center;width:100%;max-width:520px}
 .choreo__frame{
   position:relative;border-radius:clamp(18px,2vw,26px);overflow:hidden;
-  border:1px solid rgba(201,146,46,.5);
+  border:1px solid rgba(167,127,212,.5);
   box-shadow:
     0 2px 0 rgba(255,255,255,.7) inset,
-    0 40px 90px -42px rgba(240,24,110,.45),
-    0 18px 50px -30px rgba(43,16,56,.5);
+    0 40px 90px -42px rgba(224,137,184,.45),
+    0 18px 50px -30px rgba(36,21,54,.5);
   transition:transform .6s var(--ease), box-shadow .6s var(--ease);
 }
 .choreo__frame:hover{
   transform:translateY(-5px);
   box-shadow:
     0 2px 0 rgba(255,255,255,.7) inset,
-    0 54px 104px -40px rgba(240,24,110,.56),
-    0 22px 56px -30px rgba(43,16,56,.55);
+    0 54px 104px -40px rgba(224,137,184,.56),
+    0 22px 56px -30px rgba(36,21,54,.55);
 }
 /* 1:1, so the clip keeps its own shape and nothing is letterboxed */
 .choreo__v{width:100%;height:auto;display:block;background:var(--deep-2)}
@@ -1238,7 +1280,7 @@ strong{font-weight:500;color:var(--magenta)}
   position:absolute;left:0;right:0;bottom:0;z-index:2;
   display:flex;align-items:center;gap:clamp(8px,1.2vw,14px);
   padding:clamp(10px,1.3vw,15px) clamp(11px,1.4vw,16px);
-  background:linear-gradient(180deg, rgba(43,16,56,0) 0%, rgba(43,16,56,.52) 42%, rgba(43,16,56,.82) 100%);
+  background:linear-gradient(180deg, rgba(36,21,54,0) 0%, rgba(36,21,54,.52) 42%, rgba(36,21,54,.82) 100%);
 }
 
 /* the seek bar — a real range input, so drag, tap and arrow keys all work.
@@ -1250,11 +1292,11 @@ strong{font-weight:500;color:var(--magenta)}
 }
 .choreo__seek::-webkit-slider-runnable-track{
   height:4px;border-radius:999px;
-  background:linear-gradient(90deg,var(--marigold) 0%,var(--rose) var(--p),rgba(255,255,255,.3) var(--p),rgba(255,255,255,.3) 100%);
+  background:linear-gradient(90deg,var(--orchid) 0%,var(--rose) var(--p),rgba(255,255,255,.3) var(--p),rgba(255,255,255,.3) 100%);
 }
 .choreo__seek::-moz-range-track{
   height:4px;border-radius:999px;
-  background:linear-gradient(90deg,var(--marigold) 0%,var(--rose) var(--p),rgba(255,255,255,.3) var(--p),rgba(255,255,255,.3) 100%);
+  background:linear-gradient(90deg,var(--orchid) 0%,var(--rose) var(--p),rgba(255,255,255,.3) var(--p),rgba(255,255,255,.3) 100%);
 }
 .choreo__seek::-webkit-slider-thumb{
   -webkit-appearance:none;appearance:none;
@@ -1269,7 +1311,7 @@ strong{font-weight:500;color:var(--magenta)}
   box-shadow:0 1px 5px rgba(0,0,0,.5);
 }
 .choreo__seek:hover::-webkit-slider-thumb{transform:scale(1.25)}
-.choreo__seek:focus-visible{outline:2px solid var(--marigold);outline-offset:4px;border-radius:999px}
+.choreo__seek:focus-visible{outline:2px solid var(--orchid);outline-offset:4px;border-radius:999px}
 
 .choreo__time{
   flex:0 0 auto;display:inline-flex;align-items:center;gap:.3em;
@@ -1282,13 +1324,13 @@ strong{font-weight:500;color:var(--magenta)}
   flex:0 0 auto;
   display:inline-flex;align-items:center;justify-content:center;
   width:30px;height:30px;border-radius:50%;
-  color:#fff;background:rgba(43,16,56,.58);
+  color:#fff;background:rgba(36,21,54,.58);
   border:1px solid rgba(255,255,255,.34);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   transition:background .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease);
 }
-.choreo__sound:hover{background:rgba(43,16,56,.76);border-color:var(--marigold);transform:translateY(-2px)}
-.choreo__sound:focus-visible{outline:2px solid var(--marigold);outline-offset:3px}
+.choreo__sound:hover{background:rgba(36,21,54,.76);border-color:var(--orchid);transform:translateY(-2px)}
+.choreo__sound:focus-visible{outline:2px solid var(--orchid);outline-offset:3px}
 /* speaker glyph: a cone, plus a bar that is struck through while muted */
 .choreo__sound-ic{
   position:relative;width:13px;height:13px;flex:0 0 auto;
@@ -1304,7 +1346,7 @@ strong{font-weight:500;color:var(--magenta)}
 .choreo__sound[aria-pressed="true"] .choreo__sound-ic::after{
   width:2px;height:11px;transform:translateY(-50%) rotate(0deg);left:8px;
 }
-.choreo__sound[aria-pressed="true"]{background:linear-gradient(104deg,var(--marigold),var(--rose));border-color:transparent}
+.choreo__sound[aria-pressed="true"]{background:linear-gradient(104deg,var(--orchid),var(--rose));border-color:transparent}
 /* ---------- 18. SHOWCASE (fifteen-second cuts) ----------
    Five clips, three of them shot upright and two 16:9. CSS columns rather than
    a grid of fixed tiles, so each film keeps its own proportions and nothing is
@@ -1328,10 +1370,10 @@ strong{font-weight:500;color:var(--magenta)}
   margin:0;
   position:relative;border-radius:18px;overflow:hidden;
   border:3px solid #fff;
-  box-shadow:0 26px 54px -30px rgba(43,16,56,.55);
+  box-shadow:0 26px 54px -30px rgba(36,21,54,.55);
   transition:transform .55s var(--ease), box-shadow .55s var(--ease);
 }
-.reel:hover{transform:translateY(-6px);box-shadow:0 44px 76px -36px rgba(240,24,110,.5)}
+.reel:hover{transform:translateY(-6px);box-shadow:0 44px 76px -36px rgba(224,137,184,.5)}
 /* each clip keeps its own shape — never stretched or letterboxed */
 .reel__v{width:100%;height:auto;display:block;background:var(--deep-2)}
 
@@ -1339,11 +1381,11 @@ strong{font-weight:500;color:var(--magenta)}
    browser's own controls */
 .reel figcaption{
   padding:clamp(12px,1.4vw,17px) clamp(14px,1.6vw,20px);
-  background:linear-gradient(100deg, rgba(46,11,82,.96), rgba(27,5,53,.92));
+  background:linear-gradient(100deg, rgba(58,33,89,.96), rgba(36,21,54,.92));
 }
 .reel__tag{
   display:inline-block;font-size:.56rem;letter-spacing:.22em;
-  text-transform:uppercase;font-weight:500;color:var(--marigold);
+  text-transform:uppercase;font-weight:500;color:var(--orchid);
 }
 .reel figcaption h3{
   font-family:var(--font-d);font-weight:600;
@@ -1352,19 +1394,19 @@ strong{font-weight:500;color:var(--magenta)}
 }
 /* ---------- 19. TIMELINE ---------- */
 .flow__line{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2vw,26px)}
-.flow__rule{position:absolute;top:28px;left:8%;right:8%;height:3px;border-radius:3px;background:rgba(122,43,201,.14);overflow:hidden}
-.flow__rule i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--marigold),var(--saffron) 30%,var(--rose) 66%,var(--violet));transition:width 1.9s var(--ease-out)}
+.flow__rule{position:absolute;top:28px;left:8%;right:8%;height:3px;border-radius:3px;background:rgba(112,66,165,.14);overflow:hidden}
+.flow__rule i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orchid),var(--amethyst) 30%,var(--rose) 66%,var(--violet));transition:width 1.9s var(--ease-out)}
 .flow__line.is-drawn .flow__rule i{width:100%}
 .step{position:relative;padding-top:62px;text-align:center}
 .step__n{
   position:absolute;top:0;left:50%;transform:translateX(-50%);
   width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
   font-family:var(--font-d);font-weight:600;font-size:1.05rem;letter-spacing:.06em;color:#fff;
-  background:linear-gradient(145deg,var(--saffron),var(--rose));
-  box-shadow:0 0 0 8px var(--cream), 0 16px 32px -16px rgba(240,24,110,.8);
+  background:linear-gradient(145deg,var(--amethyst),var(--rose));
+  box-shadow:0 0 0 8px var(--pearl), 0 16px 32px -16px rgba(224,137,184,.8);
   transition:all .55s var(--ease);
 }
-.step:nth-child(3) .step__n{background:linear-gradient(145deg,var(--marigold),var(--saffron))}
+.step:nth-child(3) .step__n{background:linear-gradient(145deg,var(--orchid),var(--amethyst))}
 .step:nth-child(4) .step__n{background:linear-gradient(145deg,var(--rose),var(--magenta))}
 .step:nth-child(5) .step__n{background:linear-gradient(145deg,var(--magenta),var(--violet))}
 .step:nth-child(6) .step__n{background:linear-gradient(145deg,var(--violet),var(--indigo))}
@@ -1376,12 +1418,12 @@ strong{font-weight:500;color:var(--magenta)}
 .contact__glow{
   position:absolute;left:50%;bottom:-26%;width:min(130vw,1300px);aspect-ratio:2;
   transform:translateX(-50%);pointer-events:none;
-  background:radial-gradient(ellipse at center, rgba(255,138,30,.3) 0%, rgba(240,24,110,.18) 40%, transparent 68%);
+  background:radial-gradient(ellipse at center, rgba(139,91,194,.3) 0%, rgba(224,137,184,.18) 40%, transparent 68%);
 }
 .contact__grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.5vw,76px);align-items:start}
 .contact__btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3vw,34px)}
 .contact__rail{margin-top:clamp(28px,3.6vw,44px);display:grid;gap:14px}
-.contact__rail li{display:flex;gap:16px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid rgba(201,146,46,.26)}
+.contact__rail li{display:flex;gap:16px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid rgba(167,127,212,.26)}
 .contact__rail b{flex:0 0 94px;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);font-weight:500}
 .contact__rail a,.contact__rail span{color:var(--ink);font-size:.96rem;transition:color .3s var(--ease)}
 .contact__rail a:hover{color:var(--magenta)}
@@ -1393,15 +1435,15 @@ strong{font-weight:500;color:var(--magenta)}
 .field > span{display:block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--violet);font-weight:500;margin-bottom:9px}
 .field input,.field select,.field textarea{
   width:100%;padding:.92em 1.1em;border-radius:12px;
-  background:rgba(255,255,255,.86);border:1px solid rgba(122,43,201,.18);
+  background:rgba(255,255,255,.86);border:1px solid rgba(112,66,165,.18);
   color:var(--ink);font-size:.94rem;font-weight:300;
   transition:border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
 }
 .field textarea{resize:vertical;min-height:110px;font-family:inherit}
-.field input::placeholder,.field textarea::placeholder{color:rgba(43,16,56,.38)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(36,21,54,.38)}
 .field input:focus,.field select:focus,.field textarea:focus{
   outline:none;border-color:var(--rose);background:#fff;
-  box-shadow:0 0 0 4px rgba(240,24,110,.12);
+  box-shadow:0 0 0 4px rgba(224,137,184,.12);
 }
 .field select{
   appearance:none;cursor:pointer;
@@ -1413,12 +1455,12 @@ strong{font-weight:500;color:var(--magenta)}
    before the visitor has touched them */
 .field input:user-invalid,
 .field select:user-invalid,
-.field textarea:user-invalid{border-color:var(--rose);box-shadow:0 0 0 4px rgba(240,24,110,.1)}
+.field textarea:user-invalid{border-color:var(--rose);box-shadow:0 0 0 4px rgba(224,137,184,.1)}
 .booking__submit{width:100%;margin-top:8px}
 .booking__note{margin:14px 0 0;font-size:.78rem;color:var(--ink-soft);min-height:1.3em;text-align:center}
 .booking__alt{color:var(--rose);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .booking__alt:hover{color:var(--magenta)}
-.booking__note.is-ok{color:var(--peacock)}
+.booking__note.is-ok{color:var(--iris)}
 .booking__note.is-err{color:var(--rose)}
 
 /* ---------- 21. FOOTER ---------- */
@@ -1427,27 +1469,27 @@ strong{font-weight:500;color:var(--magenta)}
   padding-top:clamp(44px,5vw,70px);color:var(--on-deep);
   border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;
   background:
-    radial-gradient(70% 70% at 12% 0%, rgba(255,138,30,.3), transparent 62%),
-    radial-gradient(60% 70% at 88% 10%, rgba(200,29,140,.28), transparent 62%),
+    radial-gradient(70% 70% at 12% 0%, rgba(139,91,194,.3), transparent 62%),
+    radial-gradient(60% 70% at 88% 10%, rgba(155,82,190,.28), transparent 62%),
     linear-gradient(175deg, var(--deep) 0%, var(--deep-2) 100%);
 }
 .foot__grid{display:grid;grid-template-columns:1.3fr 1.6fr .7fr;gap:clamp(24px,3vw,46px);align-items:start;padding-bottom:clamp(30px,4vw,50px)}
 .foot .brand__name{color:#fff;text-shadow:none}
-.foot .brand__dash{color:var(--marigold)}
-.foot__tag{font-family:var(--font-d);font-style:italic;font-size:1.08rem;color:var(--gold-pale);margin:16px 0 0}
+.foot .brand__dash{color:var(--orchid)}
+.foot__tag{font-family:var(--font-d);font-style:italic;font-size:1.08rem;color:var(--wisteria-pale);margin:16px 0 0}
 .foot__nav{display:flex;flex-wrap:wrap;gap:10px 26px;align-content:start}
 .foot__nav a{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--on-deep-soft);transition:color .3s var(--ease)}
-.foot__nav a:hover{color:var(--marigold)}
+.foot__nav a:hover{color:var(--orchid)}
 .foot__social{display:flex;flex-direction:column;gap:11px;align-items:flex-start}
 .foot__social a{
-  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--marigold);
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orchid);
   transition:color .3s var(--ease);
 }
 .foot__social a:hover{color:#fff}
 .foot__base{
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  padding-block:22px;border-top:1px solid rgba(255,244,228,.14);
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,244,228,.55);
+  padding-block:22px;border-top:1px solid rgba(255,246,251,.14);
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,246,251,.55);
 }
 
 /* ---------- 22. REVEAL ---------- */
@@ -1458,6 +1500,515 @@ strong{font-weight:500;color:var(--magenta)}
 .reveal[data-delay="3"]{transition-delay:.3s}
 .reveal[data-delay="4"]{transition-delay:.4s}
 
+/* ---------- 26. SECTION ATMOSPHERE ----------
+   The palette layer, and the last word on colour. Everything above paints
+   structure; this paints the finish, and it sits just before the responsive
+   rules so it wins on source order.
+
+   The stage is one plum-to-midnight-navy gradient, fixed, running the whole
+   page. Cards float on it, and there are four kinds, because the sections do
+   four different jobs:
+
+     cream     #FFF8F0   about, services, showcase, contact   - text-heavy
+     lavender  #ECE3F6   Shakti-Naad, Shradha Suman           - devotional
+     lav-pink  gradient  choreography                         - the brightest
+     plum      #2D1A42   Jjhoom, Dastak, Krishnaya            - the stage
+
+   The three light cards take deep-plum headings and muted-plum copy; the
+   plum cards take cream and lilac. The hero and footer carry no card at all
+   and sit straight on the gradient.
+
+   On magenta: #E22DCB measures 3.5-4.2:1 against every surface here, so it
+   is used for accents, rules, dots, hovers and display-size type, and never
+   for small copy. Where small text wants to be magenta it uses --magenta-lt
+   on dark (6.9:1) or --magenta-dk on the light cards (5.4-6.5:1).        */
+
+/* -- the stage -- */
+/* -- the stage. Dark plum flows in from the left edge and midnight navy from
+      the right, and the two meet and blend down the centre of the page. The
+      linear gradient does the joining; the two edge-anchored radials make
+      each colour feel like it is arriving from its own side rather than
+      simply being a gradient stop. The violet bloom sits on the seam, where
+      they connect. -- */
+body{
+  background:
+    radial-gradient(75% 96% at 0% 50%,   rgba(64,27,81,.96),   transparent 64%),
+    radial-gradient(75% 96% at 100% 50%, rgba(32,46,85,.96),   transparent 64%),
+    radial-gradient(46% 62% at 50% 48%,  rgba(139,35,213,.26), transparent 72%),
+    radial-gradient(56% 34% at 50% 1%,   rgba(226,45,203,.13), transparent 68%),
+    radial-gradient(62% 36% at 50% 100%, rgba(226,45,203,.11), transparent 70%),
+    linear-gradient(90deg, var(--bg-plum) 0%, var(--bg-mid) 50%, var(--bg-navy) 100%);
+  background-attachment:fixed;
+  color:var(--light);
+}
+
+/* -- 1. HERO - no card, cream type straight on the stage, magenta accents -- */
+.hero{
+  background:
+    radial-gradient(70% 96% at 0% 50%,   rgba(58,23,80,.94) 0%, transparent 62%),
+    radial-gradient(70% 96% at 100% 50%, rgba(30,43,82,.94) 0%, transparent 62%),
+    radial-gradient(44% 60% at 50% 54%,  rgba(139,35,213,.30) 0%, transparent 70%),
+    radial-gradient(42% 52% at 50% 98%,  rgba(226,45,203,.20) 0%, transparent 66%),
+    linear-gradient(90deg, #3A1750 0%, #2C2250 50%, #1E2B52 100%);
+}
+.hero__title,.hero .h1{color:var(--light)}
+.hero__brand,.hero__title em,.hero__title span{color:var(--magenta)}
+.hero__lede,.hero .lead{color:var(--light-2)}
+.hero .eyebrow{color:var(--magenta-lt)}
+.hero .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--magenta))}
+.hero__offer{
+  border-left:3px solid var(--magenta);
+  background:linear-gradient(100deg, rgba(45,26,66,.56), rgba(45,26,66,.34));
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.hero__offer p{color:var(--light-2)}
+.hero__offer strong{color:var(--magenta-lt)}
+.hero__caption{color:var(--magenta-lt)}
+.hero .dot{background:rgba(255,248,240,.26)}
+.hero .dot:hover{background:rgba(255,248,240,.5)}
+.hero__arrow{
+  background:linear-gradient(145deg, rgba(45,26,66,.6), rgba(45,26,66,.38));
+  border:1px solid rgba(119,80,140,.8);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.hero__arrow svg{stroke:var(--light)}
+.hero .btn--ghost{
+  color:var(--light);
+  border-color:rgba(119,80,140,.9);
+  background:linear-gradient(145deg, rgba(45,26,66,.6), rgba(45,26,66,.36));
+}
+.hero .btn--ghost:hover{
+  color:var(--light);border-color:var(--magenta);
+  background:linear-gradient(145deg, rgba(226,45,203,.26), rgba(139,35,213,.24));
+}
+.scroller,.scroller__txt{color:var(--light-2)}
+.scroller__line{background:rgba(255,248,240,.3)}
+.scroller__line i{background:var(--magenta)}
+
+/* the nav sits on the stage the whole way down, so its ink never flips */
+.nav .brand__name{color:var(--light)}
+.nav .brand__tag{color:var(--magenta-lt)}
+.nav__links > a:not(.btn){color:var(--light-2)}
+.nav__links > a:not(.btn):hover,
+.nav__links > a.is-current{color:var(--magenta-lt)}
+.nav .burger span{background:var(--light)}
+.nav.is-stuck{
+  background:rgba(33,27,63,.86);
+  -webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
+  border-bottom-color:rgba(119,80,140,.5);
+}
+
+/* ======================================================================
+   2. THE CARDS
+   Every section is a card, and they alternate the whole way down. The pink
+   starts at About Us, so the series runs:
+
+     about           rose gold
+     services        website
+     Shakti-Naad     rose gold
+     Shradha Suman   website
+     Jjhoom          rose gold
+     Dastak          website
+     Krishnaya       rose gold
+     choreography    website
+     showcase        rose gold
+     contact         rose gold  (your call - the open timeline sits
+                                between it and showcase, so the two pink
+                                cards never touch)
+
+   The hero carries no card and is the website colour itself, so About Us —
+   the first card on the page — is the first pink one.
+
+   A website-colour card carries the same 90deg plum-to-navy gradient as the
+   page behind it, so it reads as the site's own colour; its border and shadow
+   are what make it a card rather than a hole.
+
+   The timeline between showcase and contact keeps no card — it is a process
+   strip, not a content panel.
+   ====================================================================== */
+
+/* shared geometry */
+:is(.about,.services,.band,.suman,.jjhoom,.dastak,.krishnaya,.choreo,.reels,.contact){
+  border-radius:clamp(18px,2.1vw,28px);
+  margin-inline:clamp(12px,2.8vw,44px);
+  margin-block:clamp(20px,3vw,48px);
+  padding-block:clamp(72px,8.6vw,132px);
+  border:1px solid rgba(119,80,140,.55);
+  box-shadow:
+    0 1px 2px rgba(16,10,32,.22),
+    0 24px 56px -30px rgba(16,10,32,.7);
+  overflow:clip;
+}
+:is(.about,.services,.band,.suman,.jjhoom,.dastak,.krishnaya,.choreo,.reels,.contact) > .wrap{
+  padding-inline:clamp(22px,3.6vw,56px);
+}
+
+/* ---- 2a. the two surfaces ---- */
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact){background:var(--card-rose)}
+:is(.services,.suman,.dastak,.choreo){
+  background:linear-gradient(90deg, var(--bg-plum) 0%, var(--bg-mid) 50%, var(--bg-navy) 100%);
+  border-color:rgba(119,80,140,.75);
+}
+
+/* ---- 2b. ink on the rose-gold cards ---- */
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact){color:var(--plum-m)}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact)
+  :is(h1,h2,h3,h4,h5,.h1,.h2,.h3,.h4){color:var(--plum-h)}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact)
+  :is(p,li,dd,figcaption,.lead,label){color:var(--plum-m)}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact)
+  :is(strong,b){color:var(--royal);font-weight:500}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact) .eyebrow{color:var(--magenta-dk)}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact)
+  .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--magenta))}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact) .link-arrow{color:var(--royal)}
+
+/* ---- 2c. ink on the website-colour cards ---- */
+:is(.services,.suman,.dastak,.choreo){color:var(--light-2)}
+:is(.services,.suman,.dastak,.choreo) :is(h1,h2,h3,h4,h5,.h1,.h2,.h3,.h4){color:var(--light)}
+:is(.services,.suman,.dastak,.choreo) :is(p,li,dd,figcaption,.lead,label){color:var(--light-2)}
+:is(.services,.suman,.dastak,.choreo) :is(strong,b){color:var(--magenta-lt);font-weight:500}
+:is(.services,.suman,.dastak,.choreo) .eyebrow{color:var(--magenta-lt)}
+:is(.services,.suman,.dastak,.choreo) .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--magenta))}
+:is(.services,.suman,.dastak,.choreo) .link-arrow{color:var(--violet-lt)}
+
+/* ---- 2d. furniture of the ROSE-GOLD band sections (Shakti-Naad, Jjhoom,
+      Krishnaya) - deep plum ink on a light card ---- */
+:is(.jjhoom__usp,.krishnaya__usp){color:var(--royal) !important}
+.jjhoom__stats span{color:var(--plum-m)}
+:is(.jjhoom__genres,.krishnaya__repertoire) li{border-top:1px solid rgba(119,80,140,.34)}
+:is(.jjhoom__genres,.krishnaya__repertoire) li:last-child{border-bottom:1px solid rgba(119,80,140,.34)}
+:is(.jjhoom__genres,.krishnaya__repertoire) li:hover{border-color:var(--royal)}
+:is(.jjhoom__genres,.krishnaya__repertoire) li::before{color:var(--magenta-dk)}
+:is(.jjhoom__genre-name,.krishnaya__rep-name){color:var(--plum-h)}
+:is(.jjhoom__genre-note,.krishnaya__rep-note){color:var(--plum-m)}
+:is(.jjhoom__album-label,.krishnaya__for-label){color:var(--magenta-dk)}
+:is(.jjhoom__album-name,.krishnaya__for-text){color:var(--plum-h)}
+.jjhoom__album-note{color:var(--plum-m)}
+.jjhoom__album,.krishnaya__for{border-top:1px solid rgba(119,80,140,.34)}
+:is(.jjhoom__film,.krishnaya__film){
+  border:3px solid rgba(255,248,248,.95);
+  box-shadow:0 48px 92px -52px rgba(16,10,32,.6), 0 0 0 1px rgba(119,80,140,.4);
+}
+:is(.jjhoom__film,.krishnaya__film) figcaption{
+  color:var(--royal);
+  background:linear-gradient(100deg, rgba(255,251,251,.97), rgba(253,232,233,.9));
+}
+:is(.jjhoom__cap-dot,.krishnaya__cap-dot){
+  background:var(--royal);box-shadow:0 0 0 0 rgba(139,35,213,.45);
+}
+:is(.band__title,.jjhoom__title,.krishnaya__title){
+  background:linear-gradient(100deg,var(--plum-h) 0%,var(--royal) 46%,var(--magenta-dk) 86%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 10px 28px rgba(139,35,213,.22));
+}
+:is(.jjhoom__aura,.krishnaya__aura,.band__glow){
+  background:radial-gradient(ellipse at center, rgba(226,45,203,.18) 0%, transparent 66%);
+}
+.band__sub{color:var(--royal)}
+.sn-h3{color:var(--royal) !important}
+.band .wave{opacity:.2}
+.sn-pill{
+  color:var(--plum-h);
+  background:linear-gradient(145deg, rgba(255,251,251,.96), rgba(253,232,233,.76));
+  border:1px solid rgba(119,80,140,.5);
+  box-shadow:0 12px 26px -20px rgba(16,10,32,.5);
+}
+.sn-pill:hover{
+  border-color:var(--royal);
+  background:linear-gradient(140deg, rgba(226,45,203,.18), rgba(139,35,213,.14));
+  color:var(--plum-h);
+}
+.sn-slider .slide{box-shadow:0 44px 90px -54px rgba(16,10,32,.6), 0 0 0 1px rgba(119,80,140,.45)}
+.sn-slider .hero__caption{color:var(--magenta-dk)}
+.sn-slider .dot{background:rgba(56,32,71,.22)}
+.sn-slider .dot:hover{background:rgba(56,32,71,.44)}
+.sn-slider .hero__arrow{
+  background:linear-gradient(145deg, rgba(255,252,252,.97), rgba(253,232,233,.82));
+  border:1px solid rgba(119,80,140,.5);
+}
+.sn-slider .hero__arrow svg{stroke:var(--royal)}
+.sn-slider .hero__arrow:hover svg{stroke:var(--light)}
+
+/* ---- 2e. furniture of the WEBSITE-COLOUR band sections (Shradha Suman,
+      Dastak) - cream and lilac ink on the dark card ---- */
+:is(.suman__title,.dastak__title){
+  background:linear-gradient(100deg,#FFF8F0 0%,var(--light-2) 26%,var(--violet-lt) 58%,var(--magenta) 96%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 10px 30px rgba(226,45,203,.3));
+}
+.suman__sub{color:var(--violet-lt)}
+.dastak__usp{color:var(--violet-lt) !important}
+.dastak__creds span{color:var(--light-2)}
+:is(.suman__glow,.suman__aura,.dastak__aura){
+  background:radial-gradient(ellipse at center, rgba(226,45,203,.26) 0%, transparent 66%);
+}
+:is(.suman__film,.dastak__film){
+  border:3px solid rgba(119,80,140,.85);
+  box-shadow:0 48px 92px -52px rgba(12,8,26,.9);
+}
+:is(.suman__film,.dastak__film) figcaption{
+  color:var(--magenta-lt);
+  background:linear-gradient(100deg, rgba(33,27,63,.94), rgba(45,26,66,.86));
+}
+:is(.suman__cap-dot,.dastak__cap-dot){background:var(--magenta);box-shadow:0 0 0 0 rgba(226,45,203,.6)}
+:is(.suman__offer,.dastak__genres) li{border-top:1px solid rgba(233,217,239,.2)}
+:is(.suman__offer,.dastak__genres) li:last-child{border-bottom:1px solid rgba(233,217,239,.2)}
+:is(.suman__offer,.dastak__genres) li:hover{border-color:var(--magenta)}
+:is(.suman__offer,.dastak__genres) li::before{color:var(--magenta-lt)}
+:is(.suman__offer-name,.dastak__genre-name){color:var(--light)}
+:is(.suman__offer-note,.dastak__genre-note){color:var(--light-2)}
+.dastak__for{border-top:1px solid rgba(233,217,239,.2)}
+.dastak__for-label{color:var(--magenta-lt)}
+.dastak__for-text{color:var(--light)}
+
+/* ---- 2f. choreography now sits on a website-colour card, so its wordmark
+      and its marks take the light treatment ---- */
+.choreo__title{
+  background:linear-gradient(100deg,#FFF8F0 0%,var(--light-2) 28%,var(--violet-lt) 60%,var(--magenta) 96%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.choreo .eyebrow{color:var(--magenta-lt)}
+.choreo__marks li::before{background:var(--magenta)}
+
+/* ---- 2g. contact is pink, so its rail, glow and the booking panel inside it
+      all take the light treatment ---- */
+.contact__glow{background:radial-gradient(ellipse at center, rgba(226,45,203,.18) 0%, transparent 66%)}
+.contact__rail li{border-bottom:1px solid rgba(119,80,140,.34)}
+.contact__rail b{color:var(--magenta-dk)}
+.contact__rail a,.contact__rail span{color:var(--plum-m)}
+.contact__rail a:hover{color:var(--royal)}
+
+/* ---- 2h. cards nested inside the sections. Each follows its host: .pillar
+      and .booking sit in rose-gold sections (About, Contact) so they take the
+      light glass; .svc sits in Services, a website-colour card, so it takes
+      the dark one. .step is in neither - the timeline has no card. ---- */
+:is(.pillar,.booking,.glass){
+  background:linear-gradient(145deg, rgba(255,250,250,.97), rgba(253,232,233,.86));
+  border:1px solid rgba(119,80,140,.42);
+}
+.pillar :is(h3,.h3){color:var(--plum-h)}
+.pillar p,.pillar li{color:var(--plum-m)}
+.pillar strong,.pillar b{color:var(--royal)}
+.pillar__num{color:rgba(56,32,71,.18)}
+.pillar__bands li::before{background:var(--magenta)}
+
+.svc{
+  background:var(--glass-deep);
+  border:1px solid rgba(119,80,140,.7);
+}
+.svc :is(h3,.h3){color:var(--light)}
+.svc p,.svc li{color:var(--light-2)}
+.svc__num{color:rgba(233,217,239,.22)}
+.svc__list li{
+  background:rgba(255,248,240,.08);
+  border:1px solid rgba(119,80,140,.6);
+  color:var(--light-2);
+}
+
+/* ghost buttons: light-card version, then the plum-card version */
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact) .btn--ghost{
+  color:var(--royal);
+  border-color:rgba(139,35,213,.42);
+  background:linear-gradient(145deg, rgba(255,250,250,.95), rgba(253,232,233,.8));
+}
+:is(.about,.band,.jjhoom,.krishnaya,.reels,.contact) .btn--ghost:hover{
+  color:var(--plum-h);border-color:var(--royal);
+}
+:is(.services,.suman,.dastak,.choreo) .btn--ghost{
+  color:var(--light);
+  border-color:rgba(119,80,140,.9);
+  background:linear-gradient(145deg, rgba(255,248,240,.1), rgba(255,248,240,.04));
+}
+:is(.services,.suman,.dastak,.choreo) .btn--ghost:hover{
+  color:var(--light);border-color:var(--magenta);
+  background:linear-gradient(145deg, rgba(226,45,203,.24), rgba(139,35,213,.2));
+}
+
+/* -- 3. buttons - royal violet, with magenta arriving on hover -- */
+.btn--primary,.btn--wisteria,.nav__cta,.booking__submit{
+  /* the sweep stops at #B425AE, not full --magenta: the labels are 12px, and
+     cream on #E22DCB is 3.6:1. This end keeps them at 5.2:1. Full magenta
+     still arrives on hover, where it lights the shadow rather than the text. */
+  background:linear-gradient(104deg, var(--royal) 0%, #A52BD2 52%, #B425AE 100%);
+  color:var(--light);
+}
+.btn--primary:hover,.btn--wisteria:hover,.nav__cta:hover,.booking__submit:hover{
+  box-shadow:0 22px 46px -14px rgba(226,45,203,.55), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.step__n{background:linear-gradient(145deg, var(--royal), #B425AE) !important;color:var(--light)}
+
+/* -- 4. form fields -- */
+.field > span{color:var(--magenta-dk)}
+.field input,.field select,.field textarea{
+  background:rgba(255,248,248,.96);
+  border:1px solid rgba(119,80,140,.45);
+  color:var(--plum-h);
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(105,85,109,.6)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--royal);background:var(--card-rose);
+  box-shadow:0 0 0 4px rgba(139,35,213,.14);
+}
+
+/* -- 5. the footer closes on deep plum -- */
+.foot{
+  color:var(--light);
+  background:
+    radial-gradient(70% 70% at 14% 0%, rgba(139,35,213,.4), transparent 62%),
+    radial-gradient(60% 70% at 86% 12%, rgba(226,45,203,.22), transparent 62%),
+    linear-gradient(175deg, #2A2150 0%, var(--foot) 100%);
+}
+.foot .brand__name{color:var(--light)}
+.foot .brand__dash,.foot__tag{color:var(--magenta-lt)}
+.foot__nav a{color:var(--light-2)}
+.foot__nav a:hover{color:var(--magenta-lt)}
+.foot__social a{color:var(--light-2);border-color:rgba(119,80,140,.6)}
+.foot__social a:hover{color:var(--magenta-lt);border-color:var(--magenta)}
+.foot__base{border-top:1px solid rgba(119,80,140,.4);color:rgba(233,217,239,.66)}
+
+/* -- 6. the glossy sculptures. They sit on the stage and in the gutters
+      between cards, where there is nothing to obstruct. -- */
+.sculpt{opacity:var(--sc-o,.3)}
+
+/* -- 7. the timeline carries no card. It sits open on the stage, which gives
+      the run of cards somewhere to breathe and echoes the full-bleed dark
+      stretches in the reference. Its ink therefore has to be light. -- */
+.flow{color:var(--light-2)}
+.flow :is(h1,h2,h3,h4,.h1,.h2,.h3){color:var(--light)}
+.flow :is(p,li,.lead){color:var(--light-2)}
+.flow .eyebrow{color:var(--magenta-lt)}
+.flow .eyebrow__rule{background:linear-gradient(90deg,transparent,var(--magenta))}
+.flow .sec-head__sub{color:var(--light-2)}
+.step h3{color:var(--light)}
+.step p{color:var(--light-2)}
+.step__n{box-shadow:0 0 0 8px rgba(33,27,63,.92), 0 16px 32px -16px rgba(226,45,203,.6)}
+.flow__rule{background:rgba(233,217,239,.16)}
+
+/* the two sculptures that sit on the open stage can be bolder, because there
+   is no card under them and nothing to wash out; the ones inside light cards
+   stay faint so they never fight the copy they sit behind */
+.sculpt--hero{--sc-o:.34;--sc-b:22px}
+.sculpt--flow{--sc-o:.30;--sc-b:20px}
+
+
+/* The scroll hint collides with the hero buttons two different ways, so it is
+   guarded on both axes. Below ~1100px wide the two buttons wrap onto a second
+   row and walk into it (49x55px at 1024px). Below ~880px tall they do not
+   wrap at all, but the short viewport brings the whole hero down onto it
+   (49x22px at 1280x760). The hint is decoration either way, so it steps
+   aside first.
+
+   Old note, kept for the measurement: the two hero buttons wrap below about 1100px, which walks
+   them into the scroll hint in the corner - a 49x55px collision at
+   1024px. The hint only stepped aside at 760px. */
+
+@media (max-width:1100px), (max-height:880px){
+  .scroller{display:none}
+}
+
+
+/* ---------- 27. HOLOGRAPHIC RIBBON ----------
+   The WebGL ribbon in assets/js/ribbon.js draws into these canvases. They are
+   decoration only: never in the flow, never clickable, and always under the
+   copy.
+
+   Stacking: inside a .section, z-index:-1 puts the canvas above the card's own
+   background but below the content, which is the same trick the SVG sculptures
+   use and works because .section sets z-index:1 and so makes a stacking
+   context. The hero does not set z-index, so there the canvas goes to z-index:1
+   (above the hero's gradient) and the copy is lifted to 2.
+
+   Opacity follows the brief: lower where the ribbon sits behind words, higher
+   where it is filling empty space. The per-instance alpha lives in data-alpha
+   so the shader and the CSS do not fight each other.                       */
+.ribbon{
+  position:absolute;
+  pointer-events:none;
+  display:block;
+  width:var(--rb-w,520px);
+  height:var(--rb-h,420px);
+  z-index:-1;
+  /* a soft mask so the ribbon dissolves into the card rather than ending on a
+     hard canvas edge */
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
+  mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
+  filter:blur(var(--rb-blur,.4px));
+  will-change:transform;
+}
+
+/* hero - large, to the right of the copy, in the open space beside the slider */
+.hero .ribbon{z-index:1}
+.hero > .wrap{position:relative;z-index:2}
+.ribbon--hero{
+  top:4%; right:-10%;
+  --rb-w:min(66vw,860px); --rb-h:min(62vh,680px);
+}
+
+/* services - in the open margin beside the three cards */
+.ribbon--services{
+  bottom:-6%; left:-12%;
+  --rb-w:min(46vw,560px); --rb-h:min(40vh,460px);
+}
+
+/* Dastak - behind the empty background beside the film */
+.ribbon--dastak{
+  top:-8%; right:-14%;
+  --rb-w:min(50vw,620px); --rb-h:min(46vh,520px);
+}
+
+/* choreography - a decorative sweep under the whole section */
+.ribbon--choreo{
+  bottom:-16%; left:-10%;
+  --rb-w:min(58vw,720px); --rb-h:min(50vh,560px);
+}
+
+/* the three glass-mode ribbons, on the rose-gold cards. They sit lower in
+   opacity than the glow ones (the brief's 8-18% behind text) and are placed
+   clear of the copy columns. */
+.ribbon--about{
+  bottom:-10%; left:-13%;
+  --rb-w:min(44vw,540px); --rb-h:min(38vh,430px);
+}
+.ribbon--shakti{
+  top:-10%; right:-13%;
+  --rb-w:min(42vw,520px); --rb-h:min(38vh,420px);
+}
+.ribbon--krishnaya{
+  bottom:-12%; right:-12%;
+  --rb-w:min(46vw,560px); --rb-h:min(40vh,450px);
+}
+
+/* the three tubes. They sit flatter and more symmetric than the ribbons — the
+   reference is a head-on infinity — so they are given wider, shorter boxes. */
+.ribbon--suman{
+  top:-12%; left:-10%;
+  --rb-w:min(50vw,600px); --rb-h:min(30vh,330px);
+}
+.ribbon--jjhoom{
+  bottom:-14%; right:-11%;
+  --rb-w:min(48vw,580px); --rb-h:min(28vh,310px);
+}
+.ribbon--reels{
+  top:-10%; right:-9%;
+  --rb-w:min(52vw,640px); --rb-h:min(30vh,340px);
+}
+
+@media (max-width:900px){
+  /* on a phone only the hero keeps one, and it is smaller and fainter - the
+     other three are pure decoration and not worth the battery */
+  .ribbon--services,.ribbon--dastak,.ribbon--choreo,
+  .ribbon--about,.ribbon--shakti,.ribbon--krishnaya,
+  .ribbon--suman,.ribbon--jjhoom,.ribbon--reels{display:none}
+  .ribbon--hero{--rb-w:120vw; --rb-h:46vh; right:-30%; top:2%}
+}
+
+@media (prefers-reduced-motion: reduce){
+  /* ribbon.js already renders a single still frame; this just softens it
+     further so a frozen ribbon does not read as a mistake */
+  .ribbon{opacity:.7}
+}
+
 /* ---------- 23. RESPONSIVE ---------- */
 @media (max-width:1180px){
   .sn-grid{grid-template-columns:1fr 1fr}
@@ -1467,7 +2018,7 @@ strong{font-weight:500;color:var(--magenta)}
   .nav__links{
     position:fixed;inset:0;z-index:100;
     flex-direction:column;justify-content:center;gap:clamp(14px,3vh,26px);
-    background:rgba(255,248,238,.95);
+    background:rgba(255,246,251,.95);
     -webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);
     opacity:0;visibility:hidden;transition:opacity .5s var(--ease), visibility .5s;
   }
@@ -1534,7 +2085,7 @@ strong{font-weight:500;color:var(--magenta)}
   .f-row{grid-template-columns:1fr}
   .flow__line{grid-template-columns:1fr;gap:26px}
   .step{padding-top:0;padding-left:78px;text-align:left}
-  .step__n{left:0;top:2px;transform:none;width:52px;height:52px;box-shadow:0 0 0 6px var(--cream), 0 14px 28px -16px rgba(240,24,110,.8)}
+  .step__n{left:0;top:2px;transform:none;width:52px;height:52px;box-shadow:0 0 0 6px var(--pearl), 0 14px 28px -16px rgba(224,137,184,.8)}
   .step:hover .step__n{transform:translateY(-4px)}
   /* one upright film is already tall enough on a phone */
   /* one film per row once three upright clips no longer fit side by side */
@@ -1560,7 +2111,9 @@ strong{font-weight:500;color:var(--magenta)}
   .scroller{display:none}
   .foot__base{flex-direction:column;gap:8px}
   .contact__rail b{flex-basis:78px}
-  .band{margin-inline:0;border-radius:0}
+  /* Shakti-Naad used to go full-bleed here, from when it was the one dark
+     panel. Every section is the same ivory card now, so it keeps its margin
+     and radius like the rest. */
 }
 @media (max-width:480px){
   .sn-pill{padding:.66em 1.15em;font-size:.76rem}
@@ -1568,7 +2121,65 @@ strong{font-weight:500;color:var(--magenta)}
   .hero__actions .btn{flex:1 1 100%}
 }
 
-/* ---------- 24. MOTION PREFERENCES ---------- */
+
+/* ---------- 24. LIQUID SCULPTURES ----------
+   Glass ribbons drifting in the open margins of the light sections. They are
+   decoration only: z-index -1 puts them behind every heading, image and
+   control without touching a single content wrapper, because .section already
+   makes its own stacking context and none of these sections paints a
+   background of its own. pointer-events are off, so nothing can be blocked.
+
+   Only transform animates, so the blurred layer rasterises once and is then
+   composited — the cost is a texture upload, not a repaint per frame.
+
+   The deep band panels are deliberately left alone: they carry their own
+   auras and glows already, and five jewel-toned slabs do not need more.   */
+.sculpt-sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* A sculpture sits deliberately past its section edge, so the section has to
+   clip it or the page gains sideways scroll. hero, choreo and contact already
+   clipped; these four did not. clip rather than hidden, because hidden would
+   make a scroll container and break the sticky film in any section that has
+   one. */
+.about,.services,.reels,.flow{overflow:clip}
+
+.sculpt{
+  position:absolute;z-index:-1;pointer-events:none;
+  width:var(--sc-w,520px);
+  opacity:var(--sc-o,.14);
+  filter:blur(var(--sc-b,26px)) saturate(1.12) hue-rotate(var(--sc-h,0deg));
+  will-change:transform;
+  animation:scDrift var(--sc-t,18s) var(--ease) var(--sc-d,0s) infinite alternate;
+}
+.sculpt svg{width:100%;height:auto;display:block}
+
+@keyframes scDrift{
+  from{transform:translate3d(0,0,0) rotate(var(--sc-r0,0deg)) scale(1)}
+  to  {transform:translate3d(var(--sc-x,20px),var(--sc-y,-26px),0)
+                 rotate(var(--sc-r1,7deg)) scale(var(--sc-s,1.06))}
+}
+
+/* ---- the placements ----
+   Each is a different shape, hue, size and cycle length, so no two sections
+   carry the same object. Hue and blur are variables rather than a whole
+   filter, so one mobile rule can soften every instance at once. Percentages
+   rather than pixels, so they stay in their margin as the section reflows. */
+.sculpt--hero    {top:-6%;   right:-10%; --sc-w:min(54vw,680px); --sc-o:.16; --sc-t:19s; --sc-b:26px; --sc-h:0deg;   --sc-r0:-6deg;  --sc-r1:4deg;  --sc-x:-22px; --sc-y:24px}
+.sculpt--about   {bottom:-8%;left:-9%;   --sc-w:min(46vw,540px); --sc-o:.13; --sc-t:16s; --sc-b:28px; --sc-h:-14deg; --sc-r0:8deg;   --sc-r1:-5deg; --sc-x:26px;  --sc-y:-18px}
+.sculpt--services{top:-10%;  right:-8%;  --sc-w:min(40vw,470px); --sc-o:.11; --sc-t:20s; --sc-b:24px; --sc-h:18deg;  --sc-r0:12deg;  --sc-r1:-3deg; --sc-x:-18px; --sc-y:20px}
+.sculpt--choreo  {bottom:-14%;left:-8%;  --sc-w:min(48vw,600px); --sc-o:.15; --sc-t:17s; --sc-b:30px; --sc-h:-8deg;  --sc-r0:-10deg; --sc-r1:6deg;  --sc-x:24px;  --sc-y:-20px}
+.sculpt--reels   {top:-8%;   left:-11%;  --sc-w:min(44vw,520px); --sc-o:.12; --sc-t:18s; --sc-b:26px; --sc-h:10deg;  --sc-r0:5deg;   --sc-r1:-7deg; --sc-x:20px;  --sc-y:22px}
+.sculpt--flow    {top:4%;    right:-12%; --sc-w:min(38vw,440px); --sc-o:.10; --sc-t:15s; --sc-b:22px; --sc-h:-20deg; --sc-r0:-4deg;  --sc-r1:9deg;  --sc-x:-16px; --sc-y:-24px}
+.sculpt--contact {top:-12%;  left:-7%;   --sc-w:min(50vw,620px); --sc-o:.14; --sc-t:20s; --sc-b:28px; --sc-h:6deg;   --sc-r0:9deg;   --sc-r1:-4deg; --sc-x:18px;  --sc-y:26px}
+
+/* A blurred layer this size is the most expensive thing on a phone, so the
+   count drops to four, the blur softens and every instance dims. These come
+   after the placements on purpose — otherwise each one's own --sc-o wins. */
+@media (max-width:760px){
+  .sculpt--services,.sculpt--reels,.sculpt--flow{display:none}
+  .sculpt{--sc-b:16px;--sc-o:.09}
+}
+/* ---------- 25. MOTION PREFERENCES ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{
@@ -1576,6 +2187,8 @@ strong{font-weight:500;color:var(--magenta)}
     transition-duration:.001ms !important;
   }
   .reveal{opacity:1;transform:none}
+  /* decorative only, so it simply stops — the shapes stay as quiet artwork */
+  .sculpt{animation:none}
   /* the film never pushes itself on someone who asked for less motion */
   .choreo__frame:hover{transform:none}
   .hero__title .ch{opacity:1;transform:none}
