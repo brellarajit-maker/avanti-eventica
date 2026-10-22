@@ -2179,13 +2179,30 @@ body{
   line-height:.78;
   letter-spacing:-.025em;
   white-space:nowrap;
+  /* The box is given the same width as .wrap, by the same min() math, so the
+     word can be aligned to the content column rather than guessed at with a
+     left offset - which breaks at >=1600px where --wrap caps and the auto
+     margin stops equalling the gutter. */
+  width:min(var(--wrap), 100% - var(--gutter) * 2);
+  /* the same inside padding .wrap carries, so a left-aligned wordmark starts
+     on the heading rather than 52px short of it */
+  padding-inline:clamp(22px,3.6vw,56px);
+  text-align:center;
   text-transform:lowercase;
 }
 
 /* on the rose-gold cards the watermark is plum; on the dark ones it is
    ivory. Both land at the same perceived weight. */
 :is(.about,.reels,.contact) .wordmark{color:rgba(36,21,54,.055)}
-:is(.services,.suman,.dastak,.choreo) .wordmark{color:rgba(255,248,240,.05)}
+/* The dark cards need roughly double the alpha of the light ones to read as
+   the same weight: ivory lifted 5% over plum is a far smaller perceptual step
+   than plum laid 5% over rose gold. At .05 the choreography wordmark was
+   effectively invisible. */
+:is(.services,.suman,.dastak,.choreo) .wordmark{color:rgba(255,248,240,.11)}
+
+/* Choreography and Contact set their headings left, not centred, so their
+   wordmarks follow the heading instead of floating in the middle of the card. */
+:is(.choreo,.contact) .wordmark{text-align:left}
 
 .wordmark--about   {top:clamp(26px,5vw,70px)}
 .wordmark--services{top:clamp(22px,4.4vw,60px)}
