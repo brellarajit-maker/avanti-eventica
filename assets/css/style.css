@@ -2292,13 +2292,21 @@ body{
   --rb-w:min(52vw,640px); --rb-h:min(30vh,340px);
 }
 
+/* The hero stacks at 1023 and below - photo first, copy under it - so the
+   sculpture has to come down with it. Left at the desktop position it sits
+   on the photograph, which is the one place it should never be. Measured at
+   375px before this: 60k px2 over the photo and nothing near the text. */
+@media (max-width:1023px){
+  .ribbon--hero{
+    top:auto; bottom:1%; left:-30%; right:auto;
+    --rb-w:min(132vw,840px); --rb-h:min(42vh,480px);
+  }
+}
+
 @media (max-width:900px){
-  /* on a phone only the hero keeps one, and it is smaller and fainter - the
-     other three are pure decoration and not worth the battery */
-  .ribbon--services,.ribbon--dastak,.ribbon--choreo,
-  .ribbon--about,.ribbon--shakti,.ribbon--krishnaya,
-  .ribbon--suman,.ribbon--jjhoom,.ribbon--reels{display:none}
-  .ribbon--hero{--rb-w:135vw; --rb-h:54vh; left:-34%; right:auto; top:-4%}
+  /* one sculpture on a phone, in the hero, and nothing else running. The
+     other three are pure decoration and not worth the battery. */
+  .ribbon--about,.ribbon--choreo,.ribbon--contact{display:none}
 }
 
 @media (prefers-reduced-motion: reduce){
