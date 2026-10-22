@@ -2222,10 +2222,13 @@ body{
   width:var(--rb-w,520px);
   height:var(--rb-h,420px);
   z-index:-1;
-  /* a soft mask so the ribbon dissolves into the card rather than ending on a
-     hard canvas edge */
-  -webkit-mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
-  mask-image:radial-gradient(ellipse at center, #000 38%, transparent 76%);
+  /* The mask only has to hide the canvas EDGE. It was fading from 38% of the
+     radius, which ate most of the sculpture before it reached the edge and
+     was the main reason the form read as a smudge. 64% keeps the shape and
+     still dissolves the boundary. */
+
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 64%, transparent 94%);
+  mask-image:radial-gradient(ellipse at center, #000 64%, transparent 94%);
   filter:blur(var(--rb-blur,.4px));
   will-change:transform;
 }
