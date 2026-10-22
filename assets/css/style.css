@@ -2233,12 +2233,14 @@ body{
   will-change:transform;
 }
 
-/* hero - large, to the right of the copy, in the open space beside the slider */
+/* hero - wrapped around the copy on the LEFT, not behind the slider photo on
+   the right. It arcs in from off the left edge and up past the heading, so the
+   text sits inside the loop rather than on top of the densest part of it. */
 .hero .ribbon{z-index:1}
 .hero > .wrap{position:relative;z-index:2}
 .ribbon--hero{
-  top:4%; right:-10%;
-  --rb-w:min(66vw,860px); --rb-h:min(62vh,680px);
+  top:-14%; left:-24%;
+  --rb-w:min(62vw,800px); --rb-h:min(78vh,820px);
 }
 
 /* services - in the open margin beside the three cards */
@@ -2296,7 +2298,7 @@ body{
   .ribbon--services,.ribbon--dastak,.ribbon--choreo,
   .ribbon--about,.ribbon--shakti,.ribbon--krishnaya,
   .ribbon--suman,.ribbon--jjhoom,.ribbon--reels{display:none}
-  .ribbon--hero{--rb-w:120vw; --rb-h:46vh; right:-30%; top:2%}
+  .ribbon--hero{--rb-w:135vw; --rb-h:54vh; left:-34%; right:auto; top:-4%}
 }
 
 @media (prefers-reduced-motion: reduce){
